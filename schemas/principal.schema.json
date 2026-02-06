@@ -1,1 +1,58 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Sugarlicks/silt-identity-core/blob/main/schemas/principal.schema.json",
+  "title": "SILT Core Principal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["principal_id", "display", "revocation"],
+  "properties": {
+    "principal_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier for the principal. Scheme intentionally unspecified at spec-first stage (key, DID, registry ref, etc.)."
+    },
+    "display": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Optional human-readable name or style. Not required and not assumed to be unique."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional notes for local display. Avoid personal data where possible."
+        }
+      },
+      "description": "Optional display metadata. Implementations should avoid treating display fields as identity proof."
+    },
+    "identifiers": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Optional additional identifiers (aliases, refs). Left open to preserve flexibility."
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional declared capability hints. Non-normative and implementation-specific."
+    },
+    "revocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["revocation_ref"],
+      "properties": {
+        "revocation_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Pointer or mechanism enabling verifiers to check whether this principal record is superseded or revoked."
+        }
+      }
+    },
+    "proof": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional proof material (signatures, attestations). Intentionally unspecified at spec-first stage."
+    }
+  }
+}
+
