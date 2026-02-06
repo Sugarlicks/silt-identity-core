@@ -1,1 +1,48 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Sugarlicks/silt-identity-core/blob/main/schemas/revocation.schema.json",
+  "title": "SILT Core Revocation Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["revocation_event_id", "target_id", "principal_id", "revoked_at"],
+  "properties": {
+    "revocation_event_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identifier for this revocation event."
+    },
+    "target_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of the artefact being revoked (consent_id or delegation_id, or other target)."
+    },
+    "principal_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of the principal asserting revocation."
+    },
+    "revoked_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When revocation is asserted."
+    },
+    "reason_code": {
+      "type": "string",
+      "description": "Optional reason classification (expiry, withdrawn, superseded, misuse_detected, error)."
+    },
+    "supersedes": {
+      "type": "string",
+      "description": "Optional pointer to a replacement artefact where revocation occurs by supersession."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes. Avoid personal data where possible."
+    },
+    "proof": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional proof material (signatures, attestations). Intentionally unspecified at spec-first stage."
+    }
+  }
+}
+
