@@ -2,6 +2,14 @@
 
 This threat model identifies common failure modes in digital identity systems where consent, delegation, and disclosure are treated as interface conventions rather than enforceable constraints. SILT Core defines primitives intended to reduce these risks by making status, standing, authority, and revocation first-class and auditable.
 
+Bitcoin Wallet Context
+
+This threat model applies to wallet-layer delegated signing authority in Bitcoin environments. The specification does not modify consensus rules and operates entirely at the application layer.
+
+In Bitcoin today, authority is typically inferred from private key possession. This creates an all-or-nothing control model that does not natively express bounded delegation (e.g. time-limited spending rights, amount-constrained authority, or revocable organizational roles).
+
+The objective here is to reduce unsafe delegation patterns (such as key sharing or ambiguous multisig arrangements) by making authority, scope, and revocation explicit and machine-verifiable within wallet logic.
+
 ## Scope
 
 In scope:
@@ -12,12 +20,13 @@ In scope:
 - Misuse cases and test vectors implementers can run against their own systems
 
 Out of scope:
-- Wallet UX and key management (except where required to express revocation and non-repudiation)
-- Chain selection, custody models, and attestation markets
+- Bitcoin consensus rule changes or BIP modifications
+- Chain selection and custody model debates
 - KYC, identity proofing, and institutional credential issuance
 
 ## Assets to protect
 
+- Bitcoin UTXOs and associated signing authority controlled by a wallet
 - The principal’s capacity to act without coercion or silent substitution
 - The integrity of delegation boundaries (scope, duration, and revocability)
 - The integrity of consent boundaries (what was agreed, by whom, for how long)
@@ -68,7 +77,7 @@ Mitigations:
 - Verifier checks against revocation state
 
 ### 5) Substitution of the principal
-A system treats a wallet, account, or platform identity as the principal, enabling impersonation, substitution, or forced custodianship.
+A system conflates key possession or account control with bounded authority, enabling overreach or substitution.
 
 Mitigations:
 - The principal is defined independently of any platform account
@@ -109,3 +118,4 @@ SILT Core treats misuse cases as first-class design inputs. The `tests/misuse-ca
 - Revocation as a right, not a ticket
 - Minimal disclosure by default
 - Auditability without surveillance
+
