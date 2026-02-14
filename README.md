@@ -21,6 +21,7 @@ SILT Core is not:
 - a credential issuer or KYC system
 - a governance platform
 - a token model or tokenomics framework
+  
 Bitcoin scope (for this repo)
 SILT Core defines wallet-layer semantics for bounded delegated signing authority (e.g. time-limited delegation, amount-constrained spending, revocable delegation). It does not require Bitcoin consensus changes or BIP-level modifications.
 
