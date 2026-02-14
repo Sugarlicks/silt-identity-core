@@ -21,6 +21,11 @@ SILT Core is not:
 - a credential issuer or KYC system
 - a governance platform
 - a token model or tokenomics framework
+Bitcoin scope (for this repo)
+SILT Core defines wallet-layer semantics for bounded delegated signing authority (e.g. time-limited delegation, amount-constrained spending, revocable delegation). It does not require Bitcoin consensus changes or BIP-level modifications.
+
+Bitcoin wallet use case (illustrative)
+Alice controls a wallet and wants to grant Bob the ability to spend up to 0.05 BTC over the next 30 days, revocable at any time. Rather than sharing keys or rebuilding multisig policies, the wallet records a delegated authority grant with explicit scope constraints, temporal validity, and revocation state. Each signing request validates that the grant remains active, the spend falls within constraints, and no revocation has occurred.
 
 ## Why this matters
 Across digital identity systems, consent and delegation are routinely treated as UX copy rather than enforceable technical constraints. This enables over-disclosure, silent authority escalation, coercion, correlation, and lock-in. SILT Core externalises these concerns into shared primitives so implementers can reduce fragility and attack surface.
