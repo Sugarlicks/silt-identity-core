@@ -11,7 +11,26 @@ This repository defines a small, composable set of open identity primitives for 
 - **Consent** – enforceable constraints, not interface convention
 - **Revocation** – the right to withdraw authority and end reliance
 
-The goal is infrastructure: specifications, schemas, threat models, and a minimal reference implementation that downstream systems can adopt incrementally.
+The goal is infrastructure: specifications, schemas, threat models, and a minimal reference implementation that downstream systems can adopt incrementally. SILT models not only who is acting, but in what capacity, under what authority, with what consent, and under what conditions that action may be relied upon or revoked.
+
+Expression of standing must be coupled with a verifiable structure of authority, scope, and revocation.
+
+Standing is expressed through declared capacity and scoped authority. Recognition may follow, but does not define validity.
+
+### Key Terms (v0)
+
+- **Capacity** – the mode in which an actor is operating in a given action
+- **Authority Source** – the origin from which that capacity is derived
+- **Mandate** – the scoped expression of that authority
+- **Consent** – explicit agreement to the act under defined conditions
+- **Revocation** – termination of authority or consent
+
+All actions SHOULD reference:
+- declared capacity
+- authority source
+- scope (mandate)
+- consent conditions
+- revocation pathway
 
 ## What this repository is not
 SILT Core is not:
