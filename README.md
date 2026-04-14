@@ -17,6 +17,31 @@ Expression of standing must be coupled with a verifiable structure of authority,
 
 Standing is expressed through declared capacity and scoped authority. Recognition may follow, but does not define validity.
 
+## Positioning & Scope
+
+SILT Core defines a semantic layer for expressing **capacity, authority, consent, and revocation** as preconditions for digital action.
+
+It does not:
+- issue identifiers (DIDs)
+- define credential formats (VCs)
+- execute policy decisions (e.g. Zanzibar, Cedar)
+- provide wallets, chains, or applications
+
+Instead, SILT operates **between identity/credential layers and policy execution**, providing a **capacity-aware gating layer** for action.
+
+**Stack placement:**
+
+- Identification → DIDs, keys  
+- Assertion → VCs, relationship graphs  
+- **SILT (this layer)** → capacity, authority, mandate, consent, revocation  
+- Execution → policy engines, contracts, APIs  
+
+SILT answers:
+
+> In what capacity is an actor acting, under what authority, with what scope, and is that authority valid now?
+
+This layer is required before evaluating what actions are permitted.
+
 ### Key Terms (v0)
 
 - **Capacity** – the mode in which an actor is operating in a given action
@@ -31,6 +56,46 @@ All actions SHOULD reference:
 - scope (mandate)
 - consent conditions
 - revocation pathway
+
+  ## Action Gating Model
+
+SILT operates as a **precondition layer for action**, introducing a semantic gate prior to execution.
+
+An action request should be evaluated against:
+
+- declared capacity  
+- authority source  
+- mandate scope  
+- consent condition  
+- revocation status  
+
+SILT supports three enforcement patterns:
+
+### 1. Pre-flight Validation (middleware)
+Requests are evaluated before reaching execution systems (APIs, policy engines).  
+Invalid authority → request rejected.
+
+### 2. Embedded Constraint (execution layer)
+Capacity and authority constraints are included within transactions or contract calls.  
+Invalid conditions → execution fails.
+
+### 3. Reliance Gating (post-action)
+Third parties evaluate whether an action was performed under valid authority.  
+Invalid authority → action is not relied upon or treated as binding.
+
+SILT does not replace execution systems.  
+It ensures that only **validly authorised actions** reach them.
+
+## Design Axioms
+
+### 1. Authority Source Plurality
+SILT does not assume a single source of authority. Authority must be explicitly referenced and scoped.
+
+### 2. Capacity is Contextual
+Capacity is defined by how an actor is acting in a given context, not by identity alone.
+
+### 3. Revocation is First-Class
+All authority and delegation must include explicit revocation and expiry pathways.
 
 ## What this repository is not
 SILT Core is not:
