@@ -27,7 +27,7 @@ It does not:
 - execute policy decisions (e.g. Zanzibar, Cedar)
 - provide wallets, chains, or applications
 
-Instead, SILT operates **between identity/credential layers and policy execution**, providing a **capacity-aware gating layer** for action.
+Instead, SILT operates **between identity/credential layers and policy execution**, providing a **capacity-aware gating layer** for action. Systems can satisfy every authorisation check and still enable illegitimate action, because capacity and authority are not expressed at the point of execution.
 
 **Stack placement:**
 
@@ -40,7 +40,7 @@ SILT answers:
 
 > In what capacity is an actor acting, under what authority, with what scope, and is that authority valid now?
 
-This layer is required before evaluating what actions are permitted.
+This layer is required before evaluating what actions are permitted. 
 
 ### Key Terms (v0)
 
