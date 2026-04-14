@@ -57,7 +57,7 @@ All actions SHOULD reference:
 - consent conditions
 - revocation pathway
 
-  ## Action Gating Model
+## Action Gating Model
 
 SILT operates as a **precondition layer for action**, introducing a semantic gate prior to execution.
 
