@@ -123,7 +123,10 @@ Across digital identity systems, consent and delegation are routinely treated as
 - `tests/misuse-cases/` – explicit misuse and failure-mode test vectors
 
 ## Status
-This project is in early specification stage. The initial focus is to publish clear semantics, a threat model, and reference schemas, then iterate toward a minimal reference implementation and test suite.
+
+SILT Core v0.1 is a specification-first release.
+A reference consent validator is now available under `/reference/validators/consent`.
+The validator is experimental and non-normative. It does not constrain future SILT Core v2 schema design.
 
 ## Licence
 See `LICENSE`.
