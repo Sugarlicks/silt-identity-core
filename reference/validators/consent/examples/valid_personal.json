@@ -1,0 +1,29 @@
+{
+  "consent_id": "consent-001",
+  "issued_at": "2026-05-05T10:00:00Z",
+  "capacity": {
+    "capacity_type": "personal"
+  },
+  "authority": {
+    "authority_type": "self",
+    "authority_ref": "did:example:alice#key-1"
+  },
+  "principal": {
+    "principal_id": "did:example:alice"
+  },
+  "recipient": {
+    "recipient_id": "did:example:verifier-org",
+    "recipient_type": "organisation"
+  },
+  "purpose": "age-verification-for-licensed-venue-entry",
+  "scope": [
+    "age_over_18"
+  ],
+  "duration": {
+    "not_before": "2026-05-05T10:00:00Z",
+    "expires_at": "2026-08-05T10:00:00Z"
+  },
+  "revocation": {
+    "revocation_ref": "https://siltcore.org/revocation/consent-001"
+  }
+}
