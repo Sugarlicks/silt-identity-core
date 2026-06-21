@@ -1,132 +1,111 @@
-# SILT Identity Core
+# SILT Core
 
-SILT Core is an identity layer that formalises status, standing, and authority before attributes, agency, or credentials.
+**Authority semantics for digital action.**
 
-## What this repository is
-This repository defines a small, composable set of open identity primitives for expressing:
+Current digital systems are built on an epistemological assumption: 
+legitimacy flows from external validation.
 
-- **Principal** – who can bind themselves or another party
-- **Status and standing** – the capacity in which a principal acts
-- **Authority and delegation** – acting “for and on behalf of” with explicit scope
-- **Consent** – enforceable constraints, not interface convention
-- **Revocation** – the right to withdraw authority and end reliance
+A government issues your identity.
+A credential authority attests your attributes.
+A platform recognises your account.
+A system grants your permissions.
 
-The goal is infrastructure: specifications, schemas, threat models, and a minimal reference implementation that downstream systems can adopt incrementally. SILT models not only who is acting, but in what capacity, under what authority, with what consent, and under what conditions that action may be relied upon or revoked.
+You exist, digitally, to the extent that external systems confirm you.
 
-Expression of standing must be coupled with a verifiable structure of authority, scope, and revocation.
+SILT begins from the other direction.
 
-Standing is expressed through declared capacity and scoped authority. Recognition may follow, but does not define validity.
+What a person, collective, institution, or agent carries into a moment 
+of digital action — standing, authority source, mandate, obligation, 
+consent, reliance, and revocation — does not begin with system 
+recognition. It precedes it.
 
-## Positioning & Scope
+Current infrastructure has no stable grammar for this. It can model 
+who you are, what attributes you hold, and what permissions you have 
+been granted. It cannot model what you bring into an action, in what 
+capacity you are acting, by whose authority, under what mandate, and 
+whether others may safely rely on the act.
 
-SILT Core defines a semantic layer for expressing **capacity, authority, consent, and revocation** as preconditions for digital action.
+SILT builds that grammar.
 
-It does not:
-- issue identifiers (DIDs)
-- define credential formats (VCs)
-- execute policy decisions (e.g. Zanzibar, Cedar)
-- provide wallets, chains, or applications
+SILT Core is a semantic layer for expressing the conditions of lawful 
+digital action across plural systems.
 
-Instead, SILT operates **between identity/credential layers and policy execution**, providing a **capacity-aware gating layer** for action. Systems can satisfy every authorisation check and still enable illegitimate action, because capacity and authority are not expressed at the point of execution.
+It is not a credential system.
+It is not a permission layer.
+It is not a blockchain protocol.
+It is not a legaltech-only product.
 
-**Stack placement:**
+It is the missing authority layer beneath these systems: the layer 
+that asks not merely:
 
-- Identification → DIDs, keys  
-- Assertion → VCs, relationship graphs  
-- **SILT (this layer)** → capacity, authority, mandate, consent, revocation  
-- Execution → policy engines, contracts, APIs  
+> Has this action been permitted?
 
-SILT answers:
+but:
 
-> In what capacity is an actor acting, under what authority, with what scope, and is that authority valid now?
+> By what source of authority is this action being taken, in what 
+> capacity, under what mandate, within what scope, with what consent, 
+> and how can that authority be revoked?
 
-This layer is required before evaluating what actions are permitted. 
+---
 
-### Key Terms (v0)
+## The distinction that matters
 
-- **Capacity** – the mode in which an actor is operating in a given action
-- **Authority Source** – the origin from which that capacity is derived
-- **Mandate** – the scoped expression of that authority
-- **Consent** – explicit agreement to the act under defined conditions
-- **Revocation** – termination of authority or consent
+Most identity systems ask: *Who is this?*
 
-All actions SHOULD reference:
-- declared capacity
-- authority source
-- scope (mandate)
-- consent conditions
-- revocation pathway
+Most permission systems ask: *What is this account allowed to do?*
 
-## Action Gating Model
+SILT asks: *What is the authority structure behind this action?*
 
-SILT operates as a **precondition layer for action**, introducing a semantic gate prior to execution.
+An action may be technically permitted but not legitimately authorised. 
+Every time a person, collective, AI agent, institution, or automated 
+system touches a digital environment — signs, files, transfers, votes, 
+delegates, consents, or instructs — the conditions of that touch are 
+invisible to the system receiving it.
 
-An action request should be evaluated against:
+SILT makes them visible.
 
-- declared capacity  
-- authority source  
-- mandate scope  
-- consent condition  
-- revocation status  
-
-SILT supports three enforcement patterns:
-
-### 1. Pre-flight Validation (middleware)
-Requests are evaluated before reaching execution systems (APIs, policy engines).  
-Invalid authority → request rejected.
-
-### 2. Embedded Constraint (execution layer)
-Capacity and authority constraints are included within transactions or contract calls.  
-Invalid conditions → execution fails.
-
-### 3. Reliance Gating (post-action)
-Third parties evaluate whether an action was performed under valid authority.  
-Invalid authority → action is not relied upon or treated as binding.
-
-SILT does not replace execution systems.  
-It ensures that only **validly authorised actions** reach them.
-
-## Design Axioms
-
-### 1. Authority Source Plurality
-SILT does not assume a single source of authority. Authority must be explicitly referenced and scoped.
-
-### 2. Capacity is Contextual
-Capacity is defined by how an actor is acting in a given context, not by identity alone.
-
-### 3. Revocation is First-Class
-All authority and delegation must include explicit revocation and expiry pathways.
-
-## What this repository is not
-SILT Core is not:
-
-- a wallet
-- a chain-specific implementation
-- a credential issuer or KYC system
-- a governance platform
-- a token model or tokenomics framework
-  
-Bitcoin scope (for this repo)
-SILT Core defines wallet-layer semantics for bounded delegated signing authority (e.g. time-limited delegation, amount-constrained spending, revocable delegation). It does not require Bitcoin consensus changes or BIP-level modifications.
-
-Bitcoin wallet use case (illustrative)
-Alice controls a wallet and wants to grant Bob the ability to spend up to 0.05 BTC over the next 30 days, revocable at any time. Rather than sharing keys or rebuilding multisig policies, the wallet records a delegated authority grant with explicit scope constraints, temporal validity, and revocation state. Each signing request validates that the grant remains active, the spend falls within constraints, and no revocation has occurred.
-
-## Why this matters
-Across digital identity systems, consent and delegation are routinely treated as UX copy rather than enforceable technical constraints. This enables over-disclosure, silent authority escalation, coercion, correlation, and lock-in. SILT Core externalises these concerns into shared primitives so implementers can reduce fragility and attack surface.
-
-## Repository structure
-- `docs/` – overview, design principles, glossary, threat model
-- `spec/` – normative definitions of principals, standing, delegation, consent, revocation
-- `schemas/` – machine-readable schemas for interoperability and validation
-- `reference/` – minimal reference implementations and examples
-- `tests/misuse-cases/` – explicit misuse and failure-mode test vectors
+---
 
 ## Status
 
-SILT Core v0.1 is a specification-first release.
-A reference consent validator is now available under `/reference/validators/consent`.
-The validator is experimental and non-normative. It does not constrain future SILT Core v2 schema design.
+**v0.1** is released. It establishes the initial semantic layer, 
+core primitives, machine-readable schemas, threat model, misuse case 
+test vectors, and a reference consent validator under 
+`/reference/validators/consent`.
+
+**v0.2** is in active development. Current work is deepening the 
+primitive set through primary research across agency law, fiduciary 
+doctrine, legal pluralism, orality and institutional recognition, and 
+the philosophical foundations of standing and obligation across legal 
+traditions. The v0.2 work expands SILT's semantic scope to support 
+plural legal and governance systems and to address non-individual and 
+non-human holders: collectives, trusts, AI agents, tribal entities, 
+and offices.
+
+---
+
+## Further reading
+
+Full documentation, primitives, use cases, threat models, roadmap, 
+and interoperability notes are in [`/docs/overview.md`](./docs/overview.md).
+
+Normative specifications are in [`/spec`](./spec).
+
+---
 
 ## Licence
-See `LICENSE`.
+
+Apache License 2.0. See [`LICENSE`](./LICENSE).
+
+---
+
+## Contact
+
+Website: [siltcore.org](https://siltcore.org)
+Repository: [github.com/Sugarlicks/silt-identity-core](https://github.com/Sugarlicks/silt-identity-core)
+
+---
+
+*As digital systems become more autonomous, the future problem is 
+not only identity verification. It is authority legibility. SILT 
+Core provides a grammar for that legibility.*
