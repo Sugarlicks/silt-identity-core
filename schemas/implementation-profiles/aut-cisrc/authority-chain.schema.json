@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siltcore.org/schemas/implementation-profiles/aut-cisrc/authority-chain.schema.json",
+  "title": "AUT CISRC Authority Chain",
+  "description": "Profile-specific schema for representing an authority chain in the AUT CISRC implementation profile. This schema is non-normative and does not modify SILT Core v0.1.",
+  "type": "object",
+  "required": [
+    "authorityChainId",
+    "rootAuthority",
+    "governanceDomain",
+    "authorityNodes"
+  ],
+  "properties": {
+    "authorityChainId": {
+      "type": "string"
+    },
+    "rootAuthority": {
+      "type": "string",
+      "description": "The originating source of authority, such as Act, statute, charter, or institutional governance instrument."
+    },
+    "governanceDomain": {
+      "type": "string",
+      "description": "The domain over which the authority chain applies."
+    },
+    "authorityNodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "authorityNodeId",
+          "class",
+          "object",
+          "level"
+        ],
+        "properties": {
+          "authorityNodeId": {
+            "type": "string"
+          },
+          "class": {
+            "type": "string",
+            "description": "The type of authority node, such as UniversityCouncil, ViceChancellor, Dean, Supervisor, EthicsCommittee, or ResearchAdministrationUnit."
+          },
+          "object": {
+            "type": "string",
+            "description": "The specific instance of the authority node."
+          },
+          "level": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Numeric hierarchy level. Lower numbers indicate higher-order authority."
+          },
+          "parentNodeId": {
+            "type": "string",
+            "description": "Optional reference to the parent authority node."
+          },
+          "authorityDomain": {
+            "type": "array",
+            "description": "Domains over which this authority node has standing.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidenceDocuments": {
+            "type": "array",
+            "description": "Documents supporting this authority node.",
+            "items": {
+              "$ref": "#/$defs/evidenceDocument"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "evidenceDocuments": {
+      "type": "array",
+      "description": "Documents supporting the authority chain as a whole.",
+      "items": {
+        "$ref": "#/$defs/evidenceDocument"
+      }
+    }
+  },
+  "$defs": {
+    "evidenceDocument": {
+      "type": "object",
+      "required": [
+        "documentRef",
+        "documentType"
+      ],
+      "properties": {
+        "documentRef": {
+          "type": "string"
+        },
+        "documentType": {
+          "type": "string"
+        },
+        "documentTitle": {
+          "type": "string"
+        },
+        "documentHash": {
+          "type": "string"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
