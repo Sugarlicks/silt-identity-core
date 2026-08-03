@@ -1,0 +1,54 @@
+{
+  "requestId": "request-valid-001",
+  "delegationId": "delegation-valid-001",
+  "result": "ALLOW",
+  "reasonCode": "ALLOW",
+  "reason": "The request is within delegated scope and no revocation applies.",
+  "validatedAt": "2026-08-15T10:00:00Z",
+  "validatorVersion": "aut-cisrc-profile-v0.1",
+  "warnings": [],
+  "checkedAt": [
+    {
+      "check": "delegation_present",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Delegation artefact is present."
+    },
+    {
+      "check": "actor_matches_delegate",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Request actor matches the named delegate."
+    },
+    {
+      "check": "action_permitted",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Requested action is included in permittedActions."
+    },
+    {
+      "check": "resource_in_scope",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Requested resource matches delegated resource."
+    },
+    {
+      "check": "purpose_in_scope",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Requested purpose matches delegated purpose."
+    },
+    {
+      "check": "within_time_bounds",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Request timestamp falls within delegation effective period."
+    },
+    {
+      "check": "not_revoked",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "No revocation event applies."
+    }
+  ]
+}
