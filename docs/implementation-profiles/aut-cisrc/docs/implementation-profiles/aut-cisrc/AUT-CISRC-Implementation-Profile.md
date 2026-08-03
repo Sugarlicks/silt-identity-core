@@ -505,17 +505,18 @@ This profile should be implemented through the following repository files.
   AUT-CISRC-Implementation-Profile.md
   authority-chain.md
   pilot-workflow.md
+  validation-logic.md
   candidate-v0.2-findings.md
   diagrams/
 
-/schemas/
+/schemas/implementation-profiles/aut-cisrc/
   authority-chain.schema.json
   delegation.schema.json
   revocation.schema.json
   access-request.schema.json
   validation-result.schema.json
 
-/validator/
+/reference/validators/aut-cisrc-delegation/
   validate.py
   README.md
 
