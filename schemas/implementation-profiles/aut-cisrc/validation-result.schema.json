@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siltcore.org/schemas/implementation-profiles/aut-cisrc/validation-result.schema.json",
+  "title": "AUT CISRC Validation Result",
+  "description": "Profile-specific schema for a validation result in the AUT CISRC implementation profile. This schema is non-normative and does not modify SILT Core v0.1.",
+  "type": "object",
+  "required": [
+    "requestId",
+    "delegationId",
+    "result",
+    "reasonCode",
+    "reason",
+    "validatedAt",
+    "validatorVersion"
+  ],
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Identifier of the access request evaluated by the validator."
+    },
+    "delegationId": {
+      "type": "string",
+      "description": "Identifier of the delegation artefact relied on by the access request."
+    },
+    "result": {
+      "type": "string",
+      "enum": [
+        "ALLOW",
+        "DENY"
+      ],
+      "description": "Deterministic validation outcome."
+    },
+    "reasonCode": {
+      "type": "string",
+      "enum": [
+        "ALLOW",
+        "SCHEMA_INVALID",
+        "AUTHORITY_CHAIN_MISSING",
+        "ISSUER_NOT_AUTHORISED",
+        "ACTOR_NOT_DELEGATE",
+        "ACTION_NOT_PERMITTED",
+        "RESOURCE_OUT_OF_SCOPE",
+        "PURPOSE_OUT_OF_SCOPE",
+        "DELEGATION_NOT_YET_ACTIVE",
+        "DELEGATION_EXPIRED",
+        "DELEGATION_REVOKED",
+        "REVOCATION_AUTHORITY_INVALID",
+        "EVIDENCE_CHAIN_MISSING"
+      ],
+      "description": "Machine-readable reason code explaining the validation result."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Human-readable explanation of the validation result."
+    },
+    "validatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time at which the validation was performed."
+    },
+    "validatorVersion": {
+      "type": "string",
+      "description": "Version identifier for the validator or implementation profile used."
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Optional non-blocking warnings produced during validation.",
+      "items": {
+        "type": "object",
+        "required": [
+          "warningCode",
+          "warning"
+        ],
+        "properties": {
+          "warningCode": {
+            "type": "string",
+            "description": "Machine-readable warning code."
+          },
+          "warning": {
+            "type": "string",
+            "description": "Human-readable warning."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "checkedAt": {
+      "type": "array",
+      "description": "Optional list of validation checks performed.",
+      "items": {
+        "type": "object",
+        "required": [
+          "check",
+          "passed"
+        ],
+        "properties": {
+          "check": {
+            "type": "string",
+            "description": "Name of the validation check."
+          },
+          "passed": {
+            "type": "boolean",
+            "description": "Whether the validation check passed."
+          },
+          "reasonCode": {
+            "type": "string",
+            "description": "Optional reason code associated with this check."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Optional human-readable detail."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
