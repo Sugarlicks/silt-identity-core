@@ -1,0 +1,24 @@
+{
+  "requestId": "request-purpose-mismatch-001",
+  "actor": {
+    "actorId": "actor-ra-001",
+    "name": "Research Assistant",
+    "role": "ResearchAssistant",
+    "authorityNodeId": "node-007"
+  },
+  "action": "dataset.submit",
+  "resource": {
+    "resourceId": "Dataset123",
+    "resourceType": "dataset",
+    "resourceName": "Restricted ProjectX Dataset"
+  },
+  "purpose": "Different research purpose",
+  "timestamp": "2026-08-15T10:00:00Z",
+  "delegationId": "delegation-valid-001",
+  "requestContext": {
+    "projectId": "ProjectX",
+    "system": "pilot-repository",
+    "requestChannel": "example-fixture",
+    "notes": "Purpose-mismatch request. Delegation applies to ProjectX research submission but request states a different purpose."
+  }
+}

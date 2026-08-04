@@ -1,0 +1,50 @@
+{
+  "delegationId": "delegation-expired-001",
+  "issuer": {
+    "actorId": "actor-supervisor-001",
+    "name": "Project Supervisor",
+    "role": "Supervisor",
+    "authorityNodeId": "node-006"
+  },
+  "delegate": {
+    "actorId": "actor-ra-001",
+    "name": "Research Assistant",
+    "role": "ResearchAssistant",
+    "authorityNodeId": "node-007"
+  },
+  "authorityChain": {
+    "authorityChainId": "aut-cisrc-authority-chain-001",
+    "authorityChainRef": "../authority-chain.json"
+  },
+  "scope": {
+    "scopeId": "scope-dataset-submit-expired-001",
+    "scopeType": "dataset",
+    "description": "Expired authority to submit Dataset123 for ProjectX research submission."
+  },
+  "resource": {
+    "resourceId": "Dataset123",
+    "resourceType": "dataset",
+    "resourceName": "Restricted ProjectX Dataset"
+  },
+  "permittedActions": [
+    "dataset.submit"
+  ],
+  "purpose": "ProjectX research submission",
+  "effectiveFrom": "2026-07-01T00:00:00Z",
+  "expiresAt": "2026-07-31T23:59:59Z",
+  "status": "expired",
+  "issuedAt": "2026-06-25T10:00:00Z",
+  "proof": {
+    "proofType": "pilot-model-reference",
+    "created": "2026-06-25T10:00:00Z",
+    "verificationMethod": "aut-cisrc-profile-v0.1",
+    "proofValue": "pilot-proof-placeholder"
+  },
+  "evidenceDocuments": [
+    {
+      "documentRef": "PROJECTX-EXPIRED-DELEGATION-RECORD-001",
+      "documentType": "delegation_record",
+      "documentTitle": "Expired ProjectX dataset submission delegation record"
+    }
+  ]
+}

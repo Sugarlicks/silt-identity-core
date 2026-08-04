@@ -1,0 +1,30 @@
+{
+  "requestId": "request-wrong-delegate-001",
+  "delegationId": "delegation-valid-001",
+  "result": "DENY",
+  "reasonCode": "ACTOR_NOT_DELEGATE",
+  "reason": "The request actor does not match the named delegate.",
+  "validatedAt": "2026-08-15T10:00:00Z",
+  "validatorVersion": "aut-cisrc-profile-v0.1",
+  "warnings": [],
+  "checkedAt": [
+    {
+      "check": "delegation_present",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Delegation artefact is present."
+    },
+    {
+      "check": "authority_chain_present",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Authority chain is present."
+    },
+    {
+      "check": "actor_matches_delegate",
+      "passed": false,
+      "reasonCode": "ACTOR_NOT_DELEGATE",
+      "detail": "Request actor does not match the named delegate."
+    }
+  ]
+}

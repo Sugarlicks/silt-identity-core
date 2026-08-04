@@ -1,0 +1,36 @@
+{
+  "requestId": "request-action-not-permitted-001",
+  "delegationId": "delegation-valid-001",
+  "result": "DENY",
+  "reasonCode": "ACTION_NOT_PERMITTED",
+  "reason": "The requested action is not permitted by the delegation.",
+  "validatedAt": "2026-08-15T10:00:00Z",
+  "validatorVersion": "aut-cisrc-profile-v0.1",
+  "warnings": [],
+  "checkedAt": [
+    {
+      "check": "delegation_present",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Delegation artefact is present."
+    },
+    {
+      "check": "authority_chain_present",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Authority chain is present."
+    },
+    {
+      "check": "actor_matches_delegate",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Request actor matches the named delegate."
+    },
+    {
+      "check": "action_permitted",
+      "passed": false,
+      "reasonCode": "ACTION_NOT_PERMITTED",
+      "detail": "Requested action is not included in permittedActions."
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siltcore.org/schemas/implementation-profiles/aut-cisrc/revocation.schema.json",
+  "title": "AUT CISRC Revocation Event",
+  "description": "Profile-specific schema for a revocation event in the AUT CISRC implementation profile. This schema is non-normative and does not modify SILT Core v0.1.",
+  "type": "object",
+  "required": [
+    "revocationId",
+    "delegationId",
+    "revokedBy",
+    "revocationAuthorityBasis",
+    "revokedAt",
+    "reason",
+    "effect"
+  ],
+  "properties": {
+    "revocationId": {
+      "type": "string",
+      "description": "Unique identifier for the revocation event."
+    },
+    "delegationId": {
+      "type": "string",
+      "description": "Identifier of the delegation artefact being revoked."
+    },
+    "revokedBy": {
+      "$ref": "#/$defs/actor"
+    },
+    "revocationAuthorityBasis": {
+      "type": "object",
+      "required": [
+        "basisType",
+        "description"
+      ],
+      "properties": {
+        "basisType": {
+          "type": "string",
+          "enum": [
+            "original_delegator",
+            "higher_order_authority",
+            "committee_or_subunit",
+            "other"
+          ],
+          "description": "Basis on which the revoking actor claims authority to revoke."
+        },
+        "description": {
+          "type": "string"
+        },
+        "authorityNodeId": {
+          "type": "string",
+          "description": "Optional reference to the revoking actor's authority node."
+        },
+        "authorityChainId": {
+          "type": "string",
+          "description": "Optional reference to the relevant authority chain."
+        },
+        "governanceDomain": {
+          "type": "string",
+          "description": "The governance domain over which revocation authority is claimed."
+        }
+      },
+      "additionalProperties": false
+    },
+    "revokedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time at which the revocation becomes effective."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Human-readable reason for revocation."
+    },
+    "effect": {
+      "type": "string",
+      "enum": [
+        "future_requests_only",
+        "pending_and_future_requests",
+        "immediate",
+        "other"
+      ],
+      "description": "Effect of the revocation. For Phase 2, the default is future_requests_only."
+    },
+    "evidenceDocuments": {
+      "type": "array",
+      "description": "Documents supporting the authority basis for this revocation.",
+      "items": {
+        "$ref": "#/$defs/evidenceDocument"
+      }
+    }
+  },
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "required": [
+        "actorId",
+        "role"
+      ],
+      "properties": {
+        "actorId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "authorityNodeId": {
+          "type": "string",
+          "description": "Optional reference to the actor's authority node in the authority chain."
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidenceDocument": {
+      "type": "object",
+      "required": [
+        "documentRef",
+        "documentType"
+      ],
+      "properties": {
+        "documentRef": {
+          "type": "string"
+        },
+        "documentType": {
+          "type": "string"
+        },
+        "documentTitle": {
+          "type": "string"
+        },
+        "documentHash": {
+          "type": "string"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

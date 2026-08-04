@@ -1,0 +1,60 @@
+{
+  "requestId": "request-valid-001",
+  "delegationId": "delegation-valid-001",
+  "result": "DENY",
+  "reasonCode": "DELEGATION_REVOKED",
+  "reason": "The delegation has been revoked before the request timestamp.",
+  "validatedAt": "2026-08-15T10:00:00Z",
+  "validatorVersion": "aut-cisrc-profile-v0.1",
+  "warnings": [],
+  "checkedAt": [
+    {
+      "check": "delegation_present",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Delegation artefact is present."
+    },
+    {
+      "check": "authority_chain_present",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Authority chain is present."
+    },
+    {
+      "check": "actor_matches_delegate",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Request actor matches the named delegate."
+    },
+    {
+      "check": "action_permitted",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Requested action is included in permittedActions."
+    },
+    {
+      "check": "resource_in_scope",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Requested resource matches delegated resource."
+    },
+    {
+      "check": "purpose_in_scope",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Requested purpose matches delegated purpose."
+    },
+    {
+      "check": "within_time_bounds",
+      "passed": true,
+      "reasonCode": "ALLOW",
+      "detail": "Request timestamp falls within delegation effective period."
+    },
+    {
+      "check": "not_revoked",
+      "passed": false,
+      "reasonCode": "DELEGATION_REVOKED",
+      "detail": "A valid revocation event applies before the request timestamp."
+    }
+  ]
+}

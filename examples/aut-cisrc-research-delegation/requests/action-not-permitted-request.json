@@ -1,0 +1,24 @@
+{
+  "requestId": "request-action-not-permitted-001",
+  "actor": {
+    "actorId": "actor-ra-001",
+    "name": "Research Assistant",
+    "role": "ResearchAssistant",
+    "authorityNodeId": "node-007"
+  },
+  "action": "repository.update",
+  "resource": {
+    "resourceId": "Dataset123",
+    "resourceType": "dataset",
+    "resourceName": "Restricted ProjectX Dataset"
+  },
+  "purpose": "ProjectX research submission",
+  "timestamp": "2026-08-15T10:00:00Z",
+  "delegationId": "delegation-valid-001",
+  "requestContext": {
+    "projectId": "ProjectX",
+    "system": "pilot-repository",
+    "requestChannel": "example-fixture",
+    "notes": "Action-not-permitted request. Delegation permits dataset.submit but request attempts repository.update."
+  }
+}

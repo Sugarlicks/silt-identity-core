@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://siltcore.org/schemas/implementation-profiles/aut-cisrc/access-request.schema.json",
+  "title": "AUT CISRC Access Request",
+  "description": "Profile-specific schema for an access request in the AUT CISRC implementation profile. This schema is non-normative and does not modify SILT Core v0.1.",
+  "type": "object",
+  "required": [
+    "requestId",
+    "actor",
+    "action",
+    "resource",
+    "purpose",
+    "timestamp",
+    "delegationId"
+  ],
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the access request."
+    },
+    "actor": {
+      "$ref": "#/$defs/actor"
+    },
+    "action": {
+      "type": "string",
+      "description": "Requested action, such as dataset.read, dataset.submit, repository.submit, repository.update, or ethics.view."
+    },
+    "resource": {
+      "type": "object",
+      "required": [
+        "resourceId",
+        "resourceType"
+      ],
+      "properties": {
+        "resourceId": {
+          "type": "string"
+        },
+        "resourceType": {
+          "type": "string",
+          "description": "Type of resource being requested."
+        },
+        "resourceName": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "purpose": {
+      "type": "string",
+      "description": "Purpose for which the access request is made."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time of the request."
+    },
+    "delegationId": {
+      "type": "string",
+      "description": "Identifier of the delegation artefact relied on by the request."
+    },
+    "requestContext": {
+      "type": "object",
+      "description": "Optional contextual metadata for the request.",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "system": {
+          "type": "string"
+        },
+        "requestChannel": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "required": [
+        "actorId",
+        "role"
+      ],
+      "properties": {
+        "actorId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "authorityNodeId": {
+          "type": "string",
+          "description": "Optional reference to the actor's authority node in the authority chain."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
