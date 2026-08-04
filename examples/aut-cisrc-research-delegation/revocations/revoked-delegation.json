@@ -1,0 +1,31 @@
+{
+  "revocations": [
+    {
+      "revocationId": "revocation-valid-001",
+      "delegationId": "delegation-valid-001",
+      "revokedBy": {
+        "actorId": "actor-supervisor-001",
+        "name": "Project Supervisor",
+        "role": "Supervisor",
+        "authorityNodeId": "node-006"
+      },
+      "revocationAuthorityBasis": {
+        "basisType": "original_delegator",
+        "description": "The original delegator revokes the delegation before the request timestamp.",
+        "authorityNodeId": "node-006",
+        "authorityChainId": "aut-cisrc-authority-chain-001",
+        "governanceDomain": "research.data"
+      },
+      "revokedAt": "2026-08-10T10:00:00Z",
+      "reason": "Delegation revoked by project supervisor before requested action.",
+      "effect": "future_requests_only",
+      "evidenceDocuments": [
+        {
+          "documentRef": "PROJECTX-REVOCATION-RECORD-001",
+          "documentType": "revocation_record",
+          "documentTitle": "ProjectX dataset submission revocation record"
+        }
+      ]
+    }
+  ]
+}
