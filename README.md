@@ -91,6 +91,46 @@ and interoperability notes are in [`/docs/overview.md`](./docs/overview.md).
 
 Normative specifications are in [`/spec`](./spec).
 
+## Implementation profiles
+
+This repository also includes non-normative implementation profiles showing how SILT Core v0.1 may be applied in constrained real-world workflows.
+
+Implementation profiles do not modify SILT Core v0.1. They are practical examples, pilots, and learning artefacts. Findings from implementation profiles may inform later SILT Core v0.2 consideration.
+
+### AUT CISRC research delegation profile
+
+The AUT CISRC profile applies SILT Core v0.1 delegation and revocation concepts to a constrained university research-governance workflow.
+
+It models a supervisor or project lead delegating limited authority to a research assistant or student for a defined research task, resource, purpose, action, and time period.
+
+Profile documentation:
+
+    docs/implementation-profiles/aut-cisrc/
+
+Profile schemas:
+
+    schemas/implementation-profiles/aut-cisrc/
+
+Example artefacts and test cases:
+
+    examples/aut-cisrc-research-delegation/
+
+Reference validator prototype:
+
+    reference/validators/aut-cisrc-delegation/
+
+The current AUT CISRC example set covers:
+
+- valid delegated authority;
+- expired delegation;
+- wrong delegate;
+- action outside permitted scope;
+- revoked delegation;
+- resource mismatch;
+- purpose mismatch.
+
+This profile is part of the Vietsch / AUT CISRC implementation work and should be read as an implementation example, not as a normative change to SILT Core v0.1.
+
 ---
 
 ## Licence
