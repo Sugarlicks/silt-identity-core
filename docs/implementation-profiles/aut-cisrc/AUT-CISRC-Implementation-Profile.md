@@ -524,6 +524,8 @@ This profile should be implemented through the following repository files.
   validation-logic.md
   candidate-v0.2-findings.md
   diagrams/
+  initial-review.md
+
 
 /schemas/implementation-profiles/aut-cisrc/
   authority-chain.schema.json
