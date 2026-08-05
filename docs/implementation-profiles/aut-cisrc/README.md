@@ -11,3 +11,12 @@ AUT CISRC provides the concrete workflow used to test the model. This material d
 This implementation profile does not modify SILT Core v0.1.
 
 Findings from the implementation may inform later SILT Core v0.2 work.
+
+## Documents
+
+- [Implementation profile](AUT-CISRC-Implementation-Profile.md)
+- [Authority-chain model](authority-chain.md)
+- [Pilot workflow](pilot-workflow.md)
+- [Validation logic](validation-logic.md)
+- [Initial implementation review](initial-review.md)
+- [Candidate v0.2 findings](candidate-v0.2-findings.md)
