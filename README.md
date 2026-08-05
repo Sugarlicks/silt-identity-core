@@ -99,9 +99,9 @@ Implementation profiles do not modify SILT Core v0.1. They are practical example
 
 ### AUT CISRC research delegation profile
 
-The AUT CISRC profile applies SILT Core v0.1 delegation and revocation concepts to a constrained university research-governance workflow.
-
+The AUT CISRC profile uses a constrained AUT CISRC workflow to demonstrate how SILT Core v0.1 delegation and revocation concepts may be applied across university research-governance environments.
 It models a supervisor or project lead delegating limited authority to a research assistant or student for a defined research task, resource, purpose, action, and time period.
+AUT CISRC is the pilot context rather than the exclusive intended user. Institutional variations, including different committees, research offices, agencies, and authority paths, may be represented within the profile without altering SILT Core v0.1.
 
 Profile documentation:
 

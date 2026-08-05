@@ -48,6 +48,22 @@ In short:
 > AUT CISRC is one implementation example.
 > Candidate v0.2 findings are recorded separately.
 
+### 2.1 Applicability Beyond the Pilot Institution
+
+AUT CISRC provides the constrained pilot context for this implementation profile. The underlying delegation and revocation model is not exclusive to AUT.
+
+The profile is intended to demonstrate a generic research-university implementation pattern that may be used across registered universities and comparable research institutions.
+
+Universities may differ in the committees, offices, faculties, institutes, agencies, and role-holders through which authority is mediated. These variations can be represented through institution-specific authority-chain nodes and evidence references without changing the underlying SILT Core semantic model.
+
+Accordingly:
+
+- SILT Core provides the generic semantic model;
+- the university research pattern provides a reusable implementation context;
+- AUT CISRC provides the concrete pilot example.
+
+This profile does not claim to reproduce formally approved AUT institutional architecture.
+
 ---
 
 ## 3. Implementation Status
@@ -506,8 +522,10 @@ This profile should be implemented through the following repository files.
   authority-chain.md
   pilot-workflow.md
   validation-logic.md
+  initial-review.md
   candidate-v0.2-findings.md
   diagrams/
+
 
 /schemas/implementation-profiles/aut-cisrc/
   authority-chain.schema.json
