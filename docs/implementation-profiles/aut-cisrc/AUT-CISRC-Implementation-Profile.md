@@ -522,9 +522,9 @@ This profile should be implemented through the following repository files.
   authority-chain.md
   pilot-workflow.md
   validation-logic.md
+  initial-review.md
   candidate-v0.2-findings.md
   diagrams/
-  initial-review.md
 
 
 /schemas/implementation-profiles/aut-cisrc/
