@@ -20,11 +20,11 @@ No other SILT evaluation outcome is introduced by this fixture. Where a conditio
 
 ## Encounter
 
-Principal P establishes bounded Authority AUTH-A. Agent A receives derived Authority and subsequently delegates a narrower Authority to Agent B. Agent B attempts ACT-X. A downstream technical system possesses valid keys or capabilities sufficient to execute the Action. SILT evaluates whether the semantic Authority supporting ACT-X remains valid at the encounter.
+Participant P establishes bounded Authority AUTH-A. Agent A receives derived Authority and subsequently delegates a narrower Authority to Agent B. Agent B attempts ACT-X. A downstream technical system possesses valid keys or capabilities sufficient to execute the Action. SILT evaluates whether the semantic Authority supporting ACT-X remains valid at the encounter.
 
 | Field | Normalised fixture value |
 |---|---|
-| Participants | P = originating principal; Agent-A = delegated agent; Agent-B = recursively delegated agent; R = receiving or relying system / counterparty |
+| Participants | P = originating authorising Participant; Agent-A = delegated agent; Agent-B = recursively delegated agent; R = receiving or relying system / counterparty |
 | Primary Source | Originating mandate, institutional, contractual or other recognised ground, SRC-P. |
 | Profile Expression | PE-AGENT |
 | Primary semantic stress | Execution capability does not prove Authority; lineage does not automatically determine continuing validity. |
