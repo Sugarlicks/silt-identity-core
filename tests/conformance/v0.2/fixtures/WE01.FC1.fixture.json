@@ -1,0 +1,327 @@
+{
+  "fixture_id": "WE01",
+  "title": "Transferable Instrument Encounter",
+  "architecture_version": "v0.2",
+  "architecture_reference": "SILT Core v0.2 Semantic Architecture - Freeze Candidate 1 (derived from RC4.1 pre-freeze stress-test revision)",
+  "artifact_role": "conformance_fixture",
+  "normative_status": "companion-non-normative",
+  "purpose": "Test whether SILT can preserve an enduring Obligation while the relational position entitled to performance changes.",
+  "pressure_test": "Electronic control, transfer, endorsement and possession must not be collapsed into Standing, Authority, ownership or Obligation.",
+  "encounter": {
+    "context": "B is current holder of NOTE-001, purports to transfer or endorse it to C, and C Presents the resulting claimed holder Standing in a later encounter.",
+    "proposed_action_ref": "ACT-ENFORCE-01"
+  },
+  "participants": [
+    {
+      "participant_ref": "A",
+      "role": "obligor"
+    },
+    {
+      "participant_ref": "B",
+      "role": "current instrument holder / transferor"
+    },
+    {
+      "participant_ref": "C",
+      "role": "claimed successor holder / presenting Participant"
+    }
+  ],
+  "fixture_facts": {
+    "instrument_ref": "NOTE-001",
+    "amount": {
+      "currency": "NZD",
+      "value": 1000
+    }
+  },
+  "semantic_objects": {
+    "sources": [
+      {
+        "source_ref": "SRC-01",
+        "description": "Instrument and relevant transfer relation grounding the holder position.",
+        "data": {
+          "instrument_ref": "NOTE-001",
+          "grounds": [
+            "prior recognised holder relation",
+            "applicable transfer or endorsement event"
+          ]
+        }
+      }
+    ],
+    "standings": [
+      {
+        "standing_ref": "STAND-B",
+        "participant_ref": "B",
+        "relation": "instrument_holder",
+        "source_refs": [
+          "SRC-01"
+        ],
+        "context_ref": "NOTE-001"
+      },
+      {
+        "standing_ref": "STAND-C",
+        "participant_ref": "C",
+        "relation": "instrument_holder",
+        "source_refs": [
+          "SRC-01"
+        ],
+        "context_ref": "NOTE-001",
+        "data": {
+          "claimed_basis_action_ref": "ACT-TRANSFER-01"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_ref": "EVID-TRANSFER-01",
+        "evidence_type": "transfer_or_endorsement_record",
+        "supports_refs": [
+          "ACT-TRANSFER-01",
+          "STAND-C"
+        ]
+      },
+      {
+        "evidence_ref": "EVID-CONTROL-01",
+        "evidence_type": "technical_control_evidence",
+        "supports_refs": [
+          "STAND-C"
+        ]
+      }
+    ],
+    "presentations": [
+      {
+        "presentation_ref": "PRES-01",
+        "participant_ref": "C",
+        "standing_refs": [
+          "STAND-C"
+        ],
+        "evidence_refs": [
+          "EVID-TRANSFER-01",
+          "EVID-CONTROL-01"
+        ],
+        "proposed_action_ref": "ACT-ENFORCE-01",
+        "purpose": "Establish encounter-relevant holder Standing concerning NOTE-001."
+      }
+    ],
+    "actions": [
+      {
+        "action_ref": "ACT-TRANSFER-01",
+        "actor_ref": "B",
+        "action_type": "transfer_or_endorsement",
+        "object_ref": "NOTE-001",
+        "target_ref": "C"
+      },
+      {
+        "action_ref": "ACT-ENFORCE-01",
+        "actor_ref": "C",
+        "action_type": "enforce_or_deal_with_instrument",
+        "object_ref": "NOTE-001"
+      }
+    ],
+    "obligations": [
+      {
+        "obligation_ref": "OBL-01",
+        "description": "A must pay NZD 1000 to the holder of NOTE-001.",
+        "obligor_ref": "A",
+        "entitled_position": "instrument_holder(NOTE-001)",
+        "required_performance": {
+          "type": "pay",
+          "currency": "NZD",
+          "amount": 1000
+        },
+        "state": "OUTSTANDING"
+      }
+    ]
+  },
+  "profile_expressions": [
+    {
+      "profile_expression_ref": "PE-INSTRUMENT",
+      "description": "Encounter-relevant instrument conditions.",
+      "conditions": [
+        {
+          "condition_id": "WE01-C01",
+          "description": "B occupies the relevant transferor Standing.",
+          "semantic_target_ref": "STAND-B"
+        },
+        {
+          "condition_id": "WE01-C02",
+          "description": "The required transfer or endorsement conditions are satisfied.",
+          "semantic_target_ref": "ACT-TRANSFER-01"
+        },
+        {
+          "condition_id": "WE01-C03",
+          "description": "C's resulting holder Standing is sufficiently established.",
+          "semantic_target_ref": "STAND-C"
+        },
+        {
+          "condition_id": "WE01-C04",
+          "description": "The continuing Obligation survives the holder change unless an expressed condition provides otherwise.",
+          "semantic_target_ref": "OBL-01"
+        }
+      ],
+      "rules": [
+        "Technical control alone is not sufficient to establish holder Standing unless expressly made sufficient.",
+        "Transfer is not delegation.",
+        "Holder change does not by itself extinguish and recreate the underlying Obligation."
+      ]
+    }
+  ],
+  "expected_evaluations": [
+    {
+      "evaluation_id": "WE01-E01",
+      "profile_expression_ref": "PE-INSTRUMENT",
+      "condition_ref": "WE01-C01",
+      "semantic_target_ref": "STAND-B",
+      "result": "SATISFIED",
+      "reason": "B occupies the relevant transferor position in the base case."
+    },
+    {
+      "evaluation_id": "WE01-E02",
+      "profile_expression_ref": "PE-INSTRUMENT",
+      "condition_ref": "WE01-C02",
+      "semantic_target_ref": "ACT-TRANSFER-01",
+      "result": "SATISFIED",
+      "reason": "The base-case transfer or endorsement conditions are met."
+    },
+    {
+      "evaluation_id": "WE01-E03",
+      "profile_expression_ref": "PE-INSTRUMENT",
+      "condition_ref": "WE01-C03",
+      "semantic_target_ref": "STAND-C",
+      "result": "SATISFIED",
+      "reason": "C's resulting holder Standing is sufficiently established in the base case."
+    },
+    {
+      "evaluation_id": "WE01-E04",
+      "profile_expression_ref": "PE-INSTRUMENT",
+      "condition_ref": "WE01-C04",
+      "semantic_target_ref": "OBL-01",
+      "result": "SATISFIED",
+      "reason": "The underlying Obligation remains outstanding while the entitled position changes."
+    }
+  ],
+  "variants": [
+    {
+      "variant_id": "WE01-A",
+      "title": "Wrongful technical control",
+      "description": "C has technical control without a sufficient relational transfer.",
+      "fixture_facts": {
+        "technical_control_present": true
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE01-A-E01",
+          "profile_expression_ref": "PE-INSTRUMENT",
+          "condition_ref": "WE01-C03",
+          "semantic_target_ref": "STAND-C",
+          "result": "NOT_SATISFIED",
+          "reason": "Technical control alone does not satisfy the holder-Standing condition."
+        }
+      ]
+    },
+    {
+      "variant_id": "WE01-B",
+      "title": "Incomplete transfer lineage",
+      "description": "Necessary evidence concerning the transfer is missing.",
+      "semantic_state_changes": {
+        "transfer_evidence": "incomplete"
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE01-B-E01",
+          "profile_expression_ref": "PE-INSTRUMENT",
+          "condition_ref": "WE01-C03",
+          "semantic_target_ref": "STAND-C",
+          "result": "INDETERMINATE",
+          "reason": "The supplied state does not establish whether C's holder Standing is operative without importing a missing fact."
+        }
+      ]
+    },
+    {
+      "variant_id": "WE01-C",
+      "title": "Revoked agent attempts transfer",
+      "description": "A technically capable agent attempts the transfer after relevant Authority has been revoked.",
+      "fixture_facts": {
+        "technical_execution_possible": true
+      },
+      "semantic_state_changes": {
+        "agent_authority": "revoked"
+      },
+      "conformance_assertions": {
+        "must_preserve": [
+          {
+            "assertion_id": "WE01-C-P01",
+            "statement": "Technical execution and semantic Authority remain distinct."
+          }
+        ],
+        "must_not_infer": [
+          {
+            "assertion_id": "WE01-C-N01",
+            "statement": "Successful technical execution must not be treated as proof of Authority."
+          }
+        ]
+      }
+    },
+    {
+      "variant_id": "WE01-D",
+      "title": "Holder changes, Obligation remains",
+      "description": "B ceases to be current holder, C becomes current holder, and OBL-01 remains outstanding.",
+      "semantic_state_changes": {
+        "STAND-B": "no_longer_operative_as_current_holder",
+        "STAND-C": "operative",
+        "OBL-01": "OUTSTANDING"
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE01-D-E01",
+          "profile_expression_ref": "PE-INSTRUMENT",
+          "condition_ref": "WE01-C04",
+          "semantic_target_ref": "OBL-01",
+          "result": "SATISFIED",
+          "reason": "The holder change does not itself extinguish or recreate OBL-01."
+        }
+      ]
+    }
+  ],
+  "conformance_assertions": {
+    "must_preserve": [
+      {
+        "assertion_id": "WE01-P01",
+        "statement": "Technical control is distinct from Standing."
+      },
+      {
+        "assertion_id": "WE01-P02",
+        "statement": "Standing is distinct from ownership."
+      },
+      {
+        "assertion_id": "WE01-P03",
+        "statement": "Transfer is distinct from delegation."
+      },
+      {
+        "assertion_id": "WE01-P04",
+        "statement": "Standing may change without recreating the underlying Obligation."
+      },
+      {
+        "assertion_id": "WE01-P05",
+        "statement": "Evidence is distinct from the Source-grounded relation it supports."
+      }
+    ],
+    "must_not_infer": [
+      {
+        "assertion_id": "WE01-N01",
+        "statement": "Wallet or technical control implies holder Standing."
+      },
+      {
+        "assertion_id": "WE01-N02",
+        "statement": "Holder Standing implies ownership."
+      },
+      {
+        "assertion_id": "WE01-N03",
+        "statement": "Transfer implies delegation."
+      },
+      {
+        "assertion_id": "WE01-N04",
+        "statement": "A new holder implies a newly created underlying Obligation."
+      }
+    ]
+  },
+  "fixture_verdict": "No missing Core primitive exposed by the base case or stated variants."
+}
