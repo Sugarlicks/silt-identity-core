@@ -280,6 +280,6 @@ Implementers remain responsible for independent security, legal, cultural, gover
 
 ## Licence
 
-The repository currently contains an Apache License 2.0 root licence. The v0.2 release process is separately reconciling the licence boundary between specification/documentation and reference code.
+For the v0.2 release, SILT Core uses a split licensing model: **CC BY 4.0** for the canonical specification and human-readable documentation, and **Apache License 2.0** for reference code and implementation-oriented machine-readable artefacts.
 
-See [`LICENSE`](./LICENSE) for the current repository licence while that release work is completed.
+See [`LICENSING.md`](./LICENSING.md) for the repository licensing boundary. The broader contributor, patent, trademark, certification and stewardship IPR framework remains separate release work.
