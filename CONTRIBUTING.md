@@ -229,18 +229,20 @@ The purpose of comparison is not to claim that every adjacent system is either a
 
 ## Governance, licensing and IPR
 
-Please also read [`GOVERNANCE.md`](./GOVERNANCE.md).
+Please also read [`GOVERNANCE.md`](./GOVERNANCE.md) and [`LICENSING.md`](./LICENSING.md).
 
-The repository currently has an Apache License 2.0 root licence. The v0.2 release process is separately defining an explicit licence boundary for specification/documentation and reference code.
+For the v0.2 release, the repository licensing boundary is defined as **CC BY 4.0** for the canonical specification and human-readable documentation, and **Apache License 2.0** for reference code and implementation-oriented machine-readable artefacts. `LICENSING.md` records the applicable classification, including treatment of mixed implementation profiles, conformance material and historical versions.
 
-Until that release-level licensing structure and the broader Governance & IPR framework are formally adopted:
+The broader Governance & IPR framework is not yet fully adopted. In particular, contributor terms, patent and standards-essential IPR commitments, trademark and certification policy, and longer-term stewardship arrangements remain to be made explicit.
+
+Until those broader arrangements are adopted:
 
 - contributors should rely only on the licences and notices expressly applicable to the material they contribute to;
 - repository participation should not be interpreted as granting rights beyond those expressly provided by the applicable licence or contribution terms;
 - contribution does not by itself confer SILT trademark rights, certification rights, endorsement, stewardship authority or commercial exclusivity;
-- project-level processes for future patent/IPR commitments, assurance, certification and standards-body participation remain to be made explicit.
+- no broader patent, certification or standards-body commitment should be inferred from participation alone.
 
-Nothing in this contribution guide should be read as overriding the terms of the repository’s applicable licence.
+Nothing in this contribution guide should be read as overriding the terms of the repository’s applicable licence or the licensing boundary stated in `LICENSING.md`.
 
 ---
 
