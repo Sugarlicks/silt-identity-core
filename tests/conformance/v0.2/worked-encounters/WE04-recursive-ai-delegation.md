@@ -82,6 +82,15 @@ ACT-X
   actor_ref: Agent-B
   type: commit
   amount: 2500
+
+CAPABILITY-01
+  type: technical_capability_evidence
+  indicates:
+    - downstream_execution_capability_present
+
+DELEGATION-EVIDENCE-01
+  type: derived_authority_lineage_evidence
+  supports_ref: AUTH-B
 ```
 
 Presentation remains implementation-light. In a machine encounter it may be carried by a message, capability-related invocation or other transient mechanism without becoming a new agent credential format.
