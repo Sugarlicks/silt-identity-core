@@ -177,7 +177,12 @@ For the fuller repository overview, see [`docs/overview.md`](./docs/overview.md)
 
 ## Licence
 
-The repository currently includes an Apache License 2.0 root licence. The v0.2 release packaging will state the licence boundary for specification/documentation and reference code explicitly.
+For the v0.2 release, SILT Core uses a split licensing model:
+
+- **CC BY 4.0** for the canonical specification and human-readable documentation;
+- **Apache License 2.0** for reference code and implementation-oriented machine-readable artefacts.
+
+See [`LICENSING.md`](./LICENSING.md) for the repository licensing boundary, including treatment of mixed implementation profiles, conformance material and historical versions. The broader contributor, patent, trademark, certification and stewardship IPR framework remains separate release work.
 
 ---
 
