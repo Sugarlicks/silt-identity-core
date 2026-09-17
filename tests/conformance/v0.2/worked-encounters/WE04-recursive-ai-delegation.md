@@ -2,7 +2,7 @@
 
 **Authority containment, semantic lineage, revocation, and execution without semantic collapse**
 
-**Status:** Pre-freeze normalised semantic fixture. Non-normative until the v0.2 conformance suite is frozen.
+**Status:** FC1 normalised semantic fixture. Companion conformance material; non-normative except where it reproduces requirements from the canonical semantic architecture.
 
 **Suite discipline:** Semantic conformance, not implementation conformance. The fixture tests whether an implementation preserves SILT distinctions without importing an unstated rule or universalising the originating order.
 
