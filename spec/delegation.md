@@ -1,130 +1,36 @@
-# Delegation
+# Delegation — v0.1 archival notice
 
-This specification defines **delegation** as the explicit granting of authority by a principal to another actor to perform specified acts in a specified capacity, for a bounded scope and duration.
+This file is retained as a **SILT Core v0.1 specification artefact** for historical and migration reference.
 
-Delegation in SILT Core is never implicit. It is not inferred from role titles, login state, organisational charts, or historical behaviour. Delegation exists only where it is explicitly granted and referenceable.
+The original v0.1 Delegation specification treated delegation as a standalone universal authority-grant artefact issued by a Principal to an Agent or Delegate, with mandatory fields for Capacity, Scope, Duration, Revocation reference and delegation identifier. It also imposed Core-level `MUST` rules around explicit delegation references and default non-reliance.
 
-## 1. Definitions
+That model is **not the controlling SILT Core v0.2 architecture**.
 
-**Delegation (Authority Grant)**  
-A bounded permission issued by a principal that authorises an agent to perform specified acts on behalf of the principal, in a stated capacity.
+For v0.2, the canonical semantic reference is:
 
-**Principal**  
-The entity whose authority is being delegated.
+[`spec/v0.2/semantic-architecture.md`](./v0.2/semantic-architecture.md)
 
-**Agent / Delegate**  
-The actor authorised to perform acts under a delegation grant. An agent may be a natural person, organisation, software agent, or other recognised actor.
+The settled v0.2 seam is:
 
-**Scope**  
-The set of acts, domains, or action classes the agent is authorised to perform.
+> **Source → Standing → Presentation → evaluation at the encounter**
 
-**Duration**  
-The temporal bounds of the delegation, including start conditions, expiry, and any renewal semantics.
+In v0.2, **Delegation is not a standalone universal Core primitive or mandatory artefact type**.
 
-**Revocation reference**  
-A pointer or mechanism by which verifiers can determine whether a delegation has been withdrawn or has expired.
+Where an applicable order recognises delegation, it may be represented as an **Action** through which derived **Authority** is constituted. The semantic effect of that Action depends on the relevant Source, Standing, Authority conditions and Profile Expression.
 
-## 2. Non-goals
+Several concerns expressed in the v0.1 document remain important, but their architectural location has changed:
 
-This specification does not define:
-- employment law, fiduciary duties, or liability allocation
-- organisational hierarchies or internal governance rules
-- enforcement or adjudication mechanisms beyond reference checks
+- role names, membership, login state or technical permission do not by themselves establish Authority;
+- derived Authority should not exceed the parent delegable envelope unless another recognised Source independently supplies additional Authority;
+- any ability to create further derived Authority must be supported by the applicable Authority conditions rather than inferred;
+- lineage, scope, validity dependencies and Revocation remain relevant semantic questions;
+- Revocation is prospective by default unless another expressed rule provides otherwise;
+- technical execution or possession of a capability does not itself establish semantic Authority.
 
-These concerns may be layered on downstream.
+What does **not** carry forward as universal v0.2 Core semantics is the v0.1 assumption that every delegated Action must reference one standardised delegation artefact with a fixed set of mandatory fields, or that SILT Core itself must produce a universal binary `authorised` / `unauthorised` or deny-by-default runtime conclusion.
 
-## 3. Principle: explicit authority
+Those operational choices may be entirely appropriate in a particular implementation profile. They are not universal Core requirements.
 
-SILT Core requires that any act performed by an agent on behalf of a principal reference an explicit delegation artefact.
+There is therefore **no one-to-one mapping from the v0.1 Delegation artefact to a single v0.2 object**. A v0.1 delegation may map across Action, Authority, Source, Evidence, Presentation, Revocation and Profile Expression depending on the encounter.
 
-Systems must not assume authority based on:
-- role names
-- membership lists
-- prior approvals
-- platform administrator status
-
-If authority is not explicit and referenceable, the act must be treated as unauthorised by default.
-
-## 4. Required elements of a delegation artefact
-
-A delegation artefact MUST include, at minimum:
-
-1. **Principal identifier**  
-   Identifies the principal granting authority.
-
-2. **Agent identifier**  
-   Identifies the agent receiving authority.
-
-3. **Capacity declaration**  
-   States the capacity in which the agent is authorised to act (for example, “agent”, “trustee”, “representative”).
-
-4. **Scope**  
-   A machine-readable description of the permitted acts or action classes.
-
-5. **Duration**  
-   Start conditions and expiry. Open-ended delegations MUST be explicit and are discouraged by default.
-
-6. **Revocation reference**  
-   A mechanism or pointer enabling verifiers to determine revocation or expiry state.
-
-7. **Delegation identifier**  
-   A stable reference that acts can cite to bind reliance.
-
-## 5. Delegation and acts
-
-Any act performed by an agent under SILT Core semantics MUST:
-
-- reference a delegation identifier
-- be consistent with the delegation’s scope
-- occur within the delegation’s duration
-- be attributable to the principal in the stated capacity
-
-Acts outside scope, duration, or capacity MUST be treated as unauthorised.
-
-## 6. Chained delegation
-
-SILT Core allows chained delegation only where explicitly authorised.
-
-A delegation artefact MAY permit the agent to sub-delegate authority, but only where:
-- the ability to sub-delegate is explicitly granted
-- scope and duration constraints are preserved or narrowed
-- each link in the chain is referenceable and auditable
-
-Absent explicit permission, delegation is non-transferable.
-
-## 7. Default posture: deny by default
-
-Where:
-- a delegation reference is missing
-- scope is ambiguous
-- duration cannot be verified
-- revocation state cannot be checked
-
-the system MUST default to non-reliance and treat the act as unauthorised.
-
-This posture is intended to prevent silent escalation of authority and platform capture.
-
-## 8. Revocation and expiry
-
-Delegation is not permanent by default.
-
-Implementations MUST provide:
-- a means for principals to revoke delegation
-- a means for verifiers to check revocation or expiry
-- clear semantics for acts performed before and after revocation
-
-Revocation does not retroactively invalidate acts performed while authority was valid, unless explicitly specified by downstream rules.
-
-## 9. Notes on plural legal contexts
-
-Delegation semantics in SILT Core are intentionally minimal and explicit so they can map onto diverse legal traditions, including agency, mandate, trust, and representation doctrines.
-
-SILT Core does not resolve disputes. It defines the artefacts that make disputes legible without collapsing authority into institutional assumptions.
-
-## 10. Implementation guidance (non-normative)
-
-Implementers should:
-- use machine-readable scope expressions rather than free text
-- bind delegation artefacts cryptographically or by stable hash
-- avoid long-lived, broad delegations where narrower, time-bound grants suffice
-- expose revocation state without leaking unnecessary personal data
+The original v0.1 contents remain available through Git history. They should be read as historical specification material and, where relevant, as context for v0.1 implementations such as the Vietsch / AUT CISRC research-delegation profile. They should not be used as normative v0.2 semantics.
