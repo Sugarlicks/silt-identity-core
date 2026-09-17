@@ -85,16 +85,21 @@ Publish a clear v0.1 → v0.2 migration note covering, at minimum:
 
 ### 4. Governance, licensing and IPR
 
-Before substantive external contribution and adoption expand, the project should make its governance and IPR posture explicit.
+The v0.2 release-level licensing boundary is now defined in [`LICENSING.md`](../LICENSING.md): **CC BY 4.0** for the canonical specification and human-readable documentation, and **Apache License 2.0** for reference code and implementation-oriented machine-readable artefacts.
 
-Release work should include:
+That licensing classification is completed FC1 release work. The broader Governance & IPR framework remains outstanding.
 
-- a clear specification/documentation licence boundary;
-- Apache 2.0 treatment for reference code;
-- CC BY 4.0 treatment for specification/documentation, if confirmed as the release position;
-- contribution and change-control rules;
-- patent/IPR direction;
-- scope discipline for future Core changes.
+Before substantive external contribution and adoption expand, remaining work should include:
+
+- contributor rights and contribution terms;
+- patent/IPR and any standards-essential patent commitments;
+- trademark, certification, assurance and endorsement policy;
+- longer-term change-control and maintainer authority;
+- standards-body and working-group participation terms;
+- stewardship continuity;
+- clear commercial and partnership boundaries where official SILT status or representation is involved.
+
+Scope discipline for future Core changes is already reflected in the current governance and contribution material and should remain a continuing governance requirement.
 
 This is institutional infrastructure, not semantic expansion.
 
