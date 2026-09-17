@@ -171,22 +171,25 @@ Major contributions should begin with an issue or equivalent design discussion b
 
 ## Governance & IPR direction
 
-The project still requires a separate, explicit Governance & IPR framework covering matters such as:
+The v0.2 repository licensing boundary is now stated in [`LICENSING.md`](./LICENSING.md): **CC BY 4.0** for the canonical specification and human-readable documentation, and **Apache License 2.0** for reference code and implementation-oriented machine-readable artefacts.
 
-- specification copyright and documentation licensing;
-- reference-code licensing;
+That resolves the release-level licence classification for those materials. It does **not** settle the project’s full Governance & IPR framework.
+
+The project still requires separate explicit treatment of matters including:
+
 - contributor rights and contribution terms;
-- patent/IPR commitments;
-- change control and maintainer authority;
+- patent/IPR and any standards-essential patent commitments;
+- change control and maintainer authority beyond the current release process;
+- trademark, certification, assurance and endorsement policy;
 - future working-group or standards-body participation;
-- commercial implementation, assurance and certification boundaries;
+- commercial implementation and partnership boundaries where they involve official SILT status or representation;
 - stewardship continuity.
 
-The current release direction is to keep the semantic specification openly available while preserving room for sustainable implementation, assurance, training, tooling and advisory activity around it.
+The release direction remains to keep the semantic specification openly available while preserving room for sustainable implementation, assurance, training, tooling and advisory activity around it.
 
-The exact legal and institutional mechanism for that balance is **not settled by this file** and should not be inferred from repository participation alone.
+Open licensing does not itself confer certification, endorsement, trademark rights, stewardship authority or a right to represent an implementation as official SILT infrastructure.
 
-Until that framework is adopted, no contributor or adopter should assume that repository governance alone resolves patent, certification, trademark, commercialisation or broader stewardship questions.
+Until the broader Governance & IPR framework is adopted, no contributor or adopter should assume that repository governance or open licensing alone resolves patent, certification, trademark, standards-participation, commercialisation or broader stewardship questions.
 
 ---
 
