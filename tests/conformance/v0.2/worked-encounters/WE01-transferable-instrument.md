@@ -121,7 +121,7 @@ aggregate SILT result:             absent unless PE-INSTRUMENT defines one
 ### WE01-A - Wrongful technical control
 
 ```text
-technical control: SATISFIED
+technical_control_present: true
 C holder Standing: NOT_SATISFIED
 ```
 
