@@ -1,0 +1,826 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:silt:core:v0.2:conformance-fixture",
+  "title": "SILT Core v0.2 Minimal Conformance Fixture",
+  "description": "Test-harness schema for SILT Core v0.2 semantic conformance fixtures. This is not a SILT Core wire format or universal serialization.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fixture_id",
+    "title",
+    "architecture_version",
+    "artifact_role",
+    "normative_status",
+    "purpose",
+    "pressure_test",
+    "encounter",
+    "participants",
+    "semantic_objects",
+    "profile_expressions",
+    "expected_evaluations",
+    "conformance_assertions"
+  ],
+  "properties": {
+    "fixture_id": {
+      "type": "string",
+      "pattern": "^WE[0-9]{2}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "architecture_version": {
+      "const": "v0.2"
+    },
+    "architecture_reference": {
+      "type": "string"
+    },
+    "artifact_role": {
+      "const": "conformance_fixture"
+    },
+    "normative_status": {
+      "description": "Lifecycle and packaging status for companion conformance material. No value in this field confers normative force; freezing a fixture does not make it normative.",
+      "enum": [
+        "pre-freeze-non-normative",
+        "companion-non-normative"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pressure_test": {
+      "type": "string",
+      "minLength": 1
+    },
+    "encounter": {
+      "$ref": "#/$defs/encounter"
+    },
+    "participants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/participant"
+      }
+    },
+    "fixture_facts": {
+      "type": "object",
+      "description": "Observed or stipulated facts used by the test. Facts are not SILT evaluation outcomes unless a Profile Expression expressly makes them evaluative conditions.",
+      "additionalProperties": true
+    },
+    "semantic_objects": {
+      "$ref": "#/$defs/semantic_objects"
+    },
+    "profile_expressions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/profile_expression"
+      }
+    },
+    "expected_evaluations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evaluation"
+      }
+    },
+    "non_expressions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/non_expression"
+      }
+    },
+    "aggregate_results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/aggregate_result"
+      }
+    },
+    "expected_downstream_effects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/downstream_effect"
+      }
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/variant"
+      }
+    },
+    "conformance_assertions": {
+      "$ref": "#/$defs/conformance_assertions"
+    },
+    "fixture_verdict": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "ref_array": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "encounter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "context"
+      ],
+      "properties": {
+        "context": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proposed_action_ref": {
+          "type": "string"
+        },
+        "receiver_ref": {
+          "type": "string"
+        },
+        "time_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "participant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "participant_ref",
+        "role"
+      ],
+      "properties": {
+        "participant_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_ref",
+        "description"
+      ],
+      "properties": {
+        "source_ref": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "standing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "standing_ref",
+        "participant_ref",
+        "relation"
+      ],
+      "properties": {
+        "standing_ref": {
+          "type": "string"
+        },
+        "participant_ref": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "source_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "context_ref": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_ref",
+        "evidence_type"
+      ],
+      "properties": {
+        "evidence_ref": {
+          "type": "string"
+        },
+        "evidence_type": {
+          "type": "string"
+        },
+        "supports_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "presentation_ref",
+        "participant_ref"
+      ],
+      "properties": {
+        "presentation_ref": {
+          "type": "string"
+        },
+        "participant_ref": {
+          "type": "string"
+        },
+        "standing_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "authority_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "proposed_action_ref": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_ref",
+        "actor_ref",
+        "description"
+      ],
+      "properties": {
+        "authority_ref": {
+          "type": "string"
+        },
+        "actor_ref": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "source_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "standing_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "parent_authority_ref": {
+          "type": "string"
+        },
+        "lineage_refs": {
+          "$ref": "#/$defs/ref_array"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_ref",
+        "actor_ref",
+        "action_type"
+      ],
+      "properties": {
+        "action_ref": {
+          "type": "string"
+        },
+        "actor_ref": {
+          "type": "string"
+        },
+        "action_type": {
+          "type": "string"
+        },
+        "object_ref": {
+          "type": "string"
+        },
+        "target_ref": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "attribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attribution_ref",
+        "action_ref",
+        "actor_ref"
+      ],
+      "properties": {
+        "attribution_ref": {
+          "type": "string"
+        },
+        "action_ref": {
+          "type": "string"
+        },
+        "actor_ref": {
+          "type": "string"
+        },
+        "authority_ref": {
+          "type": "string"
+        },
+        "attribution_target_ref": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "obligation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "obligation_ref",
+        "description"
+      ],
+      "properties": {
+        "obligation_ref": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "obligor_ref": {
+          "type": "string"
+        },
+        "entitled_position": {
+          "type": "string"
+        },
+        "required_performance": {
+          "type": [
+            "string",
+            "object"
+          ]
+        },
+        "state": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "revocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revocation_ref",
+        "target_ref",
+        "effective_at"
+      ],
+      "properties": {
+        "revocation_ref": {
+          "type": "string"
+        },
+        "target_ref": {
+          "type": "string"
+        },
+        "revoked_by_ref": {
+          "type": "string"
+        },
+        "effective_at": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consent_ref",
+        "description"
+      ],
+      "properties": {
+        "consent_ref": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "reliance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reliance_ref",
+        "description"
+      ],
+      "properties": {
+        "reliance_ref": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "semantic_objects": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "standings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/standing"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "presentations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/presentation"
+          }
+        },
+        "authorities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/authority"
+          }
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action"
+          }
+        },
+        "attributions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/attribution"
+          }
+        },
+        "obligations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/obligation"
+          }
+        },
+        "revocations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/revocation"
+          }
+        },
+        "consents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/consent"
+          }
+        },
+        "reliance_conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reliance"
+          }
+        }
+      },
+      "minProperties": 1
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "condition_id",
+        "description"
+      ],
+      "properties": {
+        "condition_id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "semantic_target_ref": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "profile_expression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_expression_ref",
+        "description",
+        "conditions"
+      ],
+      "properties": {
+        "profile_expression_ref": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "authored_by_ref": {
+              "type": "string"
+            },
+            "authority_ref": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evaluation_id",
+        "profile_expression_ref",
+        "condition_ref",
+        "result",
+        "reason"
+      ],
+      "properties": {
+        "evaluation_id": {
+          "type": "string"
+        },
+        "profile_expression_ref": {
+          "type": "string"
+        },
+        "condition_ref": {
+          "type": "string"
+        },
+        "semantic_target_ref": {
+          "type": "string"
+        },
+        "result": {
+          "enum": [
+            "SATISFIED",
+            "NOT_SATISFIED",
+            "INDETERMINATE"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "non_expression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "non_expression_id",
+        "profile_expression_ref",
+        "indicated",
+        "reason"
+      ],
+      "properties": {
+        "non_expression_id": {
+          "type": "string"
+        },
+        "profile_expression_ref": {
+          "type": "string"
+        },
+        "indicated": {
+          "const": true
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "aggregate_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "aggregate_result_id",
+        "profile_expression_ref",
+        "rule_ref",
+        "result"
+      ],
+      "properties": {
+        "aggregate_result_id": {
+          "type": "string"
+        },
+        "profile_expression_ref": {
+          "type": "string"
+        },
+        "rule_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "result": {
+          "enum": [
+            "SATISFIED",
+            "NOT_SATISFIED",
+            "INDETERMINATE"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "downstream_effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "effect_id",
+        "description",
+        "core_status"
+      ],
+      "properties": {
+        "effect_id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "profile_expression_ref": {
+          "type": "string"
+        },
+        "core_status": {
+          "enum": [
+            "profile_defined_or_external",
+            "core_semantic_state_change"
+          ]
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "variant_id",
+        "title",
+        "description"
+      ],
+      "properties": {
+        "variant_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "fixture_facts": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "semantic_state_changes": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "expected_evaluations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evaluation"
+          }
+        },
+        "expected_downstream_effects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/downstream_effect"
+          }
+        },
+        "conformance_assertions": {
+          "$ref": "#/$defs/conformance_assertions"
+        }
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assertion_id",
+        "statement"
+      ],
+      "properties": {
+        "assertion_id": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "conformance_assertions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "must_preserve",
+        "must_not_infer"
+      ],
+      "properties": {
+        "must_preserve": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assertion"
+          }
+        },
+        "must_not_infer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assertion"
+          }
+        }
+      }
+    }
+  }
+}
