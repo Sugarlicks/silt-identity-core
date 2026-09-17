@@ -72,7 +72,7 @@ VC-01
 ## Expected base evaluation
 
 ```text
-credential authenticity: SATISFIED
+credential_cryptographic_state: valid
 P relevant Standing:    SATISFIED
 P Authority for ACT-02: SATISFIED  # only where separately required and established
 ```
@@ -82,7 +82,7 @@ P Authority for ACT-02: SATISFIED  # only where separately required and establis
 ### WE02-A - Stale semantic relation
 
 ```text
-credential authenticity: SATISFIED
+credential_cryptographic_state: valid
 Standing current:       NOT_SATISFIED
 ```
 
@@ -91,7 +91,7 @@ The credential may remain cryptographically valid even though the underlying app
 ### WE02-B - Current credential, unresolved current recognition
 
 ```text
-credential authenticity: SATISFIED
+credential_cryptographic_state: valid
 Standing current:       INDETERMINATE
 ```
 
