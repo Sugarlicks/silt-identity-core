@@ -1,180 +1,259 @@
 # Roadmap
 
-This roadmap reflects SILT Core’s deliberate specification-first posture.
+This roadmap reflects SILT Core’s deliberate specification-first posture and the current transition from semantic design into release, conformance and implementation work.
 
-SILT Core prioritises semantic clarity, resilience, and interoperability over premature optimisation, platform lock-in, or implementation claims.
+The controlling v0.2 semantic reference is:
 
-The purpose of this repository is to define a stable authority semantics layer that multiple implementations may later adopt, critique, test, or extend.
+[`spec/v0.2/semantic-architecture.md`](../spec/v0.2/semantic-architecture.md)
 
-This roadmap does not commit future releases beyond the current public release and the next planning cycle.
+The canonical v0.2 seam is:
+
+> **Source → Standing → Presentation → evaluation at the encounter**
+
+SILT Core remains **semantically thick and operationally thin**. The roadmap should not be used to pull authentication, credential transport, dynamic authorisation, capability machinery or execution systems into Core merely because implementation work becomes more concrete.
 
 ---
 
-## Current release
+## Current release position
 
 ### v0.1 — Initial public specification
 
 Released.
 
-v0.1 establishes the initial SILT Core framing:
+v0.1 established the first public SILT Core framing, early semantic objects, schemas, misuse cases and reference implementation experiments.
 
-* the authority problem
-* the distinction between identity, permission, and authority
-* the initial semantic frame for lawful digital action
-* the foundational primitives
-* the first misuse-case orientation
-* the specification-first posture of the project
+It remains historically important and operationally relevant for work that began against that architecture.
 
-v0.1 is not intended to be a production implementation.
+In particular, the **Vietsch / AUT CISRC research-delegation implementation remains a SILT Core v0.1 implementation to completion**. It will not be rewritten mid-stream as a v0.2 implementation.
 
-It provides a public basis for critique, review, refinement, and further specification work.
+A later migration analysis may compare the completed v0.1 implementation against v0.2, but that is separate work.
 
----
+### v0.2 — Freeze Candidate 1
 
-## Current reference work
+SILT Core v0.2 is at **Freeze Candidate 1** and is undergoing release packaging and repository reconciliation.
 
-A reference consent validator is available under:
+The pre-freeze gate has been completed through four worked encounters, machine-readable conformance validation and an experimental adjacent-protocol mapping. No new Core primitive was required by that gate.
 
-```text
-/reference/validators/consent
-```
-
-The validator is experimental and non-normative.
-
-It is provided to test early implementation patterns only.
-
-It does not define the SILT Core specification and does not constrain future v0.2 schema design.
-
-Reference code should be treated as illustrative unless and until a future specification expressly makes a component normative.
+The current task is therefore not further open-ended semantic modelling. It is to make the repository, release artefacts and implementation boundary accurately reflect the frozen architecture.
 
 ---
 
-## Next planning cycle
+## Immediate release work
 
-### v0.2 — Planned next release
+Before the v0.2.0 release tag, the project should complete the following work.
 
-v0.2 is being planned.
+### 1. Repository reconciliation
 
-No final scope is asserted in this document.
+- make FC1 the unambiguous controlling v0.2 semantic reference;
+- update README, overview, positioning, roadmap and governance-facing documentation;
+- remove or clearly archive active v0.1 material that conflicts with v0.2;
+- prevent `Status`, universal `Capacity`, older `Lex/Profile` language and old validation assumptions from appearing to remain current Core architecture;
+- distinguish historical v0.1 implementation material from v0.2 normative material.
 
-The v0.2 planning process may consider:
+### 2. Conformance packaging
 
-* structured authority claims
-* validation logic
-* revocation and expiry handling
-* expanded primitive definitions
-* AI-agent execution contexts
-* legal and governance workflow examples
-* digital commerce examples
-* DID/VC interoperability mapping
-* misuse-case tests
+Publish the pre-freeze pressure-test material in a clear release structure:
 
-These are planning areas, not release commitments.
+- WE01 — Transferable Instrument Encounter;
+- WE02 — Credential-Carried Institutional Encounter;
+- WE03 — Plural / Collective Encounter;
+- WE04 — Recursive AI Delegation Encounter;
+- machine-readable fixture schema;
+- normalised fixtures;
+- conformance validation note;
+- corrected experimental SILT ↔ LCP mapping.
 
-The final v0.2 scope will be determined separately and should not be inferred from this roadmap.
+The machine-readable fixture schema is **test notation**, not a normative SILT wire format.
 
----
+### 3. Migration documentation
 
-## Planning principles
+Publish a clear v0.1 → v0.2 migration note covering, at minimum:
 
-v0.2 planning should remain guided by the following principles:
+- removal of `Status` from Core;
+- removal of universal `Capacity` from Core;
+- Source-grounded relational Standing;
+- Presentation as the encounter projection;
+- Profile Expression replacing older Lex/Profile framing;
+- strict semantic outcomes: `SATISFIED`, `NOT_SATISFIED`, `INDETERMINATE`;
+- deliberate non-expression outside the outcome model;
+- Technical Capability distinct from Authority;
+- Delegation represented through Action and derived Authority;
+- Obligation as a first-class persistent relational state;
+- Binding as a downstream effect;
+- multiple Profile Expressions without universal precedence or silent aggregation;
+- semantic continuity distinct from cryptographic continuity.
 
-### 1. Specification before implementation
+### 4. Governance, licensing and IPR
 
-Implementation should follow semantic clarity.
+Before substantive external contribution and adoption expand, the project should make its governance and IPR posture explicit.
 
-SILT Core should not lock itself into a wallet, chain, credential system, validator architecture, or governance framework before the underlying authority model is sufficiently clear.
+Release work should include:
 
-### 2. Authority before action
+- a clear specification/documentation licence boundary;
+- Apache 2.0 treatment for reference code;
+- CC BY 4.0 treatment for specification/documentation, if confirmed as the release position;
+- contribution and change-control rules;
+- patent/IPR direction;
+- scope discipline for future Core changes.
 
-The project should continue to centre the core question:
+This is institutional infrastructure, not semantic expansion.
 
-> Is this action legitimately authorised, in this context, right now?
+### 5. Release and archive
 
-Future work should strengthen the ability to express, inspect, validate, and revoke authority conditions before digital action is executed or relied upon.
+After the final repository audit:
 
-### 3. Capacity before credential
-
-SILT Core should preserve the distinction between identity, credential, account, and acting capacity.
-
-A participant may be identifiable without being authorised.
-
-A credential may attest a claim without proving mandate.
-
-A signature may show approval without proving capacity.
-
-### 4. Revocation as first-class
-
-Delegation, consent, mandate, and reliance should not silently persist beyond scope.
-
-Future work should continue to treat revocation, expiry, suspension, and supersession as structural features, not edge cases.
-
-### 5. Plural authority sources
-
-SILT Core should not assume a single source of authority.
-
-Authority may arise through legal, contractual, organisational, institutional, customary, associative, technical, or community frameworks.
-
-The grammar should remain plural-source and technology-agnostic.
-
-### 6. Limited claims travel further
-
-SILT Core should avoid overstating what it does.
-
-It does not determine ultimate legal enforceability.
-
-It does not replace courts, contracts, governance systems, identity systems, or professional advice.
-
-It makes authority conditions explicit, structured, auditable, and revocable.
+- tag `v0.2.0`;
+- publish release notes;
+- prepare the Zenodo archive and DOI;
+- preserve versioned checksums or a release manifest where practical.
 
 ---
 
-## Out of scope unless later adopted
+## Post-freeze implementation priorities
 
-The following are not currently committed as release deliverables:
+Once v0.2 is released, the project should move decisively towards implementation, institutional placement and real encounter testing.
 
-* production wallets
-* chain-specific implementations
-* public registries
-* certification schemes
-* commercial validator services
-* governance platforms
-* legal advice products
-* production AI-agent control systems
-* fixed conformance levels
-* stable implementation APIs
+### Real collective-authority encounter
 
-These may be considered separately in future work, but they are not asserted by this roadmap.
+A high-priority next step is a real collective or customary encounter in which Source-grounded Standing, Presentation, representational Authority and Profile Expression are tested with the originating community rather than only in synthetic fixtures.
 
----
+This should test whether the architecture remains legible without requiring the community to restate its ontology in system-native terms.
 
-## Repository focus
+### Private ordering
 
-The current repository focus is:
+The worked transferable-instrument encounter pressure-tested important private-ordering semantics, but it is not identical to a broader non-state trust or private-ordering encounter.
 
-* specification development
-* schema design
-* reference validation experiments
-* misuse cases
-* interoperability notes
-* conceptual documentation
-* implementation-facing examples
+A post-freeze worked implementation should test trusts, private agreements, arbitral conditions or comparable non-state ordering without reopening Core unless a genuine semantic gap appears.
 
-The repository should remain clear about the difference between:
+### AI-agent implementation
 
-* normative specification
-* exploratory planning
-* illustrative examples
-* experimental reference code
+Recursive delegation should now be tested against real agent/capability infrastructure while preserving the boundary:
 
-That distinction is load-bearing.
+> **Technical Capability ≠ Authority**
+
+The implementation question is how SILT semantic lineage and constraints are carried into downstream capability and execution systems, not whether SILT should duplicate them.
+
+### Institutional implementation
+
+Institutional delegation remains an important implementation domain, including AUT CISRC.
+
+However, the funded Vietsch/AUT implementation remains v0.1 to completion. A v0.2 institutional implementation or migration should be treated as a subsequent phase, not folded into the current funded work.
 
 ---
 
-## Guiding principle
+## Adjacent standards and ecosystem work
 
-SILT Core values clarity before scale, semantics before software, and revocation before lock-in.
+A major post-release task is to document the layer boundary between SILT and adjacent systems.
 
-Implementations may come and go.
+Priority mappings include:
 
-The integrity of the authority layer must endure.
+- DID / VC infrastructure;
+- UCAN and zcap capability systems;
+- GNAP and dynamic authorisation;
+- KERI / ACDC;
+- agent identity and mandate systems;
+- trust registries and issuer lists;
+- electronic transferable-record frameworks including MLETR and the UK electronic-trade-document regime;
+- Legal Context Protocol and related legal/agent protocol work.
+
+The purpose of this work is not to claim that every adjacent system is either a competitor or an implementation of SILT.
+
+The relevant questions are:
+
+- what layer does the system occupy;
+- what SILT semantics can it carry or evidence;
+- what operational function does it perform downstream;
+- where does it overlap;
+- where might it accidentally collapse Source-grounded meaning into technical verification or system-issued authority?
+
+These mappings belong in companion material unless they expose a genuine Core defect.
+
+---
+
+## Institutional and standards pathway
+
+The v0.2 release should be used to support external engagement with standards, digital identity, plural-governance and agent-infrastructure communities.
+
+The project should prioritise contexts where SILT’s distinct contribution can be tested rather than merely described.
+
+Likely pathways include:
+
+- standards and trust-framework working groups;
+- institutional pilots;
+- Indigenous and collective-authority encounters;
+- digital commerce and private-ordering implementations;
+- AI-agent authority and delegation work;
+- research publications and implementation partnerships.
+
+Institutional placement should not require SILT to collapse into another stack’s ontology in order to participate.
+
+---
+
+## Conformance and assurance
+
+The v0.2 conformance work creates the basis for future assurance, but SILT should not rush into certification before the implementation evidence is strong enough.
+
+Near-term conformance work should focus on:
+
+- machine-readable fixtures;
+- test runners;
+- semantic non-inference tests;
+- implementation guidance;
+- worked encounter expansion;
+- distinguishing semantic conformance from runtime enforcement.
+
+Future assurance, certification, training or validator services may become commercially and institutionally important. They should be built on a stable public semantic specification rather than allowed to distort Core in order to create a product surface.
+
+---
+
+## What should not move into Core by default
+
+The following remain implementation or companion concerns unless future evidence shows that a semantic distinction is genuinely missing:
+
+- wallets;
+- blockchains;
+- credential formats;
+- authentication protocols;
+- key-management systems;
+- capability-token formats;
+- runtime policy engines;
+- access-control systems;
+- registries;
+- transport protocols;
+- production agent frameworks;
+- universal conflict-of-laws rules;
+- universal Profile Expression precedence;
+- universal Binding rules;
+- production certification machinery.
+
+Scope discipline is a feature of the architecture.
+
+---
+
+## Reopening Core after v0.2
+
+After semantic freeze, a request to change Core should meet a high threshold.
+
+A new Core primitive or architectural change should not be introduced merely because:
+
+- an implementation prefers a different data model;
+- another standard uses a familiar noun;
+- a validator would be easier to code;
+- a particular platform expects a certain credential or role structure;
+- one jurisdiction or institution treats a concept as universal within its own system.
+
+Core should be reconsidered only where implementation or encounter evidence shows a recurring semantic distinction that cannot be expressed faithfully through the existing architecture without material distortion.
+
+Changes after release should be handled transparently through errata or a subsequent version, not through silent revision of v0.2.
+
+---
+
+## Guiding direction
+
+The work now changes character.
+
+The principal challenge is no longer to keep adding semantic objects. It is to demonstrate that the architecture survives contact with real institutions, communities, private arrangements, AI systems and adjacent standards while remaining thin enough not to absorb their machinery.
+
+> **Source → Standing → Presentation → evaluation at the encounter**
+>
+> **semantic hand-off, not semantic surrender**
