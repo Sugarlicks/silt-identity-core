@@ -67,6 +67,10 @@ PRES-02
 VC-01
   type: verifiable_credential
   cryptographic_state: valid
+
+ACT-02
+  actor_ref: P
+  type: proposed_institutional_action
 ```
 
 ## Expected base evaluation
