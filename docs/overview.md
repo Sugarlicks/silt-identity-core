@@ -1,858 +1,614 @@
-
 # SILT Core — Overview
 
-**Authority semantics for digital action.**
+**A fuller introduction to the SILT Core v0.2 semantic architecture.**
 
-This document provides a fuller overview of SILT Core: its purpose, primitives, use cases, design principles, relationship to existing systems, threat model, current status, and v0.2 planning direction.
+This document explains the purpose, architecture, semantic objects, encounter model, boundaries and current release position of SILT Core v0.2.
 
-For the short introduction, see [`README.md`](../README.md).
-For normative specifications, see [`/spec`](../spec).
-For schemas, reference material, validators, and misuse cases, see [`/schemas`](../schemas), [`/reference`](../reference), and [`/tests/misuse-cases`](../tests/misuse-cases).
+It is explanatory material. The controlling v0.2 semantic reference is:
 
----
+[`spec/v0.2/semantic-architecture.md`](../spec/v0.2/semantic-architecture.md)
 
-## Why SILT exists
+If this overview and the semantic architecture ever diverge, the semantic architecture controls.
 
-Current digital systems are built on a hidden assumption: legitimacy flows from external validation.
-
-A government issues your identity.
-A credential authority attests your attributes.
-A platform recognises your account.
-A system grants your permissions.
-
-You exist, digitally, to the extent that external systems confirm you.
-
-SILT begins from the other direction.
-
-What a person, collective, institution, agent, or system carries into a moment of digital action — standing, authority source, mandate, obligation, consent, reliance, and revocation — does not begin with system recognition. It precedes it.
-
-Current infrastructure has no stable grammar for this. It can model who you are, what attributes you hold, and what permissions you have been granted. It struggles to model what you bring into an action, in what capacity you are acting, by whose authority, under what mandate, and whether others may safely rely on the act.
-
-SILT builds that grammar.
-
-SILT Core is a semantic layer for expressing the conditions of lawful digital action across plural systems.
-
-It is not a credential system.
-It is not a permission layer.
-It is not a blockchain protocol.
-It is not a legaltech-only product.
-
-It is the missing authority layer beneath these systems: the layer that asks not merely:
-
-> Has this action been permitted?
-
-but:
-
-> By what source of authority is this action being taken, in what capacity, under what mandate, within what scope, with what consent, and how can that authority be revoked?
+For the shorter repository introduction, see [`README.md`](../README.md).
 
 ---
 
-## Core question
+## 1. What SILT Core is trying to preserve
 
-SILT Core exists to answer one question:
+Digital systems increasingly mediate encounters between people, collectives, institutions, commercial arrangements, automated agents and other forms of organisation that do not necessarily derive legitimacy from the same source.
 
-> Is this action legitimately authorised, in this context, right now?
+A customary order may recognise a relational position through whakapapa, collective process or community recognition. A private arrangement may ground authority in a trust, contract, instrument or appointment. An institution may rely on office, mandate or governance process. A technical system may recognise a key, account, credential or capability.
 
-Most identity systems ask:
+Those things are not interchangeable.
 
-> Who is this?
+SILT Core addresses the boundary at which different orders meet.
 
-Most permission systems ask:
+Its purpose is to allow the minimum relevant semantic conditions of an encounter to become legible without requiring the originating order to collapse into the ontology of the receiving system.
 
-> What is this account allowed to do?
+The canonical architectural seam is:
 
-SILT asks:
+> **Source → Standing → Presentation → evaluation at the encounter**
 
-> What is the authority structure behind this action?
+This is the conceptual centre of v0.2.
 
-That distinction matters.
-
-An action may be technically permitted but not legitimately authorised.
-
-A key may sign.
-A system may approve.
-A workflow may execute.
-An agent may transact.
-A DAO may vote.
-A platform may record the event.
-
-None of that proves, by itself, that the action was taken in the right capacity, under a valid authority source, within mandate, with scoped consent, and with revocation conditions still intact.
-
-SILT Core is concerned with that missing layer.
+SILT is therefore concerned with **encounter rather than assimilation**.
 
 ---
 
-## Why this matters
+## 2. The architectural seam
 
-Digital systems are shifting from passive tools to active execution environments.
+### Source
 
-AI agents, automated workflows, DAOs, digital commerce systems, legal platforms, civic infrastructure, and institutional governance tools are increasingly capable of executing actions with real-world consequences.
+A **Source** is the referenced ground or provenance of a relevant semantic relation.
 
-They can sign, approve, route, vote, transact, file, trigger, delegate, and coordinate.
+A Source may be a relationship, genealogy or kinship connection, customary process, agreement, trust, mandate, constitution, appointment, governance event, community recognition, institutional instrument, private instrument, prior Authority or another recognised ground.
 
-Yet most systems still treat legitimacy as a by-product of authentication, permission, or platform role.
+A Source is not automatically an issuer, registry, credential authority or document.
 
-That is not enough.
+A document, credential, signature or registry entry may be **Evidence** of a Source-grounded relation without becoming the Source itself.
 
-A valid action requires more than identity.
+There is no universal Source.
 
-It requires standing.
-It requires capacity.
-It requires authority.
-It requires consent.
-It requires reliance boundaries.
-It requires revocation.
+### Standing
 
-Without these semantics, digital systems risk executing actions that are technically permitted but not legitimately authorised.
+**Standing** is a relational position grounded in Source.
 
-This problem becomes urgent as software becomes more agentic. The question is no longer only whether a system can act. The deeper question is whether the action can be traced to a valid authority source, bounded by an intelligible mandate, and revoked when the conditions of authority no longer hold.
+It is not a universal credential, status label or globally portable claim about what a Participant is.
 
-In an agentic environment, authority can no longer remain implicit.
+Standing may concern a relationship, order, collective, object, office, domain, context or other bounded normative setting.
 
----
+Standing may be distributed, contested or layered. In collective settings, recognised belonging or relational position does not automatically establish Authority to speak for, represent or bind the collective.
 
-## What SILT Core provides
+SILT Core v0.2 does **not** contain a `Status` object.
 
-SILT Core formalises authority conditions as interoperable primitives.
+### Presentation
 
-The current focus is on:
+A **Presentation** is the present-tense, purpose-relevant act or envelope through which a Participant brings the minimum relevant projection of Standing, Authority or another semantic claim into a particular encounter.
 
-* **Status** — the recognised basis from which a person, collective, institution, agent, or system participates
-* **Standing** — the contextual basis on which participation or action becomes legitimate
-* **Capacity** — the role in which an action is taken
-* **Authority Source** — the mandate, agreement, policy, relationship, instrument, governance process, or recognised source from which authority derives
-* **Mandate Scope** — the permitted boundaries of action
-* **Consent** — expressed acceptance under defined conditions
-* **Delegation** — the transfer or extension of authority within defined limits
-* **Reliance** — when others may safely treat an action as valid
-* **Revocation** — how authority expires, is withdrawn, superseded, suspended, or terminated
+Presentation does not create Standing.
 
-These primitives are designed to be technology-agnostic and may be implemented across APIs, DID/VC systems, smart contracts, AI-agent frameworks, governance platforms, registries, secure execution environments, or other verification substrates.
+A receiving Participant or system does not become the source of the underlying Standing merely because it evaluates a Presentation.
 
-SILT Core does not dictate a single worldview, legal system, identity model, or governance structure.
+Presentation is intentionally broader than any one technical format. A verifiable presentation, signed message, legal instrument, API payload or other carrier may transport a Presentation, but the carrier is not the semantic definition.
 
-It provides a grammar through which different authority structures can become legible to digital systems.
+### Evaluation at the encounter
 
----
+Evaluation asks whether the Presentation satisfies the **expressed conditions relevant to that encounter**.
 
-## The problem SILT does not let systems avoid
+It is not a universal determination of legitimacy, truth or legal validity.
 
-Many systems collapse several distinct questions into one.
+Evaluation does not compel acceptance, and it does not constitute, extinguish or redefine the underlying Source-grounded relation.
 
-They treat identity, permission, authority, consent, and reliance as if they were the same thing.
+The Core semantic outcomes are:
 
-They are not.
+- `SATISFIED`
+- `NOT_SATISFIED`
+- `INDETERMINATE`
 
-A verified identity does not prove capacity.
-A permission does not prove authority.
-A signature does not prove mandate.
-A role does not prove standing.
-A checkbox does not prove consent.
-A successful execution does not prove legitimate reliance.
-A prior grant of authority does not prove authority still exists.
+SILT does not use a universal `INVALID` conclusion.
 
-SILT Core separates these layers.
-
-The purpose is not to make systems more complicated.
-
-The purpose is to make them honest.
+Missing or non-resolvable information is not silently converted into false invalidity.
 
 ---
 
-## Conceptual model
+## 3. Profile Expression
 
-At a high level, SILT Core treats digital action as an authority event.
+A **Profile Expression** is a bounded, encounter-relevant expression of the semantic conditions under which a Presentation will be evaluated.
 
-An authority event asks whether a proposed action has enough contextual authority to proceed, be relied upon, or be recorded as valid within a given system.
+It is not a representation of the full legal, customary, cultural, relational, contractual, institutional or other normative order from which it arises.
 
-A simplified authority context may be expressed as:
+The originating substrate exceeds and remains independent of the Profile Expression.
+
+A Profile Expression may express conditions concerning matters such as:
+
+- relevant Sources;
+- Standing conditions;
+- what may need to be Presented;
+- Evidence requirements;
+- Authority conditions;
+- Consent or Reliance conditions;
+- Revocation;
+- relevant Actions;
+- Attribution;
+- Obligation;
+- downstream effects.
+
+Multiple Profile Expressions may coexist within an encounter.
+
+They may agree, overlap or conflict.
+
+SILT does not silently merge, rank or privilege them. A result remains linked to the Profile Expression under which it was produced unless an expressed composition rule provides otherwise.
+
+This is important in plural encounters. Mutual legibility does not require a universal meta-order.
+
+---
+
+## 4. Deliberate non-expression
+
+Some conditions cannot be usefully or faithfully reduced into a bounded machine-readable expression without distortion.
+
+SILT Core v0.2 therefore allows a condition to remain deliberately unexpressed where expressing it would materially misrepresent the originating order.
+
+That condition does not acquire a fourth evaluation outcome.
+
+It remains outside SILT evaluation for that encounter.
+
+This distinction matters:
 
 ```text
-Participant
-+ Capacity
-+ Authority Source
-+ Mandate Scope
-+ Consent Conditions
-+ Reliance Conditions
-+ Revocation State
-= Action Validity Context
+INDETERMINATE
 ```
 
-This is not a universal legal formula.
+means that an expressed condition cannot presently be resolved.
 
-It is a semantic frame.
-
-SILT Core does not claim that every action satisfying this structure is legally enforceable in every jurisdiction. Rather, it makes the relevant authority conditions explicit, structured, auditable, and checkable.
-
-The value is not in replacing legal, governance, or identity systems.
-
-The value is in making their authority conditions machine-legible.
+A deliberately non-expressed condition is different: it was not placed inside the evaluation frame in the first place.
 
 ---
 
-## Example authority context
+## 5. The semantic objects around the seam
 
-The following illustrative example shows how a digital action might be expressed in SILT-like terms.
+The seam is the organising architecture, but several other semantic distinctions are needed to preserve meaning at the encounter.
 
-```json
-{
-  "action_id": "action-2026-0001",
-  "participant": {
-    "identifier": "did:example:agent-123",
-    "type": "ai_agent"
-  },
-  "capacity": {
-    "role": "delegated_agent",
-    "declared_by": "did:example:principal-456"
-  },
-  "authority_source": {
-    "type": "mandate",
-    "reference": "sha256:authority-source-hash",
-    "issued_by": "did:example:principal-456",
-    "issued_at": "2026-06-22T00:00:00Z"
-  },
-  "mandate_scope": {
-    "permitted_actions": [
-      "approve_invoice",
-      "initiate_payment"
-    ],
-    "max_value": "5000 NZD",
-    "context": "supplier-payment-workflow",
-    "expires": "2026-12-31T23:59:59Z"
-  },
-  "consent": {
-    "terms_reference": "sha256:terms-file-hash",
-    "accepted_by": "did:example:principal-456",
-    "accepted_at": "2026-06-22T00:00:00Z",
-    "constraints": [
-      "supplier_verified",
-      "invoice_matched",
-      "amount_within_scope"
-    ]
-  },
-  "reliance": {
-    "reliance_permitted": true,
-    "reliance_limit": "within_mandate_scope_only",
-    "third_party_visibility": "limited"
-  },
-  "revocation": {
-    "status": "active",
-    "revocation_registry": "https://example.org/revocations",
-    "last_checked": "2026-06-22T12:00:00Z"
-  }
-}
-```
+### Participant
 
-This example is illustrative only.
+A **Participant** is deliberately thin.
 
-It does not define a final schema.
+It may refer to an individual, collective, office, institution, trust, DAO, machine agent or another relevant actor or entity.
 
-Schemas, field names, and validation logic are subject to formal specification work.
+SILT does not attempt to settle universal questions of personhood or identity through the Participant object.
+
+### Evidence
+
+**Evidence** supports a semantic claim. It is not the claim itself.
+
+Examples may include credentials, signed records, documents, attestations, registries, transaction records, witness records or technical proofs.
+
+A cryptographically valid credential may be Evidence while the current Standing or Authority it is offered to support remains unresolved.
+
+### Authority
+
+**Authority** is bounded power relevant to an Action or class of Action.
+
+Authority may be grounded directly in Source, arise through Standing, be constituted through an Action such as appointment or delegation, or arise through another expressed path recognised by the applicable order.
+
+Authority may be bounded by:
+
+- action class;
+- resource;
+- value;
+- purpose;
+- time;
+- place;
+- delegation depth;
+- formation conditions;
+- exercise conditions;
+- validity dependencies;
+- revocation conditions.
+
+SILT does not require Authority always to pass mechanically through Standing.
+
+### Delegation
+
+Delegation is not a separate universal Core primitive in v0.2.
+
+It is modelled as an **Action** through which derived Authority may be constituted where the applicable Source and Profile Expression give that Action such effect.
+
+Derived Authority cannot exceed the parent delegable envelope unless another recognised Source independently supplies additional Authority.
+
+Lineage and current validity dependency are distinct. The fact that Authority descends historically from another Authority does not by itself mean that every later change automatically cascades through the lineage.
+
+### Consent
+
+**Consent** is a bounded relation of agreement or permission.
+
+It is not reducible to a signature, checkbox, login state or technical assent event.
+
+Those may be Actions or Evidence concerning Consent, depending on the applicable conditions.
+
+Collective Consent must not be inferred from individual assent without the relevant Authority and conditions.
+
+### Reliance
+
+**Reliance** expresses the conditions under which another Participant may act on a Presentation, Authority or related semantic state.
+
+Reliance is distinct from Authority validity.
+
+SILT does not silently import doctrines such as apparent authority, estoppel or reliance-based liability. Those remain downstream or Profile-defined unless expressly modelled for the encounter.
+
+### Action
+
+An **Action** is an event capable of evaluation or, where the applicable order gives it constitutive effect, changing a semantic relation.
+
+Examples may include appointment, admission, election, endorsement, transfer, agreement, delegation, revocation, discharge or another relevant event.
+
+SILT separates an Action from the semantic consequence attributed to it.
+
+### Attribution
+
+**Attribution** is the semantic linking of an Action to a Participant, Authority context or relational position.
+
+The factual actor and the Attribution target may differ.
+
+For example, an agent may technically execute an Action while the applicable Authority relation supports Attribution to another Participant or office.
+
+Attribution does not by itself establish Binding, liability or legal responsibility.
+
+### Obligation
+
+**Obligation** is a persistent relational state of required performance, responsibility or constraint.
+
+It is distinct from Authority.
+
+An Obligation may persist while:
+
+- Standing changes;
+- Authority changes;
+- the Participant occupying an entitled position changes.
+
+This distinction is especially important in transferable instruments and other settings where relational positions change while an underlying obligation survives.
+
+### Revocation
+
+**Revocation** alters or withdraws a revocable relation, especially Authority.
+
+Authority may have lifecycle states such as active, revoked, expired, superseded or suspended where the relevant implementation or Profile Expression uses them.
+
+Revocation is prospective by default unless another rule is expressly stated.
+
+SILT does not impose a universal lifecycle on Standing.
 
 ---
 
-## Authority is not the same as identity
+## 6. What is not a Core primitive in v0.2
 
-SILT Core sits above identity infrastructure.
+Several concepts present in earlier SILT material are intentionally not retained as universal Core objects.
 
-A person, organisation, agent, wallet, or system may be identifiable without being authorised.
+### Status
 
-A DID may show who controls an identifier.
-A verifiable credential may attest a claim.
-A digital signature may show that a key approved something.
-A permission system may show what an account is technically allowed to do.
+`Status` is not a SILT Core v0.2 object.
 
-SILT asks what authority structure governs the action.
+The work previously carried by Status is better handled through Source-grounded Standing and encounter-specific Presentation.
+
+### Capacity
+
+`Capacity` is not a universal SILT Core v0.2 primitive.
+
+A role, office, trusteeship, agency relation, representational position or other acting basis may remain highly relevant in a particular legal or institutional order. SILT does not deny those concepts.
+
+It declines to impose one universal Capacity object across all orders.
+
+Where relevant, those meanings are expressed through Source, Standing, Authority, Presentation and Profile Expression.
+
+### Binding
+
+**Binding** is not a universal Core conclusion.
+
+An encounter may lead to:
+
+- formation of an Obligation;
+- change of Standing;
+- creation or alteration of Authority;
+- Revocation;
+- discharge;
+- settlement;
+- institutional recognition;
+- another downstream effect.
+
+What follows depends on the applicable Profile Expression or other recognised normative mechanism.
+
+SILT therefore separates semantic evaluation from the false proposition that successful evaluation means “legally binding everywhere”.
+
+---
+
+## 7. Technical Capability is not semantic Authority
+
+SILT is deliberately strict about the boundary between semantic relations and technical machinery.
+
+A key may sign.  
+A token may authorise an API call.  
+A wallet may control an asset.  
+A session may be valid.  
+An access-control system may permit execution.  
+An agent framework may successfully perform a task.
+
+None of those facts alone establishes SILT Standing or Authority.
+
+SILT calls the practical ability to cause a technical effect **Technical Capability**.
+
+Authentication, key continuity, credentials, capability tokens, sessions, access control, policy engines and execution systems are operational machinery. They sit architecturally below the Presentation line unless a semantic claim about them is itself relevant to the encounter.
+
+The distinction is:
 
 ```text
-DID:        Who controls this identifier?
-VC:         What claim has been attested?
-Signature:  Which key approved this?
-Permission: What is this account allowed to do?
-SILT:       In what capacity is this action being taken, under what
-            authority, within what scope, with what consent, and with
-            what revocation conditions?
+Technical Capability ≠ Authority
+execution ≠ origination
+credential validity ≠ Standing
+key continuity ≠ semantic continuity
 ```
 
-This distinction is central.
-
-Identity systems are necessary, but they do not exhaust legitimacy.
+This is an architectural boundary, not a chronological rule. Technical systems may operate before, during or after a Presentation in real implementations.
 
 ---
 
-## Design principles
+## 8. Semantic continuity and cryptographic continuity
 
-### 1. Status before attributes
+SILT distinguishes continuity of meaning from continuity of technical control.
 
-Identity is not only a bundle of attributes.
+Changes to:
 
-A person, collective, institution, agent, or system may hold standing in a context before a system has issued a credential about them.
+- keys;
+- credentials;
+- accounts;
+- capability tokens;
+- sessions;
+- technical identifiers;
+- execution infrastructure
 
-SILT Core begins with the conditions under which a participant may appear, act, or bind itself in context, not only the claims that can be verified about them.
+do not by themselves alter Standing, Authority, Attribution or Obligation.
 
-### 2. Authority before permission
+Conversely, continuing control of a key, account or credential does not guarantee that the underlying semantic relation still exists.
 
-A permission flag can say that an account may perform an action.
-
-It does not explain whether the action is validly authorised.
-
-SILT separates technical permission from authority.
-
-### 3. Capacity is contextual
-
-Capacity is not a fixed identity label.
-
-A participant may act personally, as agent, trustee, officer, delegate, steward, member, representative, system operator, AI agent, or under another mandate.
-
-SILT models capacity as context-bound, declared, scoped, and verifiable.
-
-### 4. Consent is constraint
-
-Consent is not interface text.
-
-Consent must be scoped, evidenced, limited, auditable, and capable of withdrawal.
-
-SILT treats consent as a constraint on action, not as a decorative record after the fact.
-
-### 5. Delegation must not become capture
-
-Authority may be delegated without collapsing the principal into the system that carries out the action.
-
-SILT models delegation as bounded, traceable, and revocable.
-
-### 6. Revocation is first-class
-
-Authority must be able to end.
-
-Revocation, expiry, suspension, and supersession are not edge cases.
-
-They are core to legitimate action.
-
-### 7. Plural systems need shared edge conditions
-
-SILT Core does not standardise meaning itself.
-
-It standardises the boundary conditions through which meaning becomes operationally legible across different legal, cultural, institutional, and governance traditions.
-
-The grammar can be shared while the underlying traditions remain plural.
+This allows SILT semantics to survive ordinary technical events such as key rotation, credential replacement or infrastructure migration without pretending those events are irrelevant operationally.
 
 ---
 
-## Non-preclusion axioms
+## 9. Relationship to existing infrastructure
 
-SILT Core must not become another cage.
-
-The specification is therefore guided by three non-preclusion axioms.
-
-### Axiom 1 — Authority source plurality
-
-SILT Core does not assume a single source of authority.
-
-Authority must be explicitly referenced and scoped, but its origin may vary across legal, contractual, organisational, institutional, customary, associative, technical, or community frameworks.
-
-The specification should not require state-issued credentials as a precondition of standing.
-
-It should not privilege institutional issuance over contractual, associative, relational, or community mandate.
-
-It should accept any authority source that can be expressed, scoped, evaluated, relied upon, and revoked within the semantic grammar.
-
-### Axiom 2 — Capacity is contextual, not ontological
-
-SILT Core models acting capacity within a defined context.
-
-It does not define what a person, collective, institution, agent, or system is in an ultimate sense.
-
-It defines how that participant is acting within a specific transaction, governance event, workflow, or execution context.
-
-This separates identity from capacity.
-
-A participant may act in multiple capacities over time.
-
-Capacity is declared, scoped, and verifiable, not inferred.
-
-### Axiom 3 — Revocability as structural safeguard
-
-All delegation, mandate, and authority expressions should include explicit revocation or expiry pathways.
-
-Authority should not silently persist beyond scope.
-
-Revocation protects against platform capture, stale authority, irreversible delegation, and identity collapse.
-
-Revocability is not merely an administrative feature.
-
-It is a structural safeguard for agency.
-
----
-
-## Relationship to existing systems
-
-SILT Core is designed to complement, not replace, existing identity, legal, governance, and trust infrastructure.
+SILT Core is designed to complement, not replace, identity, credential, capability, agent and execution systems.
 
 ### DID and verifiable credential systems
 
-DID and VC systems provide important tools for identifier control, claims, attestations, and selective disclosure.
+DIDs and verifiable credentials can provide identifier control, attestations, selective disclosure and transport for Evidence.
 
-SILT Core adds authority semantics.
+They do not automatically create Source-grounded Standing or Authority.
 
-It asks:
-
-* In what capacity is this identifier acting?
-* What authority source governs the action?
-* What mandate limits apply?
-* Has consent been expressed under defined conditions?
-* Can reliance be safely placed on the action?
-* Has authority expired or been revoked?
-
-SILT can be layered over DID/VC infrastructure without requiring every authority source to be state-issued or platform-issued.
+A verifiable presentation may carry a SILT Presentation, but the two are not identical concepts.
 
 ### Digital signatures
 
-Digital signatures prove that a key signed something.
+A signature is Evidence that a particular key performed a technical signing operation.
 
-They do not, by themselves, prove that the signing party was acting in the correct capacity, under a valid mandate, or within scope.
+Whether that Action is sufficient for Standing, Consent, Authority, Attribution or another semantic conclusion depends on the applicable Source and Profile Expression.
 
-SILT provides the surrounding authority context.
+### Capability and authorisation systems
 
-### Smart contracts
+Capability systems and dynamic authorisation protocols can express and enforce technical permission.
 
-Smart contracts execute logic.
+They are valuable downstream machinery.
 
-SILT helps define the authority conditions that should exist before execution and the revocation or reliance conditions that may matter after execution.
-
-SILT is not “law as code”.
-
-It is authority semantics before, during, and after digital execution.
+SILT’s concern is the semantic meaning that precedes, accompanies or survives that technical capability.
 
 ### AI agents
 
-SILT does not attempt to make AI systems legal persons.
+SILT does not create a special AI ontology or require AI systems to be treated as legal persons.
 
-It models authority provenance, mandate scope, delegation chains, reliance boundaries, and revocation pathways for autonomous and semi-autonomous systems.
+The same architecture can represent a machine agent as a thin Participant, distinguish its Technical Capability from its Authority, and preserve delegation lineage, constraints, revocation and Attribution without adding an AI-specific Core primitive.
 
-This matters because agentic systems may act beyond immediate human instruction while still needing a traceable authority source.
+### Smart contracts and automated execution
 
-An agent with a wallet is not the same thing as an agent with standing.
+Automated systems can execute logic once their operational conditions are met.
 
-### Legal and governance workflows
+SILT does not replace that execution layer. It allows the semantic conditions surrounding an Action to remain legible before or alongside execution and after the technical mechanism changes.
 
-Legal and governance systems already rely on concepts such as agency, mandate, role, consent, authority, reliance, delegation, and revocation.
+### Trust registries and issuer lists
 
-SILT makes these conditions explicit and portable across digital environments.
+Trust lists and registries may be useful Evidence or implementation infrastructure.
 
-It does not replace law or governance.
-
-It makes their authority conditions more legible.
-
-### Digital commerce
-
-Commercial systems often involve delegated authority, settlement instructions, payment approvals, instruments, obligations, reliance, and revocation.
-
-SILT can help clarify who may bind whom, under what authority, within what limits, and when reliance should terminate.
-
-This is particularly relevant where digital commerce intersects with AI agents, private ordering, programmable settlement, or cross-platform workflows.
+SILT does not treat registry inclusion as the universal origin of Standing or Authority.
 
 ---
 
-## Use cases
+## 10. Why plural encounters matter
 
-SILT Core is relevant wherever high-trust systems need authority to be explicit before execution.
+The architecture becomes most distinctive where the Source of Standing does not originate in the receiving system.
 
-Potential use cases include:
+Standing may arise from:
 
-* AI agent actions
-* legal automation
-* DAO governance
-* digital commerce
-* civil society infrastructure
-* institutional approval flows
-* delegated authority systems
-* cross-platform mandate continuity
-* public-interest digital infrastructure
-* consent-sensitive data sharing
-* high-trust automated workflows
-* human and machine coordination systems
-* legal workflow validation
-* governance approval processes
-* fiduciary agent controls
-* grant and treasury disbursement systems
-* community mandate tracking
-* platform exit and continuity mechanisms
+- whakapapa;
+- customary process;
+- community recognition;
+- a trust;
+- a private agreement;
+- institutional appointment;
+- merchant practice;
+- a governance process;
+- another recognised relation.
 
-Legaltech is one important application.
+SILT does not certify those Sources as universally valid.
 
-The deeper problem is broader: digital systems increasingly act before they can explain the authority behind the action.
+It gives them a disciplined way to become legible at the boundary.
 
-SILT Core addresses that gap.
+The receiving order can evaluate the minimum relevant Presentation without claiming jurisdiction over, or exhaustive representation of, the originating order.
+
+A receiver may conclude that its own conditions are not satisfied. That conclusion does not erase the underlying Standing.
+
+This is the point of the encounter architecture:
+
+> **mutual legibility without ontological collapse**
 
 ---
 
-## What SILT Core is not
+## 11. Worked encounter pressure tests
 
-SILT Core is not:
+The v0.2 architecture was pressure-tested before freeze through four normalised worked encounters.
 
-* a wallet
-* a blockchain
-* a KYC system
-* a credential issuer
-* a general identity provider
-* a legaltech-only product
-* a replacement for legal advice
-* a regulatory compliance product by itself
-* a platform for centralising identity or authority
-* a claim that every action is legally enforceable in every jurisdiction
+### WE01 — Transferable instrument
 
-SILT Core is authority semantics infrastructure.
+Tested persistent Obligation, changing Standing, constitutive transfer or endorsement, wrongful technical control, custodial control and incomplete lineage.
 
-It makes the conditions of action explicit, auditable, scoped, and revocable.
+It confirmed that technical possession or control does not automatically create Standing and that an Obligation may persist while the entitled relational position changes.
+
+### WE02 — Credential-carried institutional encounter
+
+Tested the relationship between credentials, Evidence, Standing, Authority, key rotation and selective disclosure.
+
+It confirmed that credential validity and semantic sufficiency are distinct.
+
+### WE03 — Plural / collective encounter
+
+Tested collective Standing, representational Authority, contested Profile Expression provenance, incompatible conditions across Profile Expressions and deliberate non-expression.
+
+It confirmed that SILT does not need a universal meta-order to rank competing normative expressions.
+
+### WE04 — Recursive AI delegation
+
+Tested derived Authority, delegation depth, scope containment, lineage, current validity dependencies, Revocation and successful execution without semantic Authority.
+
+It confirmed that no special AI primitive is required for v0.2.
+
+Across the four encounters, no recurring unnamed concept was identified that required a new Core primitive.
+
+That is evidence for the v0.2 freeze decision, not a claim that SILT is complete for every future domain.
 
 ---
 
-## Authority claim planning
+## 12. Threat and misuse posture
 
-Structured authority claims are a candidate area for v0.2 planning.
+SILT Core is concerned with semantic failure as well as software failure.
 
-The purpose of this work would be to explore how authority context may attach to a proposed or completed digital action.
+Recurring risks include:
 
-A possible authority claim may include:
+- technical permission being mistaken for Authority;
+- stale Authority surviving after its semantic basis has changed;
+- credentials being treated as the relation they evidence;
+- collective membership being treated as representational Authority;
+- delegation silently expanding beyond the parent envelope;
+- one Profile Expression being treated as universally authoritative;
+- deliberate non-expression being misclassified as failure;
+- key continuity being mistaken for semantic continuity;
+- successful execution being mistaken for Attribution or Binding;
+- receiving systems treating verification as jurisdiction over the represented reality.
 
-* action reference
-* participant reference
-* declared capacity
-* authority source
-* mandate scope
-* consent reference
-* reliance conditions
-* revocation state
-* expiry or review condition
-* evidence references
-* validation result
+The point is not to make every encounter computationally decidable.
 
-This section is exploratory.
+It is to prevent technical systems from silently manufacturing semantic conclusions that the originating order did not supply.
 
-It does not define the v0.2 release scope and should not be treated as a commitment until formally adopted.
+---
 
-The purpose is not to create a new identity credential.
+## 13. Use domains
 
-The purpose would be to make authority conditions inspectable at the point of action.
+SILT Core is intended to be domain-neutral, but the architecture has been developed against materially different encounter types, including:
 
-A system should be able to ask:
+- direct peer-to-peer interactions;
+- digital commerce and transferable instruments;
+- private ordering and trusts;
+- institutional delegation;
+- recursive AI-agent delegation;
+- DAO and treasury governance;
+- collective and customary authority;
+- consent-only encounters;
+- credential-carried institutional interactions.
+
+These domains are tests of the grammar, not separate SILT ontologies.
+
+---
+
+## 14. Vietsch / AUT CISRC implementation profile
+
+The Vietsch / AUT CISRC research-delegation implementation remains intentionally a **SILT Core v0.1 implementation**.
+
+It is being completed on the architecture against which the funded implementation began.
+
+The profile, schemas, examples and reference validator should therefore continue to be read as v0.1 implementation material. They are not being rewritten mid-stream to appear natively v0.2-compliant.
+
+A later, separate migration analysis may compare the completed v0.1 implementation against v0.2 and classify elements as:
+
+- `UNCHANGED`;
+- `RENAMED / REMAPPED`;
+- `SPLIT`;
+- `NO LONGER CORE`;
+- `MISSING`.
+
+That later analysis will not alter the historical or funded basis of the Vietsch implementation.
+
+---
+
+## 15. Current release position
+
+### v0.1
+
+Released as the initial public SILT Core specification and implementation-learning baseline.
+
+Some v0.1 concepts and artefacts remain useful historically and operationally, but several have been superseded by the v0.2 architecture.
+
+### v0.2
+
+SILT Core v0.2 is at **Freeze Candidate 1** and is undergoing release packaging and repository reconciliation.
+
+The canonical semantic reference is:
+
+[`spec/v0.2/semantic-architecture.md`](../spec/v0.2/semantic-architecture.md)
+
+FC1 is based on the RC4.1 close-out following the worked-encounter gate, machine-readable conformance validation and an experimental LCP mapping.
+
+The current release work is editorial, structural and publication-facing. It should not become a back door for semantic redesign.
+
+---
+
+## 16. Repository orientation
+
+During the v0.2 release pass the repository contains material from more than one architectural generation.
+
+The intended hierarchy is:
 
 ```text
-Can this action proceed?
-Can this action be relied upon?
-Can this action be audited later?
-Can this authority be revoked?
+spec/v0.2/semantic-architecture.md
+    canonical v0.2 semantic reference
+
+docs/
+    explanatory, positioning, threat-model and companion material
+
+conformance/ or equivalent release path
+    worked encounters, fixture schema and machine-readable test material
+
+schemas/ and spec/ legacy files
+    v0.1-era material pending explicit archive/reconciliation treatment
+
+reference/
+    non-normative reference code and validators
+
+examples/ and implementation profiles/
+    non-normative implementation material
 ```
 
-If those questions cannot be answered, the system may still execute technically, but it is operating with authority ambiguity.
+The distinction between normative semantic architecture, companion documentation, conformance notation, implementation profiles and reference code is load-bearing.
 
 ---
 
-## Validation model planning
-
-Validation logic is a candidate area for v0.2 planning.
-
-A basic validation flow may ask:
-
-1. Is the participant identified?
-2. Is the acting capacity declared?
-3. Is an authority source referenced?
-4. Is the mandate scope defined?
-5. Is the proposed action within scope?
-6. Is consent anchored to terms or defined conditions?
-7. Are reliance conditions stated?
-8. Is the authority currently active?
-9. Has the authority expired, been revoked, or been superseded?
-10. Can the validation result be recorded or audited?
-
-The validator would not determine ultimate legal enforceability.
-
-It would evaluate whether the authority semantics required for valid digital action are present, coherent, and checkable.
-
-This is a deliberately limited claim.
-
-Limited claims travel further.
-
-This section is exploratory and does not commit v0.2 to a specific validator design.
-
----
-
-## Reference consent validator
-
-SILT Core v0.1 is a specification-first release.
-
-A reference consent validator is available under [`/reference/validators/consent`](../reference/validators/consent).
-
-The validator is experimental and non-normative. It is provided to test early implementation patterns only. It does not define the specification and does not constrain future v0.2 schema design.
-
----
-
-## Threat model
-
-SILT Core is being developed against recurring legitimacy failure modes.
-
-### Silent escalation
-
-Authority expands beyond its original scope without explicit approval.
-
-Example: a workflow that begins with permission to schedule meetings later gains the ability to approve expenditure without a new mandate.
-
-### Stale authority
-
-Action continues after expiry, revocation, role change, board change, employment change, key rotation, or organisational transition.
-
-Example: an API key continues approving actions after the human authority behind it has left the organisation.
-
-### Overbroad delegation
-
-A mandate grants more power than intended.
-
-Example: an agent receives general execution authority when the intended authority was limited to a specific task, time period, or value threshold.
-
-### Consent drift
-
-Consent given for one purpose is reused for another.
-
-Example: consent to share information for one transaction becomes assumed consent for ongoing profiling, disclosure, or automated decision-making.
-
-### Platform capture
-
-Authority becomes dependent on a platform account rather than an independent mandate.
-
-Example: a platform role is treated as sufficient authority even where the underlying authority relationship has changed or ceased.
-
-### Ambiguous capacity
-
-An action is taken without declaring the capacity in which it is taken.
-
-Example: a person signs personally when they intended to sign as trustee, officer, delegate, or agent.
-
-### Irreversible consent
-
-Systems provide no meaningful withdrawal pathway.
-
-Example: consent is treated as permanent because the interface has no revocation state, expiry condition, or withdrawal mechanism.
-
-### Unclear reliance
-
-Third parties cannot determine whether they may safely rely on an action.
-
-Example: a payment, vote, approval, or signature is visible, but its reliance conditions are not.
-
-### Recursive delegation failure
-
-Automated systems generate downstream actions without traceable authority lineage.
-
-Example: an AI agent delegates to sub-agents or automated services, but the original authority source, scope, and revocation pathway are lost.
-
-These are governance and legitimacy risks, not only software bugs.
-
----
-
-## Historical and conceptual grounding
-
-SILT Core is not nostalgia for older systems.
-
-It is a response to a structural problem that older legal, commercial, and governance systems often understood more clearly than contemporary platforms do.
-
-Across many traditions, action was not treated as valid merely because a person was identifiable.
-
-Standing mattered.
-Capacity mattered.
-Witness mattered.
-Mandate mattered.
-Obligation mattered.
-Reliance mattered.
-Revocation or release mattered.
-
-Trade, credit, governance, kinship, trust, and institutional decision-making have long depended on knowing who may act, in what capacity, under what authority, and with what consequences.
-
-Modern digital systems often flatten these questions into authentication and permission.
-
-SILT Core recovers the missing semantic layer without requiring a return to any single historical model.
-
-History is evidence, not ornament.
-
-It shows that coherent authority and exchange do not begin with central issuance alone.
-
-They begin with recognisable standing, expressed authority, bounded obligation, and structured reliance.
-
----
-
-## Current status
-
-SILT Core is in active development.
-
-**v0.1 has been released** as the initial public specification and framing layer.
-
-v0.1 establishes:
-
-* the authority problem
-* the distinction between identity, permission, and authority
-* the initial SILT Core semantic frame
-* the foundational primitives
-* the first misuse-case orientation
-* the project’s specification-first posture
-
-**v0.2 is being planned.**
-
-The v0.2 planning process is focused on clarifying the next set of specification priorities before any new commitments are made.
-
-Candidate areas under consideration include:
-
-* structured authority claims
-* validation logic
-* revocation and expiry handling
-* expanded primitive definitions
-* AI-agent execution contexts
-* legal and governance workflow examples
-* digital commerce examples
-* DID/VC interoperability mapping
-* misuse-case tests
-
-These are planning areas, not release commitments.
-
-The final v0.2 scope will be determined separately and should not be inferred from this overview.
-
-The project remains specification-first.
-
-Implementation is downstream of semantic clarity.
-
----
-
-## Release direction
-
-### v0.1 — Initial public specification
-
-Released.
-
-v0.1 establishes:
-
-* the authority problem
-* the distinction between identity, permission, and authority
-* the initial SILT Core semantic frame
-* the foundational primitives
-* the first misuse-case orientation
-* the project’s specification-first posture
-
-### v0.2 — Planned next release
-
-v0.2 is being planned.
-
-No final scope is asserted in this document.
-
-Planning discussions may consider:
-
-* structured authority claims
-* validation logic
-* revocation and expiry handling
-* expanded primitive definitions
-* AI-agent execution contexts
-* legal and governance workflow examples
-* digital commerce examples
-* DID/VC interoperability mapping
-* misuse-case tests
-
-The final v0.2 scope will be determined separately and should not be inferred from this overview.
-
-No future release scope beyond v0.2 is asserted in this document.
-
----
-
-## Repository orientation
-
-The repository currently includes:
-
-```text
-/
-├── docs/
-├── spec/
-├── schemas/
-├── reference/
-│   └── validators/
-│       └── consent/
-├── tests/
-│   └── misuse-cases/
-├── README.md
-└── LICENSE
-```
-
-The structure may evolve as the specification develops.
-
-The current focus is on:
-
-* specification development
-* schema design
-* reference validation logic
-* misuse cases
-* interoperability notes
-* conceptual documentation
-* implementation-facing examples
-
----
-
-## Contributing
-
-SILT Core is open to critique, contribution, and extension.
-
-Useful contributions include:
-
-* primitive definitions
-* schema suggestions
-* use case analysis
-* threat models
-* examples
-* legal and governance mappings
-* DID/VC interoperability notes
-* AI-agent authority scenarios
-* revocation models
-* implementation experiments
-* misuse-case tests
-* authority claim examples
-
-Before contributing, please review the project framing and preserve the core distinction between authentication, permission, and authority.
-
-The project should remain technology-agnostic, plural-source, revocation-aware, and specification-first.
-
----
-
-## Licence
-
-Apache License 2.0.
-
-See [`LICENSE`](../LICENSE).
-
----
-
-## Disclaimer
-
-SILT Core is an infrastructure and specification project.
-
-It is not legal advice.
-It does not determine legal enforceability in any specific jurisdiction.
-It does not replace professional advice, regulatory compliance, or formal legal process.
-
-Its purpose is to make authority conditions explicit, structured, auditable, and revocable across digital systems.
-
----
-
-## Contact
-
-Website: [siltcore.org](https://siltcore.org)
-Repository: [github.com/Sugarlicks/silt-identity-core](https://github.com/Sugarlicks/silt-identity-core)
+## 17. What SILT Core does not claim
+
+SILT Core does not claim to be:
+
+- a universal identity system;
+- a credential system;
+- a universal verifier;
+- an authentication framework;
+- a general access-control system;
+- a complete model of law, custom or culture;
+- a universal authorisation engine;
+- a conflict-of-laws engine;
+- a universal rule for combining Profile Expressions;
+- a guarantee that every normative condition can be made machine-evaluable;
+- a universal determination of Binding, liability or enforceability;
+- a requirement that a receiving party accept a Presentation.
+
+SILT’s claim is narrower:
+
+> It provides a semantic architecture through which different orders can make the minimum relevant conditions of an encounter mutually legible without requiring semantic surrender.
 
 ---
 
 ## Closing note
 
-SILT Core starts from a simple premise:
+SILT Core v0.2 does not begin from the proposition that one system must certify the legitimacy of all others.
 
-Digital systems should not only ask whether an action can be performed.
+It begins from the encounter.
 
-They should ask whether the action is legitimately authorised.
+A Participant may bring a Source-grounded relational position into that encounter through a bounded Presentation. One or more Profile Expressions may state what the receiving side needs to evaluate. The result may support action, reliance or another downstream effect, but SILT does not convert that result into universal recognition.
 
-As digital systems become more autonomous, the future problem is not only identity verification.
+The originating relation remains where it began.
 
-It is authority legibility.
-
-SILT Core provides a grammar for that legibility.
+> **Source → Standing → Presentation → evaluation at the encounter**
+>
+> **semantic hand-off, not semantic surrender**
