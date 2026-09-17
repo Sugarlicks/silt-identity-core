@@ -1,9 +1,9 @@
 # SILT Core — Licensing Boundary
 
 **Status:** v0.2 FC1 release licensing note  
-**Purpose:** Establish the intended licensing boundary between the public SILT specification/documentation and implementation-oriented code and machine-readable artefacts.
+**Purpose:** Establish the v0.2 release licensing boundary between the public SILT specification/documentation and implementation-oriented code and machine-readable artefacts.
 
-This file records the licensing structure intended for the SILT Core v0.2 release. It does not alter SILT Core semantics.
+This file defines the licensing structure for the SILT Core v0.2 release. It does not alter SILT Core semantics.
 
 The repository has historically carried a root Apache License 2.0. That licence remains relevant to material previously distributed under it. The v0.2 release introduces a clearer forward-looking distinction between specification/documentation and implementation-oriented material.
 
@@ -20,7 +20,7 @@ This licensing structure does not make implementation code normative. Normative 
 
 ## 2. CC BY 4.0 material
 
-Unless a file carries a more specific notice, the intended v0.2 release position is that the following human-readable material is licensed under **CC BY 4.0**:
+Unless a file carries a more specific notice, the v0.2 release position is that the following human-readable material is licensed under **CC BY 4.0**:
 
 - `spec/v0.2/**`;
 - human-readable material under `docs/**`;
@@ -34,7 +34,7 @@ Unless a file carries a more specific notice, the intended v0.2 release position
 - human-readable worked encounters, conformance notes and test explanations when added to the v0.2 release structure;
 - diagrams and other documentation assets whose function is explanatory rather than executable, unless a third-party notice says otherwise.
 
-The canonical SILT Core v0.2 Semantic Architecture is therefore intended to be released under CC BY 4.0.
+The canonical SILT Core v0.2 Semantic Architecture is therefore licensed under CC BY 4.0 for the v0.2 release.
 
 CC BY 4.0 permits reuse and adaptation subject to its attribution requirements. The licence text is available at:
 
@@ -42,7 +42,7 @@ CC BY 4.0 permits reuse and adaptation subject to its attribution requirements. 
 
 ## 3. Apache 2.0 material
 
-Unless a file carries a more specific notice, the following implementation-oriented material is intended to remain under the **Apache License 2.0**:
+Unless a file carries a more specific notice, the following implementation-oriented material is licensed under the **Apache License 2.0**:
 
 - executable reference code under `reference/**`;
 - validators, adapters, utilities, scripts and software test runners;
@@ -62,8 +62,8 @@ Implementation profiles may contain both documentation and executable or machine
 
 For example:
 
-- human-readable implementation-profile documentation and diagrams are intended to be **CC BY 4.0**;
-- profile validators, scripts, schemas and machine-readable examples are intended to be **Apache 2.0**.
+- human-readable implementation-profile documentation and diagrams are licensed under **CC BY 4.0**;
+- profile validators, scripts, schemas and machine-readable examples are licensed under **Apache 2.0**.
 
 This functional distinction applies to the existing AUT CISRC / Vietsch v0.1 implementation material as a licensing classification only. It does **not** migrate that implementation to SILT Core v0.2 or alter its v0.1 semantic basis.
 
@@ -73,8 +73,8 @@ Conformance material should not silently become a normative wire format merely b
 
 For licensing purposes:
 
-- human-readable worked encounters, explanations and conformance reports are intended to be **CC BY 4.0**;
-- machine-readable fixtures, schemas, validation scripts and executable test artefacts are intended to be **Apache 2.0**.
+- human-readable worked encounters, explanations and conformance reports are licensed under **CC BY 4.0**;
+- machine-readable fixtures, schemas, validation scripts and executable test artefacts are licensed under **Apache 2.0**.
 
 The licence boundary and the normative boundary are separate questions.
 
@@ -133,7 +133,7 @@ Until that framework is adopted, contributors and adopters should rely only on r
 
 Where a file contains an explicit licence or third-party notice, that specific notice controls for that material.
 
-Where no more specific notice exists, this licensing boundary states the intended v0.2 release classification.
+Where no more specific notice exists, this licensing boundary states the v0.2 release classification.
 
 If the licensing treatment of an artefact is genuinely ambiguous, it should be classified explicitly before release rather than inferred from convenience or directory location alone.
 
