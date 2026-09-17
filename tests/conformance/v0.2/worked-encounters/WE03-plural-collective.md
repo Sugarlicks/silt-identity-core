@@ -2,7 +2,7 @@
 
 **Separate evaluation under distinct Profile Expressions without a meta-order**
 
-**Status:** Pre-freeze normalised semantic fixture. Non-normative until the v0.2 conformance suite is frozen.
+**Status:** FC1 normalised semantic fixture. Companion conformance material; non-normative except where it reproduces requirements from the canonical semantic architecture.
 
 **Suite discipline:** Semantic conformance, not implementation conformance. This fixture tests whether SILT preserves distinct normative orders, distinct provenance and distinct evaluative results without silently merging, ranking or subordinating them.
 
