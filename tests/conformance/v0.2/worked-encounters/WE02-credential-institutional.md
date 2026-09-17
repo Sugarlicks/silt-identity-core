@@ -45,6 +45,19 @@ STAND-P
 
 The credential may evidence the institutional relation. It is not automatically identical with the relation or with its Source.
 
+### Authority
+
+```text
+AUTH-P-ACT02
+  actor_ref: P
+  source_refs:
+    - SRC-INST
+  standing_refs:
+    - STAND-P
+  description:
+    Claimed bounded Authority for ACT-02 in the institutional encounter.
+```
+
 ### Profile Expression
 
 - Relevant institutional Standing must be current for this encounter.
@@ -59,6 +72,8 @@ PRES-02
   participant_ref: P
   standing_refs:
     - STAND-P
+  authority_refs:
+    - AUTH-P-ACT02
   evidence_refs:
     - VC-01
   proposed_action_ref:
