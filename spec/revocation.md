@@ -1,103 +1,40 @@
-# Revocation
+# Revocation — v0.1 archival notice
 
-This specification defines **revocation** as the explicit withdrawal of an authority grant (delegation) or consent by the principal, with semantics that are checkable by verifiers.
+This file is retained as a **SILT Core v0.1 specification artefact** for historical and migration reference.
 
-Revocation is a first-class feature in SILT Core. It is not an administrative afterthought. Systems that cannot represent revocation clearly will drift toward capture and irreversible binding.
+The original v0.1 Revocation specification defined Revocation primarily as a Principal’s withdrawal of a Consent or Delegation artefact, with a universal revocation-event structure, mandatory verifier checkability requirements and a default non-reliance rule when revocation state could not be established.
 
-## 1. Definitions
+Revocation remains semantically important in SILT Core v0.2, but that artefact-and-registry model is **not the controlling v0.2 architecture**.
 
-**Revocation**  
-The withdrawal of a consent or delegation by the principal, effective per the revocation semantics of the system and the relevant artefact.
+For v0.2, the canonical semantic reference is:
 
-**Revocation reference**  
-A mechanism or pointer enabling verifiers to check whether an artefact has been revoked or has expired.
+[`spec/v0.2/semantic-architecture.md`](./v0.2/semantic-architecture.md)
 
-**Revocation event**  
-A record that a consent or delegation has been revoked, including who revoked it, what was revoked, and when.
+The settled v0.2 seam is:
 
-**Verifier**  
-A party checking whether an act, disclosure, consent, or delegation remains valid.
+> **Source → Standing → Presentation → evaluation at the encounter**
 
-## 2. Principle: revocation as a right
+In v0.2, **Revocation is a semantic change affecting a relation where the applicable Source, Authority conditions or Profile Expression make that relation revocable**. It is not limited to one universal Consent-or-Delegation artefact type, and SILT does not require one universal technical revocation registry or lookup mechanism.
 
-SILT Core assumes the principal retains the right to withdraw:
-- consent for disclosure or use
-- delegated authority to act on their behalf
+Several concerns expressed in the v0.1 document remain relevant, including:
 
-Revocation is not retroactive by default, but it must stop continued reliance or future acts where possible.
+- Revocation should be represented explicitly where a relation is revocable;
+- the effect of Revocation should be distinguishable from the technical mechanism used to communicate or verify it;
+- Revocation is prospective by default unless another expressed rule provides otherwise;
+- stale technical permission or Technical Capability must not be mistaken for continuing semantic Authority after Revocation;
+- Evidence of Revocation and the semantic effect of Revocation should remain distinguishable.
 
-## 3. Required elements of a revocation event
+The v0.2 model is more precise about lifecycle and target relation:
 
-A revocation event MUST include, at minimum:
+- **Authority** may have lifecycle states such as `Active`, `Revoked`, `Expired`, `Superseded` or `Suspended` where the applicable Profile Expression or implementation uses them;
+- `Expired`, `Superseded` and `Suspended` should not be collapsed automatically into one universal Revocation event;
+- **Standing does not have a universal SILT lifecycle** and must not be treated as though every change in Standing is a revocation event;
+- Revocation does not imply a universal cascade through every historically derived relation unless the applicable Authority conditions or Profile Expression make current validity dependent on that relation.
 
-1. **Target identifier**  
-   The identifier of the artefact being revoked (consent ID or delegation ID).
+What does **not** carry forward as universal v0.2 Core semantics is the v0.1 requirement that every Revocation use one mandatory event structure, that all implementations expose one deterministic and timely verifier-check mechanism, or that failure to establish revocation state must always produce a universal `invalid`, `unauthorised` or deny-by-default runtime conclusion.
 
-2. **Principal identifier**  
-   The principal withdrawing the consent or delegation.
+Those may be appropriate operational requirements in a particular implementation profile. They are not universal SILT Core requirements.
 
-3. **Timestamp**  
-   The time at which revocation is asserted.
+There is therefore **no one-to-one mapping from the v0.1 Revocation event artefact to a single mandatory v0.2 representation**. A v0.1 revocation event may provide Evidence of Revocation, may itself be an Action or Presentation carrier, and may affect Authority, Consent or another revocable relation according to the applicable encounter semantics.
 
-4. **Reason code (optional but recommended)**  
-   A minimal reason classification (for example, “expiry”, “withdrawn”, “superseded”, “misuse detected”, “error”).
-
-5. **Revocation event identifier**  
-   A stable reference for audit and dispute reconstruction.
-
-Implementations MAY include additional metadata, but should minimise personal data by default.
-
-## 4. Checkability requirements
-
-Implementations MUST provide a method for verifiers to check revocation state that is:
-
-- **Deterministic**: verifiers can reach the same conclusion given the same inputs
-- **Timely**: revocation state updates propagate within a defined and documented window
-- **Accessible**: verifiers can check without privileged access to private attributes
-- **Privacy-respecting**: revocation checks should not create new correlation channels unnecessarily
-
-The revocation check mechanism may be a registry lookup, signed log, distributed bulletin, or other scheme. SILT Core defines the semantics, not the storage technology.
-
-## 5. Revocation and acts
-
-An act or disclosure that references a consent or delegation MUST be evaluated against the revocation state of that artefact.
-
-- Acts performed **before** revocation remain valid by default, unless downstream rules specify otherwise.
-- Acts performed **after** revocation MUST be treated as unauthorised.
-
-Systems should bind acts to timestamps or sequence numbers to support dispute reconstruction without relying on informal narratives.
-
-## 6. Supersession
-
-A principal MAY revoke by superseding an artefact with a newer one.
-
-Where supersession is used, the system should:
-- link the old artefact to the new artefact
-- preserve the audit trail
-- avoid ambiguity about which artefact is current
-
-Supersession is recommended for routine updates where the relationship continues but terms change.
-
-## 7. Expiry and automatic termination
-
-Expiry is distinct from revocation but should be treated similarly for verifier purposes.
-
-Implementations SHOULD support:
-- explicit expiry timestamps in consent and delegation artefacts
-- automatic termination where conditions are met (for example, settlement completed, event ended)
-
-Expiry reduces risk by making open-ended reliance harder by default.
-
-## 8. Default posture: non-reliance
-
-Where revocation state cannot be checked, the default posture is non-reliance.
-
-If a verifier cannot determine whether an artefact is revoked or expired, the verifier must treat it as invalid for the purpose of authorising new acts or disclosures.
-
-## 9. Implementation guidance (non-normative)
-
-Implementers should:
-- keep revocation records small and non-identifying by default
-- avoid revocation mechanisms that leak behavioural patterns unnecessarily
-- document propagation assumptions and worst-case delays
-- provide a clear path for principals to revoke without specialised tooling
+The original v0.1 contents remain available through Git history. They should be read as historical specification material and, where relevant, as context for v0.1 implementations. They should not be used as normative v0.2 semantics.
