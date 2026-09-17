@@ -102,7 +102,6 @@ AUTH-A current:                         SATISFIED
 AUTH-B within delegable envelope:        SATISFIED
 AUTH-B current:                          SATISFIED
 ACT-X within AUTH-B scope:               SATISFIED
-Authority-mediated Attribution:          SATISFIED
 external liability / Binding conclusion: not determined by Core
 ```
 
