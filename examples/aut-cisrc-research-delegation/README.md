@@ -2,7 +2,9 @@
 
 **Status:** Draft
 **Profile:** AUT CISRC Implementation Profile
-**Relationship to SILT Core:** Non-normative implementation example
+**Relationship to SILT Core:** Non-normative v0.1 implementation example
+
+> **Historical / transitional notice:** This example remains on its SILT Core v0.1 semantic basis through completion of the AUT CISRC / Vietsch implementation. SILT Core v0.2 is now at Freeze Candidate 1. Lessons from this example informed v0.2 development, but this material is not a current v0.2 proposal surface and must not be read as v0.2 semantics.
 
 ## Purpose
 
@@ -70,4 +72,4 @@ This example is non-normative.
 
 It is provided to test and demonstrate how SILT Core v0.1 can be applied in one constrained implementation profile.
 
-Findings from this example may inform later SILT Core v0.2 consideration.
+Its findings are retained as historical implementation evidence. Any later v0.1 → v0.2 migration or compatibility assessment is separate work after completion of the funded v0.1 implementation.
