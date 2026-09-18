@@ -1,0 +1,13 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+SPDX-License-Identifier: CC-BY-4.0
+
+Canonical licence deed:
+https://creativecommons.org/licenses/by/4.0/
+
+Canonical legal code:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+This repository applies CC BY 4.0 to the SILT Core v0.2 canonical specification and human-readable documentation as classified in LICENSING.md, unless a file carries a more specific notice.
+
+For the authoritative licence terms, use the canonical Creative Commons legal code linked above.
