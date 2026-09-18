@@ -30,29 +30,29 @@ A later migration analysis may compare the completed v0.1 implementation against
 
 ### v0.2 — Freeze Candidate 1
 
-SILT Core v0.2 is at **Freeze Candidate 1** and is undergoing release packaging and repository reconciliation.
+SILT Core v0.2 is at **Freeze Candidate 1**. Repository reconciliation, conformance packaging, migration documentation and release-level licensing classification are complete.
 
 The pre-freeze gate has been completed through four worked encounters, machine-readable conformance validation and an experimental adjacent-protocol mapping. No new Core primitive was required by that gate.
 
-The current task is therefore not further open-ended semantic modelling. It is to make the repository, release artefacts and implementation boundary accurately reflect the frozen architecture.
+The current task is therefore final release packaging: CHANGELOG, release notes, archive metadata and any remaining mechanical licence packaging. It is not further open-ended semantic modelling.
 
 ---
 
-## Immediate release work
+## FC1 release work completed
 
-Before the v0.2.0 release tag, the project should complete the following work.
+The following work is complete on the FC1 branch and should not be treated as an open release gap.
 
 ### 1. Repository reconciliation
 
-- make FC1 the unambiguous controlling v0.2 semantic reference;
-- update README, overview, positioning, roadmap and governance-facing documentation;
-- remove or clearly archive active v0.1 material that conflicts with v0.2;
-- prevent `Status`, universal `Capacity`, older `Lex/Profile` language and old validation assumptions from appearing to remain current Core architecture;
-- distinguish historical v0.1 implementation material from v0.2 normative material.
+- FC1 is the unambiguous controlling v0.2 semantic reference;
+- README, overview, positioning, roadmap and governance-facing documentation are aligned;
+- active v0.1 material that conflicts with v0.2 has been removed or explicitly archived;
+- `Status`, universal `Capacity`, older `Lex/Profile` language and old validation assumptions no longer appear as current Core architecture;
+- historical v0.1 implementation material is distinguished from v0.2 normative material.
 
 ### 2. Conformance packaging
 
-Publish the pre-freeze pressure-test material in a clear release structure:
+The pre-freeze pressure-test material is installed in the release structure:
 
 - WE01 — Transferable Instrument Encounter;
 - WE02 — Credential-Carried Institutional Encounter;
@@ -60,14 +60,14 @@ Publish the pre-freeze pressure-test material in a clear release structure:
 - WE04 — Recursive AI Delegation Encounter;
 - machine-readable fixture schema;
 - normalised fixtures;
-- conformance validation note;
+- conformance validation material;
 - corrected experimental SILT ↔ LCP mapping.
 
 The machine-readable fixture schema is **test notation**, not a normative SILT wire format.
 
 ### 3. Migration documentation
 
-Publish a clear v0.1 → v0.2 migration note covering, at minimum:
+The v0.1 → v0.2 migration and repository-reconciliation record is published and covers, at minimum:
 
 - removal of `Status` from Core;
 - removal of universal `Capacity` from Core;
@@ -85,11 +85,11 @@ Publish a clear v0.1 → v0.2 migration note covering, at minimum:
 
 ### 4. Governance, licensing and IPR
 
-The v0.2 release-level licensing boundary is now defined in [`LICENSING.md`](../LICENSING.md): **CC BY 4.0** for the canonical specification and human-readable documentation, and **Apache License 2.0** for reference code and implementation-oriented machine-readable artefacts.
+The v0.2 release-level licensing boundary is defined in [`LICENSING.md`](../LICENSING.md): **CC BY 4.0** for the canonical specification and human-readable documentation, and **Apache License 2.0** for reference code and implementation-oriented machine-readable artefacts.
 
 That licensing classification is completed FC1 release work. The broader Governance & IPR framework remains outstanding.
 
-Before substantive external contribution and adoption expand, remaining work should include:
+Before substantive external contribution and adoption expand, remaining institutional work should include:
 
 - contributor rights and contribution terms;
 - patent/IPR and any standards-essential patent commitments;
@@ -103,14 +103,18 @@ Scope discipline for future Core changes is already reflected in the current gov
 
 This is institutional infrastructure, not semantic expansion.
 
-### 5. Release and archive
+---
 
-After the final repository audit:
+## Remaining release and archive work
 
-- tag `v0.2.0`;
-- publish release notes;
-- prepare the Zenodo archive and DOI;
-- preserve versioned checksums or a release manifest where practical.
+Before the v0.2.0 release tag:
+
+- add `CHANGELOG.md`;
+- publish v0.2 release notes;
+- prepare the Zenodo archive and DOI metadata;
+- complete any final mechanical licence packaging required for the defined licensing boundary;
+- preserve versioned checksums or a release manifest where practical;
+- tag `v0.2.0` only after the release package is checked.
 
 ---
 
