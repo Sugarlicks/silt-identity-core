@@ -22,7 +22,7 @@ The v0.2 minimal semantic conformance suite contains four base encounters and th
 
 ## Canonical material
 
-- Normative semantic architecture source: `spec/README.md` and the ordered release-candidate source under `spec/source-parts/`; the final `v0.2.0` tag will publish one consolidated specification artefact.
+- Normative semantic architecture: `spec/SILT_Core_v0.2.0_Semantic_Architecture.md`
 - Conformance suite: `conformance/`
 - Experimental mappings: `bindings/`
 - Governance and contribution rules: `GOVERNANCE.md` and `CONTRIBUTING.md`
