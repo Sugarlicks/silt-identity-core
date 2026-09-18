@@ -1008,7 +1008,7 @@ Downstream systems may implement:
 
 A SILT-conformant implementation SHOULD integrate with such systems rather than recreate them where interoperability permits.
 
-Systems such as DID/VC infrastructure, OAuth, GNAP, UCAN, zcap, KYA-OS, MCP-related security infrastructure or future equivalents may provide:
+Identity and credential infrastructure, authentication and authorisation protocols, capability systems, agent-security infrastructure and future equivalents may provide:
 
 - Evidence;
 - transport;
@@ -1067,7 +1067,7 @@ In some plural encounters, it may be the correct result.
 
 SILT Core does not presume that every normative or relational condition is capable of adequate bounded expression.
 
-Where bounded expression would materially distort the originating order, partial translation, non-expression or an INDETERMINATE result may be the semantically correct outcome.
+Where bounded expression would materially distort the originating order, the semantically correct treatment may be partial translation, non-expression or, where the condition has entered evaluation but cannot be resolved, an INDETERMINATE result.
 
 # 24. Core invariants
 
@@ -1094,7 +1094,7 @@ Where bounded expression would materially distort the originating order, partial
 21. No silent Profile Expression precedence or merger. SILT does not merge, rank or privilege conflicting Profile Expressions without an expressed basis for doing so.
 22. No universal meta-expression. Different normative orders may express different encounter conditions without SILT imposing a single superior expression.
 23. Disagreement may remain explicit. SILT does not require false consensus between normative orders.
-24. Semantic non-inference. Missing semantics produce INDETERMINATE rather than invented law or normative meaning.
+24. Semantic non-inference. For a condition that has entered SILT evaluation, missing semantics produce INDETERMINATE rather than invented law or normative meaning.
 25. Authority is distinct from Technical Capability. Ability to execute does not prove legitimacy to execute.
 26. No universal Capacity object. SILT Core does not model Capacity as a universal primitive. Encounter-specific roles, offices, representative bases or legal capacities may remain relevant within a particular order or encounter, but they do not constitute a separate SILT Core object.
 27. Attribution is distinct from Binding and liability. Correct Attribution does not itself determine downstream legal consequence.
