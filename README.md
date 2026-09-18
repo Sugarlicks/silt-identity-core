@@ -48,7 +48,7 @@ A condition deliberately outside evaluation is not a fourth outcome.
 
 ## Licensing
 
-The specification and narrative public documentation are licensed under **CC BY 4.0**. Machine-readable conformance artefacts, bindings, examples and reference code in the release package are licensed under **Apache License 2.0**, unless a file states otherwise. Trademark, certification and patent rights are not granted merely by those copyright/software licences.
+The **v0.2** specification and narrative public documentation are licensed under **CC BY 4.0**. Machine-readable v0.2 conformance artefacts, bindings, examples and reference code are licensed under **Apache License 2.0**, unless a file states otherwise. Preserved v0.1 material, including AUT CISRC, retains its existing Apache 2.0 licence. Trademark, certification and patent rights are not granted merely by those copyright/software licences.
 
 See `LICENSING.md`, `IPR_POLICY.md` and `TRADEMARK_AND_CONFORMANCE.md`.
 
