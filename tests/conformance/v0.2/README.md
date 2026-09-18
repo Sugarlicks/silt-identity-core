@@ -75,6 +75,16 @@ A worked encounter should therefore distinguish clearly between:
 - any downstream operational mapping; and
 - any downstream Binding or other effect supplied by the relevant normative order rather than by SILT Core itself.
 
+## Experimental mappings
+
+Experimental adjacent-protocol mappings are **non-normative companion material**. Their purpose is to test semantic boundary preservation across other protocols and standards without treating those systems as SILT Core constructs or required implementation layers.
+
+The current experimental mapping is:
+
+- [SILT Core v0.2 ↔ Legal Context Protocol (LCP)](./mappings/lcp/) — human-readable mapping with an aligned machine-readable companion.
+
+These mappings are **not part of the WE01–WE04 conformance fixture manifest** and are not validated as conformance fixtures under the fixture schema. They remain a separate artefact class and do not amend the canonical semantic architecture.
+
 ## Implementation boundary
 
 Authentication, key management, capability tokens, sessions, dynamic authorisation, runtime policy and execution machinery remain below the Presentation line architecturally unless a future semantic reason justifies revisiting that boundary.
