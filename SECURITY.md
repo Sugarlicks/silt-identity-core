@@ -25,7 +25,7 @@ The **Vietsch / AUT CISRC research-delegation implementation remains a SILT Core
 
 ### v0.2
 
-SILT Core v0.2 is at **Freeze Candidate 1** and is undergoing release packaging and repository reconciliation.
+SILT Core v0.2 is at **Freeze Candidate 1**. Repository reconciliation, conformance packaging and release-level licensing classification are complete; final release packaging remains underway.
 
 Reference code, conformance fixtures and implementation profiles are non-normative unless expressly stated otherwise.
 
