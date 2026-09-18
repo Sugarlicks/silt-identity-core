@@ -28,12 +28,12 @@
 - [x] v0.2 README, governance, contribution, licensing/IPR, security, positioning and conformance-claim material applied on the release branch.
 - [x] Complete machine-readable conformance suite installed on the release branch.
 - [x] Repository conformance CI passed on the complete suite: 4 base fixtures, 30 adversarial variants, outcome vocabulary locked.
+- [x] Rights chain confirmed: Gareth Farry is author and copyright holder; SILT Core is the project/publishing identity.
+- [x] Single canonical v0.2.0 specification artefact published at `spec/SILT_Core_v0.2.0_Semantic_Architecture.md`.
 
 ## Required before public v0.2.0 tag
 
 - [ ] Project sign-off on Release Candidate 2.1 wording and release authority.
-- [ ] Confirm rights chain / named author or publishing entity for final citation and copyright notices.
-- [ ] Consolidate the segmented release-candidate specification source into one canonical `v0.2.0` specification artefact in the repository. The current ordered source under `spec/source-parts/` is packaging-only and does not alter the architecture.
 - [ ] Confirm final citation metadata and add DOI only after the final tag is archived.
 - [ ] Merge PR #4 after publication checks pass.
 - [ ] Create release tag `v0.2.0` only after the publication checks above pass.
