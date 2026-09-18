@@ -1,0 +1,276 @@
+{
+  "fixture_id": "WE02",
+  "title": "Credential-Carried Institutional Encounter",
+  "architecture_version": "v0.2",
+  "architecture_reference": "SILT Core v0.2 Semantic Architecture - Freeze Candidate 1 (derived from RC4.1 pre-freeze stress-test revision)",
+  "artifact_role": "conformance_fixture",
+  "normative_status": "companion-non-normative",
+  "purpose": "Test whether a credential can carry Evidence concerning Standing without becoming Source, Standing or Authority.",
+  "pressure_test": "Cryptographic validity must not manufacture relational validity.",
+  "encounter": {
+    "context": "P Presents an institutional credential to R in support of a claimed institutional Standing and proposed Action.",
+    "proposed_action_ref": "ACT-02",
+    "receiver_ref": "R"
+  },
+  "participants": [
+    {
+      "participant_ref": "P",
+      "role": "presenting Participant"
+    },
+    {
+      "participant_ref": "I",
+      "role": "credential issuer / institutional actor"
+    },
+    {
+      "participant_ref": "R",
+      "role": "receiving institution"
+    }
+  ],
+  "fixture_facts": {
+    "VC-01_cryptographic_state": "valid"
+  },
+  "semantic_objects": {
+    "sources": [
+      {
+        "source_ref": "SRC-INST",
+        "description": "Institutional relationship or appointment grounding the claimed Standing."
+      }
+    ],
+    "standings": [
+      {
+        "standing_ref": "STAND-P",
+        "participant_ref": "P",
+        "relation": "recognised_institutional_position",
+        "source_refs": [
+          "SRC-INST"
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_ref": "VC-01",
+        "evidence_type": "verifiable_credential",
+        "supports_refs": [
+          "STAND-P"
+        ],
+        "data": {
+          "cryptographic_state": "valid",
+          "issuer_ref": "I"
+        }
+      }
+    ],
+    "presentations": [
+      {
+        "presentation_ref": "PRES-02",
+        "participant_ref": "P",
+        "standing_refs": [
+          "STAND-P"
+        ],
+        "authority_refs": [
+          "AUTH-P-ACT02"
+        ],
+        "evidence_refs": [
+          "VC-01"
+        ],
+        "proposed_action_ref": "ACT-02",
+        "purpose": "Present current institutional Standing and, where required, Authority for ACT-02."
+      }
+    ],
+    "authorities": [
+      {
+        "authority_ref": "AUTH-P-ACT02",
+        "actor_ref": "P",
+        "description": "Claimed bounded Authority for ACT-02 in the institutional encounter.",
+        "source_refs": [
+          "SRC-INST"
+        ],
+        "standing_refs": [
+          "STAND-P"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "action_ref": "ACT-02",
+        "actor_ref": "P",
+        "action_type": "institutional_action"
+      }
+    ]
+  },
+  "profile_expressions": [
+    {
+      "profile_expression_ref": "PE-R",
+      "description": "Receiving institution's encounter-relevant conditions.",
+      "conditions": [
+        {
+          "condition_id": "WE02-C01",
+          "description": "Relevant institutional Standing is current for this encounter.",
+          "semantic_target_ref": "STAND-P"
+        },
+        {
+          "condition_id": "WE02-C02",
+          "description": "Where ACT-02 requires Authority, current Authority is established.",
+          "semantic_target_ref": "AUTH-P-ACT02"
+        }
+      ],
+      "rules": [
+        "Specified Evidence may substantiate Standing.",
+        "Cryptographic credential validity alone is insufficient to establish current Standing or Authority unless expressly made sufficient."
+      ]
+    }
+  ],
+  "expected_evaluations": [
+    {
+      "evaluation_id": "WE02-E01",
+      "profile_expression_ref": "PE-R",
+      "condition_ref": "WE02-C01",
+      "semantic_target_ref": "STAND-P",
+      "result": "SATISFIED",
+      "reason": "The base case establishes that P's institutional Standing remains current."
+    },
+    {
+      "evaluation_id": "WE02-E02",
+      "profile_expression_ref": "PE-R",
+      "condition_ref": "WE02-C02",
+      "semantic_target_ref": "AUTH-P-ACT02",
+      "result": "SATISFIED",
+      "reason": "The base case separately establishes the required Authority for ACT-02."
+    }
+  ],
+  "variants": [
+    {
+      "variant_id": "WE02-A",
+      "title": "Stale semantic relation",
+      "description": "VC-01 remains cryptographically valid after the underlying institutional appointment or recognition has ended.",
+      "fixture_facts": {
+        "VC-01_cryptographic_state": "valid"
+      },
+      "semantic_state_changes": {
+        "STAND-P_current": false
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE02-A-E01",
+          "profile_expression_ref": "PE-R",
+          "condition_ref": "WE02-C01",
+          "semantic_target_ref": "STAND-P",
+          "result": "NOT_SATISFIED",
+          "reason": "The underlying institutional Standing is known not to be current despite valid credential cryptography."
+        }
+      ]
+    },
+    {
+      "variant_id": "WE02-B",
+      "title": "Current credential, unresolved current recognition",
+      "description": "VC-01 verifies, but the supplied state does not establish whether P's recognition remains current.",
+      "fixture_facts": {
+        "VC-01_cryptographic_state": "valid"
+      },
+      "semantic_state_changes": {
+        "STAND-P_current": "unknown"
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE02-B-E01",
+          "profile_expression_ref": "PE-R",
+          "condition_ref": "WE02-C01",
+          "semantic_target_ref": "STAND-P",
+          "result": "INDETERMINATE",
+          "reason": "Current recognition cannot be concluded without importing a missing fact."
+        }
+      ]
+    },
+    {
+      "variant_id": "WE02-C",
+      "title": "Key rotation",
+      "description": "P rotates keys while the institutional relationship remains unchanged.",
+      "fixture_facts": {
+        "old_key": "replaced",
+        "new_key": "current"
+      },
+      "semantic_state_changes": {
+        "STAND-P": "unchanged"
+      },
+      "conformance_assertions": {
+        "must_preserve": [
+          {
+            "assertion_id": "WE02-C-P01",
+            "statement": "Semantic Standing may persist through key rotation."
+          }
+        ],
+        "must_not_infer": [
+          {
+            "assertion_id": "WE02-C-N01",
+            "statement": "Key replacement extinguishes Standing."
+          }
+        ]
+      }
+    },
+    {
+      "variant_id": "WE02-D",
+      "title": "Credential proves affiliation, not Action Authority",
+      "description": "The credential sufficiently supports Standing but does not resolve Authority for ACT-02.",
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE02-D-E01",
+          "profile_expression_ref": "PE-R",
+          "condition_ref": "WE02-C01",
+          "semantic_target_ref": "STAND-P",
+          "result": "SATISFIED",
+          "reason": "The affiliation evidence is sufficient for Standing."
+        },
+        {
+          "evaluation_id": "WE02-D-E02",
+          "profile_expression_ref": "PE-R",
+          "condition_ref": "WE02-C02",
+          "semantic_target_ref": "AUTH-P-ACT02",
+          "result": "INDETERMINATE",
+          "reason": "The credential does not establish whether P holds Authority for ACT-02."
+        }
+      ]
+    }
+  ],
+  "conformance_assertions": {
+    "must_preserve": [
+      {
+        "assertion_id": "WE02-P01",
+        "statement": "Credential is distinct from Standing."
+      },
+      {
+        "assertion_id": "WE02-P02",
+        "statement": "Credential is distinct from Source."
+      },
+      {
+        "assertion_id": "WE02-P03",
+        "statement": "Issuer is not automatically a universal Source of legitimacy."
+      },
+      {
+        "assertion_id": "WE02-P04",
+        "statement": "Key control is distinct from Authority."
+      },
+      {
+        "assertion_id": "WE02-P05",
+        "statement": "Cryptographic continuity is distinct from semantic continuity."
+      }
+    ],
+    "must_not_infer": [
+      {
+        "assertion_id": "WE02-N01",
+        "statement": "A valid credential implies current Standing."
+      },
+      {
+        "assertion_id": "WE02-N02",
+        "statement": "A trusted issuer implies universal legitimacy."
+      },
+      {
+        "assertion_id": "WE02-N03",
+        "statement": "Key control implies Authority."
+      },
+      {
+        "assertion_id": "WE02-N04",
+        "statement": "Institutional affiliation implies Authority for every Action."
+      }
+    ]
+  },
+  "fixture_verdict": "No missing Core primitive exposed. The fixture depends on preserving Evidence, Standing, Authority and cryptographic/semantic continuity as distinct."
+}
