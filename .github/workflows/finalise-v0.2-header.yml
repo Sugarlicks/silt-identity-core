@@ -1,0 +1,50 @@
+name: Finalise v0.2.0 release header
+
+on:
+  push:
+    branches:
+      - release/v0.2-rc2.1
+    paths:
+      - '.release/finalise-v0.2-header'
+
+permissions:
+  contents: write
+
+jobs:
+  finalise:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release/v0.2-rc2.1
+          fetch-depth: 0
+      - name: Finalise publication metadata only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('spec/SILT_Core_v0.2.0_Semantic_Architecture.md')
+          s = p.read_text(encoding='utf-8')
+          replacements = [
+              ('SILT Core v0.2\n\nSemantic Architecture\n\nRelease Candidate 2.1 | 18 September 2026',
+               'SILT Core v0.2.0\n\nSemantic Architecture\n\n23 September 2026'),
+              ('| **Status** | Release Candidate 2.1                                                      |',
+               '| **Status** | Release                                                                     |'),
+              ('| **Role**   | Canonical v0.2.0 publication candidate, pending final release tag            |',
+               '| **Role**   | Canonical semantic reference for SILT Core v0.2.0                           |'),
+              ('This document is the normative semantic architecture for SILT Core v0.2 Release Candidate 2.1 and is the publication candidate for the `v0.2.0` tag.',
+               'This document is the normative semantic architecture for SILT Core v0.2.0, released 23 September 2026.'),
+          ]
+          for old, new in replacements:
+              if old not in s:
+                  raise SystemExit(f'Expected release-candidate text not found: {old!r}')
+              s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+          rm -f spec/SILT_Core_v0.2.0_RELEASE_HEADER.md
+          rm -f .release/finalise-v0.2-header
+          rm -f .github/workflows/finalise-v0.2-header.yml
+          git config user.name 'SILT release automation'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'Finalise v0.2.0 publication metadata'
+          git push origin HEAD:release/v0.2-rc2.1
