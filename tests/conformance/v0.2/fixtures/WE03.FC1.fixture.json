@@ -1,0 +1,399 @@
+{
+  "fixture_id": "WE03",
+  "title": "Plural / Collective Encounter",
+  "architecture_version": "v0.2",
+  "architecture_reference": "SILT Core v0.2 Semantic Architecture - Freeze Candidate 1 (derived from RC4.1 pre-freeze stress-test revision)",
+  "artifact_role": "conformance_fixture",
+  "normative_status": "companion-non-normative",
+  "purpose": "Test whether different normative orders can become mutually legible at a single encounter while remaining distinct.",
+  "pressure_test": "Conflicting Profile Expressions, contested provenance, collective Standing, representational Authority and deliberate non-expression.",
+  "encounter": {
+    "context": "P Presents relational Standing and claimed Authority from Collective C to Institution R. PE-C and PE-R impose different encounter conditions.",
+    "proposed_action_ref": "ACT-ACCESS-ARRANGEMENT",
+    "receiver_ref": "R"
+  },
+  "participants": [
+    {
+      "participant_ref": "P",
+      "role": "presenting Participant"
+    },
+    {
+      "participant_ref": "C",
+      "role": "collective / originating order"
+    },
+    {
+      "participant_ref": "WG",
+      "role": "working group that authored PE-C"
+    },
+    {
+      "participant_ref": "R",
+      "role": "receiving institution"
+    }
+  ],
+  "fixture_facts": {
+    "R_registry_resolution_present": false,
+    "PE-C_provenance_contested": true
+  },
+  "semantic_objects": {
+    "sources": [
+      {
+        "source_ref": "SRC-C",
+        "description": "Collective relational and governance Source grounding P's claimed Standing and Authority."
+      }
+    ],
+    "standings": [
+      {
+        "standing_ref": "STAND-P-C",
+        "participant_ref": "P",
+        "relation": "recognised_relational_position_within_C",
+        "source_refs": [
+          "SRC-C"
+        ],
+        "context_ref": "C"
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_ref": "EVID-C-RELATION",
+        "evidence_type": "collective_relational_evidence",
+        "supports_refs": [
+          "STAND-P-C"
+        ]
+      },
+      {
+        "evidence_ref": "EVID-C-PROCESS",
+        "evidence_type": "collective_process_evidence",
+        "supports_refs": [
+          "AUTH-P-ACCESS"
+        ]
+      }
+    ],
+    "presentations": [
+      {
+        "presentation_ref": "PRES-03",
+        "participant_ref": "P",
+        "standing_refs": [
+          "STAND-P-C"
+        ],
+        "authority_refs": [
+          "AUTH-P-ACCESS"
+        ],
+        "evidence_refs": [
+          "EVID-C-RELATION",
+          "EVID-C-PROCESS"
+        ],
+        "proposed_action_ref": "ACT-ACCESS-ARRANGEMENT",
+        "purpose": "Request that R proceed with the defined access arrangement."
+      }
+    ],
+    "authorities": [
+      {
+        "authority_ref": "AUTH-P-ACCESS",
+        "actor_ref": "P",
+        "description": "Claimed Authority to conclude the defined access arrangement under C's collective process.",
+        "source_refs": [
+          "SRC-C"
+        ],
+        "standing_refs": [
+          "STAND-P-C"
+        ]
+      },
+      {
+        "authority_ref": "AUTH-WG-PE-C",
+        "actor_ref": "WG",
+        "description": "Claimed Authority to author, adopt or maintain PE-C.",
+        "source_refs": [
+          "SRC-C"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "action_ref": "ACT-ACCESS-ARRANGEMENT",
+        "actor_ref": "P",
+        "action_type": "conclude_defined_access_arrangement",
+        "target_ref": "R"
+      }
+    ]
+  },
+  "profile_expressions": [
+    {
+      "profile_expression_ref": "PE-C",
+      "description": "Collective C's bounded encounter-relevant expression.",
+      "provenance": {
+        "authored_by_ref": "WG",
+        "authority_ref": "AUTH-WG-PE-C",
+        "status": "contested"
+      },
+      "conditions": [
+        {
+          "condition_id": "WE03-C01",
+          "description": "P's relational Standing within C is sufficiently established.",
+          "semantic_target_ref": "STAND-P-C"
+        },
+        {
+          "condition_id": "WE03-C02",
+          "description": "P holds Authority for the defined access arrangement under C's recognised collective process.",
+          "semantic_target_ref": "AUTH-P-ACCESS"
+        },
+        {
+          "condition_id": "WE03-C03",
+          "description": "WG has sufficient Authority to express PE-C for this encounter.",
+          "semantic_target_ref": "AUTH-WG-PE-C"
+        }
+      ],
+      "rules": [
+        "A digitally registered institutional resolution is not required by C's own process.",
+        "One encounter-relevant condition remains deliberately outside bounded expression.",
+        "No aggregate encounter result is defined in the base case."
+      ]
+    },
+    {
+      "profile_expression_ref": "PE-R",
+      "description": "Institution R's bounded encounter-relevant expression.",
+      "conditions": [
+        {
+          "condition_id": "WE03-R01",
+          "description": "P occupies a recognised position in relation to C.",
+          "semantic_target_ref": "STAND-P-C"
+        },
+        {
+          "condition_id": "WE03-R02",
+          "description": "A digitally signed resolution in R's approved governance registry is present.",
+          "semantic_target_ref": "EVID-R-REGISTRY-RESOLUTION"
+        },
+        {
+          "condition_id": "WE03-R03",
+          "description": "P holds Authority for the requested Action under PE-R's expressed requirements.",
+          "semantic_target_ref": "AUTH-P-ACCESS"
+        }
+      ],
+      "rules": [
+        "PE-R does not define C's internal Standing or governance.",
+        "PE-R has no universal precedence over PE-C."
+      ]
+    }
+  ],
+  "expected_evaluations": [
+    {
+      "evaluation_id": "WE03-E01",
+      "profile_expression_ref": "PE-C",
+      "condition_ref": "WE03-C01",
+      "semantic_target_ref": "STAND-P-C",
+      "result": "SATISFIED",
+      "reason": "Evidence is sufficient under PE-C's expressed conditions."
+    },
+    {
+      "evaluation_id": "WE03-E02",
+      "profile_expression_ref": "PE-C",
+      "condition_ref": "WE03-C02",
+      "semantic_target_ref": "AUTH-P-ACCESS",
+      "result": "SATISFIED",
+      "reason": "The expressed collective process for P's substantive Authority is satisfied in the base case."
+    },
+    {
+      "evaluation_id": "WE03-E03",
+      "profile_expression_ref": "PE-C",
+      "condition_ref": "WE03-C03",
+      "semantic_target_ref": "AUTH-WG-PE-C",
+      "result": "INDETERMINATE",
+      "reason": "WG's mandate to express PE-C is contested and the supplied evidence does not resolve the provenance challenge."
+    },
+    {
+      "evaluation_id": "WE03-E04",
+      "profile_expression_ref": "PE-R",
+      "condition_ref": "WE03-R01",
+      "semantic_target_ref": "STAND-P-C",
+      "result": "SATISFIED",
+      "reason": "R accepts the supplied evidence as sufficient for the relational-position condition."
+    },
+    {
+      "evaluation_id": "WE03-E05",
+      "profile_expression_ref": "PE-R",
+      "condition_ref": "WE03-R02",
+      "semantic_target_ref": "EVID-R-REGISTRY-RESOLUTION",
+      "result": "NOT_SATISFIED",
+      "reason": "The required registry-backed resolution is absent."
+    },
+    {
+      "evaluation_id": "WE03-E06",
+      "profile_expression_ref": "PE-R",
+      "condition_ref": "WE03-R03",
+      "semantic_target_ref": "AUTH-P-ACCESS",
+      "result": "NOT_SATISFIED",
+      "reason": "PE-R makes the missing registry-backed resolution necessary for this encounter."
+    }
+  ],
+  "non_expressions": [
+    {
+      "non_expression_id": "NONEXP-01",
+      "profile_expression_ref": "PE-C",
+      "indicated": true,
+      "reason": "Bounded expression would risk material distortion."
+    }
+  ],
+  "variants": [
+    {
+      "variant_id": "P1",
+      "title": "Provenance resolved in favour of WG",
+      "description": "WG's Authority to express PE-C is established.",
+      "semantic_state_changes": {
+        "AUTH-WG-PE-C": "established"
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE03-P1-E01",
+          "profile_expression_ref": "PE-C",
+          "condition_ref": "WE03-C03",
+          "semantic_target_ref": "AUTH-WG-PE-C",
+          "result": "SATISFIED",
+          "reason": "The provenance challenge is resolved in favour of WG."
+        }
+      ]
+    },
+    {
+      "variant_id": "P2",
+      "title": "Provenance challenge succeeds against WG",
+      "description": "PE-C remains legible as a claimed expression but is not treated as authoritatively applicable.",
+      "semantic_state_changes": {
+        "AUTH-WG-PE-C": "not_established"
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE03-P2-E01",
+          "profile_expression_ref": "PE-C",
+          "condition_ref": "WE03-C03",
+          "semantic_target_ref": "AUTH-WG-PE-C",
+          "result": "NOT_SATISFIED",
+          "reason": "The provenance challenge establishes that WG lacked the relevant Authority to express PE-C."
+        }
+      ]
+    },
+    {
+      "variant_id": "P3",
+      "title": "Expressed receiver exception",
+      "description": "R accepts C's collective-process Evidence through an expressed exception or agreement.",
+      "semantic_state_changes": {
+        "PE-R_exception": "expressed"
+      }
+    },
+    {
+      "variant_id": "P4",
+      "title": "Silent precedence",
+      "description": "R silently ranks PE-R above PE-C without an expressed precedence rule.",
+      "conformance_assertions": {
+        "must_preserve": [],
+        "must_not_infer": [
+          {
+            "assertion_id": "WE03-P4-N01",
+            "statement": "PE-R has precedence over PE-C without an expressed ground."
+          }
+        ]
+      }
+    },
+    {
+      "variant_id": "P5",
+      "title": "Membership treated as representational Authority",
+      "description": "Collective membership or belonging is treated as sufficient Authority to bind C.",
+      "conformance_assertions": {
+        "must_preserve": [],
+        "must_not_infer": [
+          {
+            "assertion_id": "WE03-P5-N01",
+            "statement": "Collective Standing or membership implies Authority to bind the collective."
+          }
+        ]
+      }
+    },
+    {
+      "variant_id": "P6",
+      "title": "Non-expression treated as failure",
+      "description": "The deliberately unexpressed condition is treated as absent or NOT_SATISFIED.",
+      "conformance_assertions": {
+        "must_preserve": [
+          {
+            "assertion_id": "WE03-P6-P01",
+            "statement": "NONEXP-01 remains outside SILT evaluation."
+          }
+        ],
+        "must_not_infer": [
+          {
+            "assertion_id": "WE03-P6-N01",
+            "statement": "Deliberate non-expression means the condition is NOT_SATISFIED."
+          }
+        ]
+      }
+    },
+    {
+      "variant_id": "P7",
+      "title": "Authority changes while Standing remains",
+      "description": "A later collective process changes P's Authority while relational Standing remains unchanged.",
+      "semantic_state_changes": {
+        "AUTH-P-ACCESS": "changed",
+        "STAND-P-C": "unchanged"
+      }
+    },
+    {
+      "variant_id": "P8",
+      "title": "Competing collective Profile Expressions",
+      "description": "Two competing collective Profile Expressions emerge from different positions within C; neither is silently canonicalised.",
+      "conformance_assertions": {
+        "must_preserve": [
+          {
+            "assertion_id": "WE03-P8-P01",
+            "statement": "Multiple collective Profile Expressions may remain distinct and contested."
+          }
+        ],
+        "must_not_infer": [
+          {
+            "assertion_id": "WE03-P8-N01",
+            "statement": "One competing collective Profile Expression is automatically canonical."
+          }
+        ]
+      }
+    }
+  ],
+  "conformance_assertions": {
+    "must_preserve": [
+      {
+        "assertion_id": "WE03-P01",
+        "statement": "Collective Standing is distinct from representational Authority."
+      },
+      {
+        "assertion_id": "WE03-P02",
+        "statement": "PE-C and PE-R remain distinct expressions."
+      },
+      {
+        "assertion_id": "WE03-P03",
+        "statement": "Substantive Authority evaluation is distinct from Profile Expression provenance evaluation."
+      },
+      {
+        "assertion_id": "WE03-P04",
+        "statement": "Non-expression is distinct from INDETERMINATE."
+      },
+      {
+        "assertion_id": "WE03-P05",
+        "statement": "Encounter disagreement is distinct from universal invalidity."
+      }
+    ],
+    "must_not_infer": [
+      {
+        "assertion_id": "WE03-N01",
+        "statement": "One Profile Expression has universal precedence without an expressed ground."
+      },
+      {
+        "assertion_id": "WE03-N02",
+        "statement": "Membership implies Authority to bind the collective."
+      },
+      {
+        "assertion_id": "WE03-N03",
+        "statement": "An unexpressed condition has machine-inferable content."
+      },
+      {
+        "assertion_id": "WE03-N04",
+        "statement": "R's registry requirement constitutes or invalidates C's internal governance."
+      }
+    ]
+  },
+  "fixture_verdict": "No missing Core primitive exposed. Plural evaluation, provenance, representational Authority and deliberate non-expression remain expressible without a universal meta-order."
+}
