@@ -16,10 +16,12 @@ Two fixture-discipline corrections remain explicit: only `SATISFIED`, `NOT_SATIS
 - Added interim governance, contribution, IPR and trademark/conformance policies.
 - Added machine validation script and GitHub Actions workflow for the conformance suite.
 - Confirmed the public repository URL and added citation guidance.
+- Confirmed Gareth Farry as author and copyright holder for the v0.2 Semantic Architecture, with SILT Core as project/publishing identity.
+- Consolidated the release-candidate specification into the single canonical publication candidate at `spec/SILT_Core_v0.2.0_Semantic_Architecture.md`.
 
 ## Remaining before v0.2.0
 
-The project still needs final rights-chain/project sign-off; repository replacement of conflicting v0.1 governance and README material; reconciliation of older schemas, examples and reference validators that are actually in the v0.2 release path; the ecosystem-positioning companion; and final tagged archival metadata/DOI.
+The remaining publication gates are final project sign-off on the release candidate, merge of PR #4, creation of the `v0.2.0` tag, archival deposit, DOI minting and insertion of the final DOI into citation metadata.
 
 ## AUT CISRC release-boundary clarification
 
