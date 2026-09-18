@@ -3,7 +3,9 @@
 **Status:** Release Candidate 2.1  
 **Date:** 18 September 2026  
 **Repository:** https://github.com/Sugarlicks/silt-identity-core  
-**Website:** https://siltcore.org
+**Website:** https://siltcore.org  
+**Author:** Gareth Farry  
+**Copyright:** © 2026 Gareth Farry
 
 SILT Core is a semantic architecture for moments of encounter between Participants and systems grounded in different legal, customary, cultural, private, institutional or technical orders.
 
@@ -35,7 +37,7 @@ A condition deliberately outside evaluation is not a fourth outcome.
 
 ## Package contents
 
-- `spec/` - the reader-facing v0.2 Semantic Architecture release candidate.
+- `spec/SILT_Core_v0.2.0_Semantic_Architecture.md` - the single canonical v0.2.0 Semantic Architecture publication candidate.
 - `conformance/` - the unified machine-validatable conformance suite and JSON Schema.
 - `bindings/` - the experimental, non-normative SILT <-> LCP mapping.
 - `docs/` - changelog, migration guidance and repository transition notes.
@@ -58,6 +60,6 @@ v0.2 uses interim maintainer stewardship with public change control. SILT does n
 
 ## Release discipline
 
-Release Candidate 2.1 is intended to be the publication base for `v0.2.0`. Before the public tag, the remaining work is repository migration and rights-chain sign-off, reconciliation of older schemas/examples that are actually in the v0.2 release path, the ecosystem-positioning companion, and final citation/DOI metadata.
+Release Candidate 2.1 is intended to be the publication base for `v0.2.0`. The rights chain is now fixed for this release: Gareth Farry is author and copyright holder, and SILT Core is the project/publishing identity. The single canonical specification artefact is present in `spec/`. Remaining work before the public tag is final project sign-off, merge of PR #4, tagging, archival deposit and DOI metadata.
 
 AUT CISRC remains a separate **SILT Core v0.1 implementation profile**. It is not part of the v0.2 migration or conformance claim.
