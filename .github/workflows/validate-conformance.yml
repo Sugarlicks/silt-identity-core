@@ -1,0 +1,24 @@
+name: Validate SILT conformance suite
+
+on:
+  push:
+    paths:
+      - 'conformance/**'
+      - 'ci/validate_conformance.py'
+      - '.github/workflows/validate-conformance.yml'
+  pull_request:
+    paths:
+      - 'conformance/**'
+      - 'ci/validate_conformance.py'
+      - '.github/workflows/validate-conformance.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install jsonschema
+      - run: python ci/validate_conformance.py
