@@ -14,6 +14,13 @@ SILT Core uses two principal licences:
 - **Creative Commons Attribution 4.0 International (CC BY 4.0)** for the public semantic specification and human-readable documentation;
 - **Apache License 2.0** for reference code and implementation-oriented machine-readable artefacts.
 
+Release licence notices are packaged under [`LICENSES/`](./LICENSES/):
+
+- [`LICENSES/CC-BY-4.0.txt`](./LICENSES/CC-BY-4.0.txt) identifies the CC BY 4.0 licence, SPDX identifier and canonical Creative Commons legal code;
+- [`LICENSES/Apache-2.0.txt`](./LICENSES/Apache-2.0.txt) contains the Apache License 2.0 terms.
+
+The historical root [`LICENSE`](./LICENSE) remains the Apache License 2.0 text and is retained for continuity with earlier releases.
+
 The purpose of this split is straightforward: the semantic specification should remain openly readable, quotable, teachable, adaptable and implementable, while code and code-like artefacts should use a software licence with familiar implementation and patent terms.
 
 This licensing structure does not make implementation code normative. Normative status is determined by the specification and governance hierarchy, not by licence type.
@@ -36,9 +43,7 @@ Unless a file carries a more specific notice, the v0.2 release position is that 
 
 The canonical SILT Core v0.2 Semantic Architecture is therefore licensed under CC BY 4.0 for the v0.2 release.
 
-CC BY 4.0 permits reuse and adaptation subject to its attribution requirements. The licence text is available at:
-
-<https://creativecommons.org/licenses/by/4.0/>
+The canonical legal code is identified in [`LICENSES/CC-BY-4.0.txt`](./LICENSES/CC-BY-4.0.txt).
 
 ## 3. Apache 2.0 material
 
@@ -52,7 +57,7 @@ Unless a file carries a more specific notice, the following implementation-orien
 - implementation-profile schemas and executable tooling;
 - other source code or code-like artefacts whose principal purpose is implementation rather than explanation.
 
-The Apache License 2.0 text currently appears in the repository root as [`LICENSE`](./LICENSE).
+The Apache License 2.0 text appears in [`LICENSES/Apache-2.0.txt`](./LICENSES/Apache-2.0.txt) and, for historical continuity, in the repository root as [`LICENSE`](./LICENSE).
 
 Apache-licensed reference code and machine-readable artefacts remain non-normative unless the SILT specification expressly states otherwise.
 
