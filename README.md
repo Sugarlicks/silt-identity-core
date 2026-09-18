@@ -10,7 +10,7 @@ Its canonical architectural seam is:
 
 SILT is concerned with encounter rather than assimilation.
 
-A **Source** is the referenced ground or provenance of a relevant relation. **Standing** is a relational position grounded in Source. **Presentation** is the present-tense, purpose-relevant act or envelope through which a Participant brings the minimum relevant projection of that Standing into a particular encounter. Evaluation then asks whether the Presentation satisfies the expressed conditions applicable to that encounter.
+A **Source** is the referenced ground or provenance of a relevant relation. **Standing** is a relational position grounded in Source. **Presentation** is the encounter-specific, purpose-relevant act or envelope through which a Participant brings the minimum relevant projection of that Standing into a particular encounter. Evaluation then asks whether the Presentation satisfies the expressed conditions applicable to that encounter.
 
 A **Profile Expression** may supply those encounter-relevant conditions. It is a bounded expression, not a representation of the whole legal, cultural, customary, contractual, institutional or other normative order from which it arises. The originating substrate remains independent of, and exceeds, any Profile Expression.
 
@@ -36,7 +36,7 @@ The v0.2 architecture includes semantic treatment of:
 - **Participant** — a deliberately thin encounter referent;
 - **Source** — the claimed ground or provenance of a relevant relation;
 - **Standing** — a relational position grounded in Source;
-- **Presentation** — the bounded present-tense projection brought into an encounter;
+- **Presentation** — the bounded encounter-specific projection brought into an encounter;
 - **Profile Expression** — encounter-relevant conditions without ontological capture;
 - **Evidence** — material supporting a claim, distinct from the claim itself;
 - **Authority** — bounded power relevant to an Action or class of Action;
@@ -101,7 +101,7 @@ Some v0.1 terminology and artefact structures have been superseded by v0.2. In p
 
 ### v0.2
 
-**SILT Core v0.2 is at Freeze Candidate 1 and is undergoing release packaging and repository reconciliation.**
+**SILT Core v0.2 is at Freeze Candidate 1 and is undergoing final release packaging.**
 
 The canonical semantic reference is:
 
@@ -109,7 +109,7 @@ The canonical semantic reference is:
 
 FC1 is based on the RC4.1 close-out and follows four worked-encounter pressure tests, machine-readable conformance validation and an experimental adjacent-protocol mapping. No new Core primitive was required by that pre-freeze gate.
 
-The repository is being reconciled so that older v0.1 topic specifications, schemas and examples do not appear to override the v0.2 semantic architecture. Until that work is complete, **the v0.2 semantic architecture above is the controlling v0.2 reference**.
+The v0.1 → v0.2 repository reconciliation is recorded in [`docs/migration/v0.1-to-v0.2-repository-audit.md`](./docs/migration/v0.1-to-v0.2-repository-audit.md). The canonical v0.2 semantic architecture controls over older material.
 
 ---
 
@@ -163,15 +163,17 @@ Its role is narrower and more exact: to make the minimum relevant semantic condi
 The repository currently contains:
 
 - the v0.2 canonical semantic architecture under [`spec/v0.2/`](./spec/v0.2/);
-- v0.1-era topic specifications and schemas undergoing release reconciliation;
-- documentation and threat-model material;
-- non-normative implementation profiles;
-- experimental reference validators and examples;
-- misuse-case and conformance material.
+- historical v0.1 topic specifications retained with explicit archival treatment;
+- documentation, threat-model and migration material;
+- non-normative implementation profiles, including the protected AUT/Vietsch v0.1 implementation;
+- conformance fixtures, worked encounters and experimental companion mappings;
+- non-normative reference code and examples.
 
 The distinction between **normative semantic architecture**, **companion documentation**, **implementation profiles**, **test notation** and **reference code** is load-bearing and will remain explicit through the v0.2 release process.
 
-For the fuller repository overview, see [`docs/overview.md`](./docs/overview.md). That document is itself being reconciled against FC1 during the v0.2 release pass.
+For the fuller repository overview, see [`docs/overview.md`](./docs/overview.md).
+
+For the v0.1 → v0.2 reconciliation record, see [`docs/migration/v0.1-to-v0.2-repository-audit.md`](./docs/migration/v0.1-to-v0.2-repository-audit.md).
 
 ---
 
