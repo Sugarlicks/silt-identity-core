@@ -2,13 +2,15 @@
 
 ## v0.2 release
 
-The v0.2 semantic architecture is in release-candidate freeze. Remaining release work is publication and repository discipline rather than further ontology formation:
+The v0.2 semantic architecture is in release-candidate freeze. Repository migration, ecosystem positioning, release attribution, rights-chain metadata and conformance CI are complete on the release branch.
 
-1. complete repository migration and version old material correctly;
-2. complete the ecosystem-positioning companion;
-3. finalise release authority, attribution and rights-chain metadata;
-4. run repository CI against the release tree;
-5. tag `v0.2.0`, archive the tag and mint the DOI.
+The remaining release sequence is now publication-only:
+
+1. final project sign-off on Release Candidate 2.1;
+2. merge PR #4;
+3. create the `v0.2.0` tag;
+4. archive the tagged release and mint the DOI;
+5. insert the DOI into final citation metadata.
 
 A further Core semantic change requires a concrete conformance, external-mapping or implementation failure that exposes an otherwise inexpressible distinction.
 
