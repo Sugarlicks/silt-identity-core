@@ -30,11 +30,11 @@ A later migration analysis may compare the completed v0.1 implementation against
 
 ### v0.2 — Freeze Candidate 1
 
-SILT Core v0.2 is at **Freeze Candidate 1**. Repository reconciliation, conformance packaging, migration documentation and release-level licensing classification are complete.
+SILT Core v0.2 is at **Freeze Candidate 1**. Repository reconciliation, external review, conformance packaging and validation, migration documentation, release-level licensing classification, release notes and citation/archive metadata preparation are complete.
 
-The pre-freeze gate has been completed through four worked encounters, machine-readable conformance validation and an experimental adjacent-protocol mapping. No new Core primitive was required by that gate.
+The pre-freeze gate has been completed through four worked encounters, machine-readable conformance validation and an experimental adjacent-protocol mapping. No new Core primitive was required by that gate. The external reviewer found no BLOCKER or MAJOR issue requiring FC2.
 
-The current task is therefore final release packaging: CHANGELOG, release notes, archive metadata and any remaining mechanical licence packaging. It is not further open-ended semantic modelling.
+The current task is therefore publication mechanics: website cut-over, merge to `main`, final link verification, release dating, tag, GitHub release and Zenodo/DOI publication. It is not further open-ended semantic modelling.
 
 ---
 
@@ -50,7 +50,7 @@ The following work is complete on the FC1 branch and should not be treated as an
 - `Status`, universal `Capacity`, older `Lex/Profile` language and old validation assumptions no longer appear as current Core architecture;
 - historical v0.1 implementation material is distinguished from v0.2 normative material.
 
-### 2. Conformance packaging
+### 2. Conformance packaging and validation
 
 The pre-freeze pressure-test material is installed in the release structure:
 
@@ -64,6 +64,8 @@ The pre-freeze pressure-test material is installed in the release structure:
 - corrected experimental SILT ↔ LCP mapping.
 
 The machine-readable fixture schema is **test notation**, not a normative SILT wire format.
+
+A reproducible GitHub Actions validation workflow now validates the fixture schema, WE01–WE04, manifest inventory, internal reference consistency and the FC1 basis of the experimental LCP mapping. The final release-candidate run passed.
 
 ### 3. Migration documentation
 
@@ -103,18 +105,37 @@ Scope discipline for future Core changes is already reflected in the current gov
 
 This is institutional infrastructure, not semantic expansion.
 
+### 5. Release, citation and archive preparation
+
+The following release material is now prepared:
+
+- `CHANGELOG.md` with a `v0.2.0 — Unreleased` entry;
+- versioned v0.2 release notes;
+- external-review brief and final disposition record;
+- final machine-readable validation record;
+- `CITATION.cff` for v0.2.0 citation metadata;
+- Zenodo/archive metadata plan under `docs/release/v0.2-zenodo-metadata.md`;
+- Apache 2.0 and CC BY 4.0 release notices under `LICENSES/`.
+
+Publication-derived values such as the release date, DOI, concept DOI and tagged release commit SHA remain intentionally unset until the release exists.
+
 ---
 
 ## Remaining release and archive work
 
-Before the v0.2.0 release tag:
+Before and at the v0.2.0 release:
 
-- add `CHANGELOG.md`;
-- publish v0.2 release notes;
-- prepare the Zenodo archive and DOI metadata;
-- complete any final mechanical licence packaging required for the defined licensing boundary;
-- preserve versioned checksums or a release manifest where practical;
-- tag `v0.2.0` only after the release package is checked.
+- update the public website to v0.2 before or atomically with the release announcement;
+- merge `release/v0.2-fc1` to `main`;
+- confirm release links resolve correctly from `main`;
+- replace `Unreleased` in `CHANGELOG.md` with the release date;
+- add final publication-derived citation/archive fields when known;
+- create the `v0.2.0` tag;
+- publish the GitHub release;
+- publish the Zenodo archive and DOI record;
+- preserve the tagged release commit SHA and release checksum/manifest where practical.
+
+Repository description and homepage metadata are already aligned with v0.2.
 
 ---
 
