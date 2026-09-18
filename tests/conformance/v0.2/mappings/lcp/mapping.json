@@ -1,0 +1,238 @@
+{
+  "document": "Experimental SILT Core v0.2 <-> Legal Context Protocol (LCP) Semantic Mapping",
+  "status": "Non-normative interoperability experiment",
+  "date": "2026-09-17",
+  "silt_architecture": "SILT Core v0.2 Semantic Architecture - Freeze Candidate 1 (derived from RC4.1 pre-freeze stress-test revision)",
+  "lcp_basis": "Public LCP v1 materials reviewed 2026-09-17",
+  "mapping_categories": [
+    "EXACT",
+    "PARTIAL",
+    "STRONG PARTIAL",
+    "CARRIER",
+    "EVIDENCE",
+    "OPERATIONAL",
+    "DOWNSTREAM",
+    "CONTENT-LEVEL ONLY",
+    "NO EQUIVALENT",
+    "SEMANTIC TENSION"
+  ],
+  "mapping": [
+    {
+      "silt": "Participant",
+      "lcp": "Buyer, seller/service, agent, principal, dispute-resolution actor",
+      "relation": "PARTIAL",
+      "treatment": "LCP supplies encounter roles. SILT keeps Participant deliberately thin and does not infer personhood, legal identity or legitimacy from the role label.",
+      "risk": "LOW"
+    },
+    {
+      "silt": "Source",
+      "lcp": "No direct first-class equivalent",
+      "relation": "NO EQUIVALENT",
+      "treatment": "Terms, mandates, entity attestations or organisational records may provide Evidence concerning Source, but LCP does not model the relational ground from which Standing or Authority arises.",
+      "risk": "HIGH if a terms publisher or identity artefact is silently treated as universal Source"
+    },
+    {
+      "silt": "Standing",
+      "lcp": "No direct first-class equivalent",
+      "relation": "NO EQUIVALENT",
+      "treatment": "LCP is primarily concerned with legal context of a transaction, not the Participant's Source-grounded relational position. Standing should remain a SILT semantic input where relevant.",
+      "risk": "HIGH if identity or participation is treated as Standing"
+    },
+    {
+      "silt": "Profile Expression",
+      "lcp": "Seller/service legal-context.json + referenced terms",
+      "relation": "PARTIAL / CARRIER",
+      "treatment": "The referenced terms can supply encounter-relevant conditions and may instantiate or contribute to a Profile Expression. The discovery JSON is better treated as a carrier/index unless it itself expresses the relevant conditions. Neither exhausts the originating legal or commercial order.",
+      "risk": "MEDIUM"
+    },
+    {
+      "silt": "Profile Expression",
+      "lcp": "Buyer Policy",
+      "relation": "PARTIAL",
+      "treatment": "Acceptable jurisdictions, dispute methods and autonomous commitment caps are strong candidates for encounter conditions. A requirement for additional human approval or Authority above a cap may itself be semantic if expressed; the human-review and key-gating workflow remains operational below the Presentation line architecturally.",
+      "risk": "MEDIUM because one LCP construct mixes semantic constraints with operational controls"
+    },
+    {
+      "silt": "Presentation",
+      "lcp": "Transaction-time legalContext reference, terms reference, signed acceptance, mandate-linked metadata",
+      "relation": "PARTIAL / CARRIER",
+      "treatment": "LCP artefacts can carry part of a SILT Presentation, but do not define Presentation. A SILT Presentation may also carry Source-grounded Standing, Authority context and non-LCP Evidence.",
+      "risk": "MEDIUM"
+    },
+    {
+      "silt": "Evidence",
+      "lcp": "atrHash, acceptance signature, clauseId, source URL, identity/authorisation attestations",
+      "relation": "STRONG PARTIAL",
+      "treatment": "These are natural Evidence artefacts. Hashes establish integrity/version; signatures establish a cryptographic event tied to a key/identity mechanism; clause identifiers support retrieval and verification. None alone establishes Standing, Authority, Consent or Binding.",
+      "risk": "LOW if kept evidentiary; HIGH if promoted into legitimacy"
+    },
+    {
+      "silt": "Authority",
+      "lcp": "Buyer policy constraints; agent authorisation chains in adjacent protocols; human review threshold",
+      "relation": "PARTIAL / MOSTLY ADJACENT",
+      "treatment": "LCP assumes other protocols handle much of authorisation. SILT can evaluate the semantic Authority represented by those artefacts. Commitment caps and expressed approval thresholds can constrain Authority scope, but the human-review workflow, signing key or mandate carrier does not itself establish SILT Authority.",
+      "risk": "HIGH"
+    },
+    {
+      "silt": "Consent",
+      "lcp": "acceptanceRequired + signed acceptance; Level 1 implicit-consent guidance",
+      "relation": "PARTIAL / SEMANTIC TENSION",
+      "treatment": "Signed acceptance is an Action and Evidence concerning Consent. SILT does not universally equate assent or signature with Consent; the relevant Source and Profile Expression determine whether the evidence is sufficient. Proceeding with a transaction may likewise be an Action from which Consent follows only where the expressed conditions make that inference legitimate.",
+      "risk": "VERY HIGH"
+    },
+    {
+      "silt": "Reliance",
+      "lcp": "No direct first-class equivalent; trust level and verification material may support reliance decisions",
+      "relation": "NO DIRECT EQUIVALENT",
+      "treatment": "LCP improves the information on which a party may choose to rely, but SILT Reliance remains the expressed conditions under which a Participant may act on a representation. Do not silently import apparent authority or reasonable reliance.",
+      "risk": "HIGH if inferred"
+    },
+    {
+      "silt": "Action",
+      "lcp": "discover, fetch, verify hash, sign/accept, transact, file dispute, return/claim",
+      "relation": "PARTIAL",
+      "treatment": "Signing, accepting and transacting are encounter-relevant Actions. Whether an Action constitutes Consent, creates an Obligation or has another effect is determined by Source and expressed conditions, not by the technical event alone.",
+      "risk": "LOW to MEDIUM"
+    },
+    {
+      "silt": "Attribution",
+      "lcp": "Acceptance signature; agent/principal identity or mandate context",
+      "relation": "PARTIAL / EVIDENCE",
+      "treatment": "LCP can provide strong evidence about the factual signer or agent context. SILT separately asks how an Action is properly attributed through Authority. Technical actor and attribution target may differ.",
+      "risk": "HIGH in delegated-agent transactions"
+    },
+    {
+      "silt": "Revocation",
+      "lcp": "No general first-class semantic equivalent in core discovery document",
+      "relation": "NO EQUIVALENT",
+      "treatment": "Updated terms, policy changes or adjacent mandate systems may affect future transactions, but SILT Revocation remains an explicit semantic Action with scope, effective time and cascade rules where relevant.",
+      "risk": "MEDIUM"
+    },
+    {
+      "silt": "Obligation",
+      "lcp": "Obligations may be stated inside terms; no first-class persistent relational-state object",
+      "relation": "CONTENT-LEVEL ONLY",
+      "treatment": "LCP can identify and preserve the terms that describe obligations, but it does not itself provide the SILT persistent Obligation relation or lifecycle. This is a meaningful non-overlap.",
+      "risk": "MEDIUM if document terms are mistaken for live obligation state"
+    },
+    {
+      "silt": "Binding / downstream effect",
+      "lcp": "Agreement context, governing jurisdiction, dispute resolution, settlement/recourse hooks",
+      "relation": "DOWNSTREAM / PARTIAL",
+      "treatment": "LCP is explicitly designed to make legal context and recourse discoverable and provable. SILT must not translate LCP conformance or successful signature into universal Binding. Binding remains determined by the applicable legal/private/normative mechanism.",
+      "risk": "VERY HIGH"
+    },
+    {
+      "silt": "Technical Capability",
+      "lcp": "Signing key, key gating, protocol integration surfaces, payment/agent rails",
+      "relation": "OPERATIONAL",
+      "treatment": "These mechanisms sit below the Presentation line architecturally, although they may operate before, during or after a Presentation. Their outputs may carry, substantiate or enforce semantics, but the mechanisms themselves must not be promoted into Standing or Authority by default.",
+      "risk": "LOW if boundary is respected"
+    }
+  ],
+  "level_mapping": [
+    {
+      "level": "Level 1 — Informational",
+      "lcp_construct": "terms URL discoverable",
+      "silt_treatment": "Terms document can supply or carry Profile Expression conditions; URL and retrieved document are Evidence/carrier.",
+      "critical_safeguard": "LCP examples describe proceeding after discovery as implicit consent. SILT must represent proceeding as Action and only infer Consent where the applicable expressed conditions permit it."
+    },
+    {
+      "level": "Level 2 — Provable",
+      "lcp_construct": "atrHash",
+      "silt_treatment": "Evidence integrity and version continuity for the referenced terms/ATR.",
+      "critical_safeguard": "Hash proves document integrity/version, not legitimacy of Source, Authority of publisher, Consent or Binding."
+    },
+    {
+      "level": "Level 3 — Signed",
+      "lcp_construct": "acceptanceRequired + signature + buyer policy",
+      "silt_treatment": "Acceptance condition, Action, Evidence concerning Consent; buyer-side semantic constraints may contribute to a Profile Expression.",
+      "critical_safeguard": "Signature must not be hard-coded as universal Consent; buyer key gating is operational, not a SILT semantic primitive."
+    },
+    {
+      "level": "Level 4 — Integrated",
+      "lcp_construct": "disputeResolution, returns, api, private terms, escrow/compliance hooks",
+      "silt_treatment": "Mix of encounter conditions and downstream technical/institutional hand-off.",
+      "critical_safeguard": "Do not collapse dispute/jurisdiction metadata into universal Binding or treat API availability as legal effect."
+    }
+  ],
+  "pressure_tests": [
+    {
+      "id": "P1",
+      "test": "Signature = Consent",
+      "result": "FAIL if imported universally",
+      "finding": "No Core change. Map signature to Action + Evidence; evaluate Consent under relevant Profile Expression."
+    },
+    {
+      "id": "P2",
+      "test": "Domain publication = Authority to set terms",
+      "result": "FAIL if inferred",
+      "finding": "No Core change. Profile Expression provenance and authority to express remain independently material."
+    },
+    {
+      "id": "P3",
+      "test": "Buyer Policy = single SILT object",
+      "result": "FAIL if copied wholesale",
+      "finding": "Split semantic conditions from operational machinery: an expressed approval threshold may constrain Authority, while the human-review/key-gating workflow remains below the Presentation line architecturally."
+    },
+    {
+      "id": "P4",
+      "test": "LCP trust level = SILT aggregate validity",
+      "result": "FAIL",
+      "finding": "Trust level is LCP assurance classification. SILT keeps condition-level evaluation separate."
+    },
+    {
+      "id": "P5",
+      "test": "Agent signing key = Authority",
+      "result": "FAIL",
+      "finding": "No Core change. Technical Capability and Authority remain distinct."
+    },
+    {
+      "id": "P6",
+      "test": "Signed terms = Binding everywhere",
+      "result": "FAIL",
+      "finding": "No Core change. Binding/downstream legal effect may be indicated by an applicable Profile Expression or otherwise determined outside Core; the Profile Expression does not manufacture the effect."
+    },
+    {
+      "id": "P7",
+      "test": "LCP has no Source/Standing fields",
+      "result": "PASS as non-equivalence",
+      "finding": "This is evidence of complementarity, not a gap SILT should remove."
+    },
+    {
+      "id": "P8",
+      "test": "Terms encode live Obligation state",
+      "result": "PARTIAL / insufficient",
+      "finding": "LCP preserves/document-identifies terms; SILT Obligation remains distinct persistent relational state."
+    },
+    {
+      "id": "P9",
+      "test": "Seller terms + Buyer Policy conflict",
+      "result": "PASS if kept plural",
+      "finding": "Treat as separate encounter expressions/conditions; no silent precedence without expressed ground."
+    },
+    {
+      "id": "P10",
+      "test": "LCP integration rail executes successfully",
+      "result": "FAIL if treated as semantic success",
+      "finding": "Execution can follow a SILT evaluation but does not prove it."
+    }
+  ],
+  "verdict": {
+    "core_reopen_required": false,
+    "relationship": "complementary with meaningful semantic overlap at Profile Expression / Evidence / Consent / Action; no direct equivalence for Source or Standing",
+    "key_safeguard": "Do not equate LCP signature/acceptance, domain publication, trust level, agent key control or successful execution with SILT Consent, Authority, Standing or Binding unless the relevant Source and Profile Expression support that conclusion.",
+    "next_step": "Freeze review can proceed; any future adapter should be non-normative and field-level, not protocol-level collapse."
+  },
+  "architecture_basis_verification": {
+    "status": "PASS",
+    "checked_against": "RC4.1/FC1",
+    "verdict_changes": 0,
+    "notes": [
+      "Deliberate non-expression and the INDETERMINATE/non-expressibility split are not relied upon by this LCP mapping.",
+      "The technical-artefact/Authority clarification reinforces the existing Technical Capability != Authority mapping conclusion.",
+      "Seller-side and buyer-side Profile Expressions are evaluated separately; no silent merger, ranking, precedence or aggregate result is implied.",
+      "FC1 alignment note: where an LCP Buyer Policy states an autonomous commitment cap, the cap or an expressed additional-approval condition may be semantic; the human-review workflow itself remains operational. Consent is evaluated only under a Profile Expression that actually expresses a Consent condition; no buyer-side Consent evaluation is manufactured from the presence of a Buyer Policy alone."
+    ]
+  }
+}
