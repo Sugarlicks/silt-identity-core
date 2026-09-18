@@ -1,0 +1,365 @@
+{
+  "fixture_id": "WE04",
+  "title": "Recursive AI Delegation Encounter",
+  "architecture_version": "v0.2",
+  "architecture_reference": "SILT Core v0.2 Semantic Architecture - Freeze Candidate 1 (derived from RC4.1 pre-freeze stress-test revision)",
+  "artifact_role": "conformance_fixture",
+  "normative_status": "companion-non-normative",
+  "purpose": "Test whether SILT can preserve semantic Authority through recursive machine delegation while leaving operational agent machinery downstream.",
+  "pressure_test": "Authority containment, semantic lineage, validity dependency, Revocation and technical execution.",
+  "encounter": {
+    "context": "P grounds bounded Authority for Agent-A; Agent-A delegates narrower Authority to Agent-B; Agent-B attempts ACT-X through a technically capable downstream system.",
+    "proposed_action_ref": "ACT-X",
+    "receiver_ref": "R"
+  },
+  "participants": [
+    {
+      "participant_ref": "P",
+      "role": "originating authorising Participant"
+    },
+    {
+      "participant_ref": "Agent-A",
+      "role": "delegated agent"
+    },
+    {
+      "participant_ref": "Agent-B",
+      "role": "recursively delegated agent"
+    },
+    {
+      "participant_ref": "R",
+      "role": "receiving or relying system / counterparty"
+    }
+  ],
+  "fixture_facts": {
+    "technical_execution_possible": true
+  },
+  "semantic_objects": {
+    "sources": [
+      {
+        "source_ref": "SRC-P",
+        "description": "Originating mandate, institutional, contractual or other recognised ground for Authority."
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_ref": "CAPABILITY-01",
+        "evidence_type": "technical_capability_evidence",
+        "data": {
+          "indicates": [
+            "downstream_execution_capability_present"
+          ]
+        }
+      },
+      {
+        "evidence_ref": "DELEGATION-EVIDENCE-01",
+        "evidence_type": "derived_authority_lineage_evidence",
+        "supports_refs": [
+          "AUTH-B"
+        ]
+      }
+    ],
+    "presentations": [
+      {
+        "presentation_ref": "PRES-04",
+        "participant_ref": "Agent-B",
+        "authority_refs": [
+          "AUTH-B"
+        ],
+        "evidence_refs": [
+          "CAPABILITY-01",
+          "DELEGATION-EVIDENCE-01"
+        ],
+        "proposed_action_ref": "ACT-X",
+        "purpose": "Present the minimum relevant Authority claim for ACT-X at the machine encounter."
+      }
+    ],
+    "authorities": [
+      {
+        "authority_ref": "AUTH-A",
+        "actor_ref": "Agent-A",
+        "description": "Derived Authority for Agent-A.",
+        "source_refs": [
+          "SRC-P"
+        ],
+        "data": {
+          "permitted_actions": [
+            "negotiate",
+            "commit_up_to_10000"
+          ],
+          "delegation_allowed": true,
+          "delegable_scope": "commit_up_to_5000"
+        }
+      },
+      {
+        "authority_ref": "AUTH-B",
+        "actor_ref": "Agent-B",
+        "description": "Narrower derived Authority for Agent-B.",
+        "parent_authority_ref": "AUTH-A",
+        "lineage_refs": [
+          "AUTH-A"
+        ],
+        "data": {
+          "permitted_action": "commit_up_to_3000"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "action_ref": "ACT-X",
+        "actor_ref": "Agent-B",
+        "action_type": "commit",
+        "data": {
+          "amount": 2500
+        }
+      }
+    ],
+    "revocations": [
+      {
+        "revocation_ref": "REV-01",
+        "target_ref": "AUTH-B",
+        "revoked_by_ref": "P",
+        "effective_at": "T",
+        "scope": "subsequent exercise of AUTH-B"
+      }
+    ]
+  },
+  "profile_expressions": [
+    {
+      "profile_expression_ref": "PE-AGENT",
+      "description": "Encounter-relevant conditions for recursive delegated Authority.",
+      "conditions": [
+        {
+          "condition_id": "WE04-C01",
+          "description": "AUTH-A is current where its current validity is required by the expressed dependency model.",
+          "semantic_target_ref": "AUTH-A"
+        },
+        {
+          "condition_id": "WE04-C02",
+          "description": "AUTH-B remains within AUTH-A's delegable envelope unless another recognised Source supplies additional Authority.",
+          "semantic_target_ref": "AUTH-B"
+        },
+        {
+          "condition_id": "WE04-C03",
+          "description": "AUTH-B is current for this encounter.",
+          "semantic_target_ref": "AUTH-B"
+        },
+        {
+          "condition_id": "WE04-C04",
+          "description": "ACT-X falls within AUTH-B's scope.",
+          "semantic_target_ref": "ACT-X"
+        }
+      ],
+      "rules": [
+        "Applicable Revocation must be evaluated.",
+        "Technical execution capability alone is insufficient to establish Authority unless expressly made sufficient.",
+        "Lineage does not by itself establish continuing validity dependency.",
+        "Downstream liability or Binding is not a universal Core conclusion."
+      ]
+    }
+  ],
+  "expected_evaluations": [
+    {
+      "evaluation_id": "WE04-E01",
+      "profile_expression_ref": "PE-AGENT",
+      "condition_ref": "WE04-C01",
+      "semantic_target_ref": "AUTH-A",
+      "result": "SATISFIED",
+      "reason": "AUTH-A is current in the base case."
+    },
+    {
+      "evaluation_id": "WE04-E02",
+      "profile_expression_ref": "PE-AGENT",
+      "condition_ref": "WE04-C02",
+      "semantic_target_ref": "AUTH-B",
+      "result": "SATISFIED",
+      "reason": "AUTH-B is within the delegable envelope in the base case."
+    },
+    {
+      "evaluation_id": "WE04-E03",
+      "profile_expression_ref": "PE-AGENT",
+      "condition_ref": "WE04-C03",
+      "semantic_target_ref": "AUTH-B",
+      "result": "SATISFIED",
+      "reason": "AUTH-B is current in the base case."
+    },
+    {
+      "evaluation_id": "WE04-E04",
+      "profile_expression_ref": "PE-AGENT",
+      "condition_ref": "WE04-C04",
+      "semantic_target_ref": "ACT-X",
+      "result": "SATISFIED",
+      "reason": "ACT-X amount 2500 falls within AUTH-B's commit-up-to-3000 scope."
+    }
+  ],
+  "variants": [
+    {
+      "variant_id": "WE04-A",
+      "title": "Scope overrun",
+      "description": "Agent-B attempts to commit 6000 while technical execution remains possible.",
+      "fixture_facts": {
+        "technical_execution_possible": true,
+        "ACT-X_amount": 6000
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE04-A-E01",
+          "profile_expression_ref": "PE-AGENT",
+          "condition_ref": "WE04-C04",
+          "semantic_target_ref": "ACT-X",
+          "result": "NOT_SATISFIED",
+          "reason": "The requested amount exceeds AUTH-B's expressed scope."
+        }
+      ]
+    },
+    {
+      "variant_id": "WE04-B",
+      "title": "Missing validity-dependency rule",
+      "description": "AUTH-A has expired, but PE-AGENT does not state whether AUTH-B depends continuously on AUTH-A.",
+      "semantic_state_changes": {
+        "AUTH-A": "expired",
+        "AUTH-B_dependency_on_AUTH-A": "unspecified"
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE04-B-E01",
+          "profile_expression_ref": "PE-AGENT",
+          "condition_ref": "WE04-C03",
+          "semantic_target_ref": "AUTH-B",
+          "result": "INDETERMINATE",
+          "reason": "The supplied semantic state does not permit a conclusion about AUTH-B's continuing validity without inventing a cascade rule."
+        }
+      ]
+    },
+    {
+      "variant_id": "WE04-C",
+      "title": "Expressed cascade",
+      "description": "PE-AGENT expressly makes AUTH-B continuously dependent on AUTH-A; AUTH-A is revoked.",
+      "semantic_state_changes": {
+        "AUTH-A": "revoked",
+        "AUTH-B_dependency_on_AUTH-A": "expressed_continuing_dependency"
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE04-C-E01",
+          "profile_expression_ref": "PE-AGENT",
+          "condition_ref": "WE04-C03",
+          "semantic_target_ref": "AUTH-B",
+          "result": "NOT_SATISFIED",
+          "reason": "The expressly stated dependency makes AUTH-B unavailable for subsequent exercise after AUTH-A's Revocation."
+        }
+      ]
+    },
+    {
+      "variant_id": "WE04-D",
+      "title": "Lineage without continuing dependency",
+      "description": "AUTH-A is revoked, but expressed conditions give AUTH-B independent continuing validity after formation.",
+      "semantic_state_changes": {
+        "AUTH-A": "revoked",
+        "AUTH-B_dependency_on_AUTH-A": "none_after_formation"
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE04-D-E01",
+          "profile_expression_ref": "PE-AGENT",
+          "condition_ref": "WE04-C03",
+          "semantic_target_ref": "AUTH-B",
+          "result": "SATISFIED",
+          "reason": "Lineage records derivation but the expressed conditions do not impose continuing dependency."
+        }
+      ]
+    },
+    {
+      "variant_id": "WE04-E",
+      "title": "Separate additional Source",
+      "description": "Agent-B also has additional Authority grounded in an independent recognised Source.",
+      "semantic_state_changes": {
+        "additional_source": "SRC-OTHER",
+        "additional_authority": "AUTH-B-OTHER"
+      },
+      "conformance_assertions": {
+        "must_preserve": [
+          {
+            "assertion_id": "WE04-E-P01",
+            "statement": "Additional Authority may arise from a separate recognised Source rather than from AUTH-A's delegable envelope."
+          }
+        ],
+        "must_not_infer": [
+          {
+            "assertion_id": "WE04-E-N01",
+            "statement": "Every Action by Agent-B must derive exclusively from AUTH-A."
+          }
+        ]
+      }
+    },
+    {
+      "variant_id": "WE04-F",
+      "title": "Post-revocation exercise",
+      "description": "REV-01 is effective at T and Agent-B attempts a subsequent exercise of AUTH-B after T.",
+      "semantic_state_changes": {
+        "time": "after_T",
+        "AUTH-B": "revoked_for_subsequent_exercise"
+      },
+      "expected_evaluations": [
+        {
+          "evaluation_id": "WE04-F-E01",
+          "profile_expression_ref": "PE-AGENT",
+          "condition_ref": "WE04-C03",
+          "semantic_target_ref": "AUTH-B",
+          "result": "NOT_SATISFIED",
+          "reason": "REV-01 has taken effect for subsequent exercise of AUTH-B."
+        }
+      ]
+    }
+  ],
+  "conformance_assertions": {
+    "must_preserve": [
+      {
+        "assertion_id": "WE04-P01",
+        "statement": "Technical Capability is distinct from Authority."
+      },
+      {
+        "assertion_id": "WE04-P02",
+        "statement": "Agent identity is distinct from Authority."
+      },
+      {
+        "assertion_id": "WE04-P03",
+        "statement": "Delegation is distinct from identity."
+      },
+      {
+        "assertion_id": "WE04-P04",
+        "statement": "Lineage is distinct from validity dependency."
+      },
+      {
+        "assertion_id": "WE04-P05",
+        "statement": "Parent Authority does not imply unlimited child Authority."
+      },
+      {
+        "assertion_id": "WE04-P06",
+        "statement": "Execution success is distinct from semantic validity."
+      }
+    ],
+    "must_not_infer": [
+      {
+        "assertion_id": "WE04-N01",
+        "statement": "A valid token implies valid SILT Authority."
+      },
+      {
+        "assertion_id": "WE04-N02",
+        "statement": "Successful execution implies SATISFIED semantic evaluation."
+      },
+      {
+        "assertion_id": "WE04-N03",
+        "statement": "Parent Revocation automatically revokes every descendant Authority."
+      },
+      {
+        "assertion_id": "WE04-N04",
+        "statement": "An AI agent requires a special universal Participant ontology."
+      },
+      {
+        "assertion_id": "WE04-N05",
+        "statement": "Recursive delegation requires an AI-specific Core primitive."
+      }
+    ]
+  },
+  "fixture_verdict": "No missing AI-specific Core primitive exposed. The fixture is expressible through Source, Authority, Presentation, Action and Revocation while technical capability remains operational."
+}
