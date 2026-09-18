@@ -1,18 +1,26 @@
 # Candidate SILT Core v0.2 Findings
 
-**Status:** Draft
-**Source:** AUT CISRC Implementation Profile
-**Relationship to SILT Core:** Candidate future findings only
+**Status:** Historical v0.1 implementation learning record  
+**Source:** AUT CISRC Implementation Profile  
+**Relationship to SILT Core:** Pre-FC1 candidate findings only; not a current v0.2 proposal surface
+
+> **Archival notice — SILT Core v0.2 is now at Freeze Candidate 1.**
+>
+> This document records questions and possible directions generated from the AUT CISRC v0.1 implementation before the v0.2 architecture was settled. It is retained as a development and migration record. The candidate questions and possible directions below are **not** outstanding v0.2 requirements and must not be read as amendments to, or gaps in, the canonical v0.2 semantic architecture.
+>
+> The controlling v0.2 reference is [`spec/v0.2/semantic-architecture.md`](../../../spec/v0.2/semantic-architecture.md). The AUT CISRC / Vietsch implementation remains on its **v0.1 semantic basis through completion**.
 
 ## Purpose
 
-This document records implementation findings from the AUT CISRC profile that may inform future SILT Core v0.2 development.
+This document records implementation findings from the AUT CISRC profile that were originally intended to inform SILT Core v0.2 development.
 
-These are not changes to SILT Core v0.1.
+They are not changes to SILT Core v0.1, and they are not current changes to SILT Core v0.2 FC1.
 
-The AUT CISRC implementation profile applies SILT Core v0.1 to one constrained university research-governance workflow. Its findings are useful because they test the model against a real delegated authority environment.
+The AUT CISRC implementation profile applies SILT Core v0.1 to one constrained university research-governance workflow. Its findings remain useful as a record of what that implementation exposed in a real delegated-authority environment.
 
-This document should be treated as a learning record, not as a specification.
+This document should be treated as a historical learning record, not as a specification or current v0.2 design backlog.
+
+Unless separately reopened through the post-freeze change process, the candidate questions and possible directions below remain historical.
 
 ## 1. Higher-Order Revocation
 
@@ -273,9 +281,9 @@ This would allow SILT Core to grow through examples without turning every use ca
 
 The AUT CISRC implementation profile does not alter SILT Core v0.1.
 
-It provides a worked example that may inform future v0.2 development after review, comparison with other use cases, and further testing.
+It provides a worked example that contributed historical implementation evidence during v0.2 development. SILT Core v0.2 FC1 is now the controlling v0.2 semantic reference; this file does not reopen the candidate questions recorded above.
 
-Candidate findings include:
+Historical candidate findings included:
 
 * higher-order revocation;
 * class/object authority modelling;
@@ -286,7 +294,7 @@ Candidate findings include:
 * authority-domain matching;
 * implementation profiles as structured learning instruments.
 
-The guiding principle remains:
+The current guiding boundary is:
 
-> AUT CISRC is not SILT Core v0.2.
-> AUT CISRC is evidence for future v0.2 consideration.
+> AUT CISRC remains a SILT Core v0.1 implementation through completion.  
+> Its historical findings do not constitute SILT Core v0.2 semantics.
