@@ -2,7 +2,9 @@
 
 **Status:** Draft prototype  
 **Profile:** AUT CISRC Implementation Profile  
-**Relationship to SILT Core:** Non-normative reference prototype
+**Relationship to SILT Core:** Non-normative v0.1 reference prototype
+
+> **Historical / transitional notice:** This validator remains part of the AUT CISRC / Vietsch SILT Core v0.1 implementation through completion. SILT Core v0.2 is now at Freeze Candidate 1. The validator is not a v0.2 Core validator and is not being migrated mid-stream.
 
 ## Purpose
 
@@ -245,4 +247,4 @@ It does not define SILT Core v0.1.
 
 It does not modify SILT Core v0.1.
 
-Findings from this validator may inform later SILT Core v0.2 consideration.
+Its findings are retained as historical implementation evidence that informed v0.2 development. Any later v0.1 → v0.2 migration or compatibility assessment is separate work after completion of the funded v0.1 implementation.
