@@ -1,39 +1,33 @@
 # WE03 - Plural / Collective Encounter
 
-**Separate evaluation under distinct Profile Expressions without a meta-order**
+**Conflicting Profile Expressions, contested provenance, and deliberate non-expression**
 
 **Status:** FC1 normalised semantic fixture. Companion conformance material; non-normative except where it reproduces requirements from the canonical semantic architecture.
 
-**Suite discipline:** Semantic conformance, not implementation conformance. This fixture tests whether SILT preserves distinct normative orders, distinct provenance and distinct evaluative results without silently merging, ranking or subordinating them.
+**Suite discipline:** Semantic conformance, not implementation conformance. The fixture tests whether an implementation preserves SILT distinctions without importing an unstated rule or universalising the originating order.
 
 | SATISFIED | NOT_SATISFIED | INDETERMINATE |
 |---|---|---|
 | Expressed condition is met. | Expressed condition is known not to be met. | No conclusion without importing an unstated rule, missing fact or external judgement. |
 
-Deliberate non-expression is not a fourth evaluation outcome. Where a condition is not expressed into the encounter, SILT creates no evaluation object for that condition.
+No other SILT evaluation outcome is introduced by this fixture. Where a condition does not enter SILT evaluation at all, no evaluation object should be created.
 
 ## Purpose and pressure test
 
-**Purpose:** test whether one Presentation can be evaluated separately under more than one applicable Profile Expression without SILT manufacturing a meta-order between them.
+**Purpose:** test whether different normative orders can make themselves mutually legible at a single encounter while remaining distinct.
 
-**Pressure test:** collective Standing, representational Authority, Profile Expression provenance, receiver-side requirements and deliberate non-expression must remain distinguishable.
+**Pressure test:** conflicting Profile Expressions, contested provenance, collective Standing, representational Authority and deliberate non-expression.
 
 ## Encounter
 
-A collective C governs access to a place, resource or arrangement according to its own relationships and decision processes. Participant P has C-recognised Standing and is claimed to have Authority arising from a collective process to act in the encounter.
+Collective C governs access to collectively held material. Participant P has recognised relational Standing within C and has completed a collective process that, under PE-C, is sufficient to authorise P to negotiate and approve a defined access arrangement. Receiving Institution R applies PE-R, under which representational Authority requires a digitally signed resolution in R's approved governance registry. P does not possess that artefact. A subgroup within C contests the Authority under which Working Group WG authored PE-C. C also indicates that another encounter-relevant condition exists but cannot be adequately expressed in SILT without material distortion.
 
-A receiving order R also evaluates the encounter. Under R's expressed conditions, the requested act requires a registered, formally signed resolution. That condition is not satisfied.
-
-Two Profile Expressions therefore apply:
-
-```text
-PE-C  collective expression
-PE-R  receiving-order expression
-```
-
-PE-C's provenance is itself contested at the encounter: the substantive collective conditions are expressed, but whether the body or working group that produced PE-C had Authority to express those conditions remains unresolved.
-
-One further collective condition is deliberately not expressed into SILT because faithful bounded expression is not available or appropriate.
+| Field | Normalised fixture value |
+|---|---|
+| Participants | P = presenting Participant; C = collective / originating order; WG = author of PE-C; R = receiving institution |
+| Primary Source | Collective relational and governance Source, SRC-C. |
+| Profile Expressions | PE-C and PE-R, evaluated separately. |
+| Primary semantic stress | Plural evaluation without a universal meta-order or forced translation. |
 
 ## Normalised semantic objects
 
@@ -41,53 +35,12 @@ One further collective condition is deliberately not expressed into SILT because
 
 ```text
 SRC-C
-  type: collective_relational_source
-  grounds:
-    - recognised relationship to Collective C
-    - relevant collective practice / process
+  type: collective_relational_and_governance_source
 
 STAND-P-C
   participant_ref: P
-  relation: C-recognised relational standing
+  relation: recognised relational position within C
   source_ref: SRC-C
-```
-
-P's relational Standing does not by itself establish Authority to represent, bind or speak for C.
-
-### Presentation and Evidence
-
-```text
-PRES-03
-  participant_ref: P
-  standing_refs:
-    - STAND-P-C
-  claimed_authority_ref:
-    - AUTH-P-C
-  evidence_refs:
-    - EVID-C-RELATION
-    - EVID-C-PROCESS
-  purpose:
-    establish encounter-relevant Standing and claimed Authority for the proposed access arrangement
-
-EVID-C-RELATION
-  type: evidence_of_collective_relationship
-
-EVID-C-PROCESS
-  type: evidence_of_collective_process
-```
-
-### Authority and Action
-
-```text
-AUTH-P-C
-  participant_ref: P
-  claimed_relation: authority_to_act_for_collective_in_this_encounter
-  source_ref: SRC-C
-
-ACT-ACCESS-ARRANGEMENT
-  actor_ref: P
-  type: proposed_access_arrangement
-  authority_ref: AUTH-P-C
 ```
 
 ### Profile Expressions
@@ -95,166 +48,109 @@ ACT-ACCESS-ARRANGEMENT
 ```text
 PE-C
   provenance:
-    claimed_expressing_body: WG-C
-  expressed_conditions:
-    - P has the relevant C-recognised Standing
-    - the relevant collective process supports P's claimed Authority
-  deliberately_non_expressed_conditions:
-    - C-CONDITION-X
+    authored_by: WG
+    authority_ref: AUTH-WG-PE-C
+    authority_to_express: contested
+  conditions:
+    - P relational Standing
+    - recognised collective process sufficient for the defined Authority
+    - institutional registry resolution not required
+    - one encounter-relevant condition deliberately remains outside bounded expression
 
 PE-R
-  expressed_conditions:
-    - P occupies the relevant relational position
-    - a registered and signed resolution exists
-    - that resolution supports the requested Authority
+  conditions:
+    - recognised position in relation to C
+    - registered digitally signed resolution required for representational Authority
 ```
 
-The Profile Expressions are bounded encounter-relevant expressions. Neither is a complete model of the order from which it arises.
+The same Presentation is evaluated under both expressions. SILT does not merge PE-C and PE-R into a synthetic rule set or silently rank one above the other.
 
-## Expected base evaluation
+### Presentation
+
+```text
+PRES-03
+  participant_ref: P
+  standing_refs:
+    - STAND-P-C
+  authority_refs:
+    - AUTH-P-ACCESS
+  evidence_refs:
+    - EVID-C-RELATION
+    - EVID-C-PROCESS
+  proposed_action_ref:
+    ACT-ACCESS-ARRANGEMENT
+```
+
+`AUTH-P-ACCESS` and `AUTH-WG-PE-C` are FC1 reference identifiers used to align this human-readable fixture with the machine-readable companion. They name relations already present in the source fixture; they do not add new encounter conditions.
+
+## Expected evaluations
 
 ### Under PE-C
 
 ```text
-P relational Standing:                  SATISFIED
-P claimed Authority under collective process: SATISFIED
-WG-C Authority to express PE-C:         INDETERMINATE
-C-CONDITION-X:                           NO SILT EVALUATION
+P relational Standing:          SATISFIED
+P Authority for defined Action: SATISFIED
+WG Authority to express PE-C:   INDETERMINATE
 ```
 
-The substantive Authority result under PE-C remains `SATISFIED`. The unresolved provenance of PE-C is recorded separately as `INDETERMINATE`; it does not silently rewrite the substantive condition into a different outcome.
+The earlier phrase `SATISFIED provisionally` is not used. Uncertainty about PE-C provenance is represented separately through the `INDETERMINATE` provenance condition, rather than creating a qualified fourth outcome.
 
 ### Under PE-R
 
 ```text
-P relevant relational position:         SATISFIED
-registered signed resolution condition:  NOT_SATISFIED
-requested Authority under PE-R:          NOT_SATISFIED
+P relational position:           SATISFIED
+registry-backed resolution:       NOT_SATISFIED
+P Authority for requested Action: NOT_SATISFIED
 ```
 
-### Cross-expression result
+### Across Profile Expressions
 
 ```text
-PE-C Authority result: SATISFIED
-PE-R Authority result: NOT_SATISFIED
 aggregate SILT result: absent
 ```
 
-Neither result invalidates, supersedes or silently ranks the other. SILT Core does not supply a universal conflict-of-laws rule or hidden receiver precedence rule.
+Any rule of precedence, mutual recognition, application or negotiated accommodation requires its own expressed ground. SILT does not supply one universally.
 
-## Extended encounter
+## Deliberate non-expression
 
-### Stage 1 - Separate evaluation
+```text
+NONEXP-01
+  indicated: true
+  reason:
+    bounded expression would risk material distortion
+```
 
-Evaluate `PRES-03` under PE-C and PE-R separately. Preserve provenance, substantive conditions and results as distinct records.
-
-### Stage 2 - Identify the point of non-satisfaction
-
-The PE-R failure is the registered signed resolution condition. That result does not extinguish P's underlying collective Standing or retroactively invalidate the PE-C evaluation.
-
-### Stage 3 - Continue, challenge or decline
-
-The encounter may proceed through further Evidence, revision of a Profile Expression, challenge to provenance, an exception process, refusal, or withdrawal. Those are encounter- or order-specific pathways, not universal Core rules.
-
-### Stage 4 - Re-evaluate after provenance resolution
-
-If later Evidence establishes or defeats WG-C's Authority to express PE-C, that provenance condition may be re-evaluated. SILT need not rewrite the earlier substantive evaluation as though the unresolved provenance question had never existed.
+There is deliberately no evaluation object for the unexpressed condition. Non-expression is not `SATISFIED`, `NOT_SATISFIED` or `INDETERMINATE`. It means the condition did not enter SILT evaluation.
 
 ## Adversarial variants
 
-### WE03-P1 - PE-C provenance later established
-
-```text
-WG-C Authority to express PE-C: SATISFIED
-P Authority under PE-C:         SATISFIED
-```
-
-The earlier substantive result need not be changed merely because provenance becomes determinate later.
-
-### WE03-P2 - PE-C provenance later defeated
-
-```text
-WG-C Authority to express PE-C: NOT_SATISFIED
-```
-
-This affects the standing of PE-C as an encounter expression. SILT does not infer from that result alone that P lacked all underlying collective Standing or that every proposition stated in PE-C was false.
-
-### WE03-P3 - Receiver offers an expressed exception pathway
-
-PE-R may itself provide an exception, alternative evidence route or composition rule. SILT may evaluate that expressed pathway. SILT does not invent one.
-
-### WE03-P4 - Receiver silently ranks PE-R above PE-C
-
-```text
-implementation behaviour: choose PE-R as controlling without an expressed rule
-conformance result: FAIL
-```
-
-Receiver-side technical or institutional position does not create semantic precedence by itself.
-
-### WE03-P5 - Membership or belonging treated as representational Authority
-
-```text
-STAND-P-C: SATISFIED
-AUTH-P-C:  not established merely from Standing
-```
-
-Collective Standing and Authority to represent or bind the collective remain distinct.
-
-### WE03-P6 - Deliberate non-expression treated as failure
-
-```text
-C-CONDITION-X: NO SILT EVALUATION
-```
-
-An implementation fails if it converts deliberate non-expression into `NOT_SATISFIED`, `INDETERMINATE`, invalidity or absence of legitimacy.
-
-### WE03-P7 - Authority later changes while Standing persists
-
-```text
-STAND-P-C: persists
-AUTH-P-C:  revoked, expired, superseded or otherwise no longer operative
-```
-
-The change in representational Authority does not automatically extinguish the relational Standing from which P remains connected to C.
-
-### WE03-P8 - Competing collective expressions
-
-A second collective body or process produces `PE-C2` with different encounter-relevant conditions.
-
-```text
-PE-C result:  retained under PE-C
-PE-C2 result: evaluated separately under PE-C2
-aggregate result: absent unless an expressed composition rule exists
-```
-
-SILT does not choose which collective expression is "really" authoritative merely because both enter the encounter.
+- **P1:** provenance is resolved in favour of WG, so Authority to express PE-C becomes `SATISFIED`.
+- **P2:** the provenance challenge succeeds against WG; PE-C remains legible as a claimed expression but is not treated as authoritatively applicable.
+- **P3:** R accepts C's collective-process Evidence through an expressed exception or agreement.
+- **P4:** R silently ranks PE-R above PE-C without an expressed precedence rule. This fails conformance.
+- **P5:** collective membership or belonging is incorrectly treated as sufficient representational Authority. This fails conformance.
+- **P6:** deliberate non-expression is treated as absence or `NOT_SATISFIED`. This fails conformance.
+- **P7:** a later collective process changes P's Authority while P's relational Standing remains unchanged.
+- **P8:** two competing collective Profile Expressions emerge within C; neither is silently canonicalised.
 
 ## Conformance assertions
 
 A conforming implementation MUST preserve:
 
-- collective Standing is distinct from representational Authority;
-- Profile Expression provenance is distinct from substantive evaluation under that Profile Expression;
-- PE-C and PE-R remain distinct interpretive envelopes;
-- results remain linked to the Profile Expression under which they were produced;
-- deliberate non-expression creates no evaluation outcome;
-- Authority may change while Standing persists; and
-- competing collective expressions may coexist without SILT manufacturing a meta-order.
+- Collective Standing is distinct from representational Authority.
+- PE-C and PE-R remain distinct expressions.
+- Substantive Authority evaluation is distinct from Profile Expression provenance evaluation.
+- Non-expression is distinct from `INDETERMINATE`.
+- Encounter disagreement is distinct from universal invalidity.
 
 A conforming implementation MUST NOT infer:
 
-- belonging or membership implies Authority to represent the collective;
-- receiver-side rules automatically outrank an originating collective expression;
-- disagreement between Profile Expressions means one is invalid;
-- contested Profile Expression provenance automatically negates every substantive relation presented under it;
-- non-expression is a failed condition; or
-- multiple Profile Expressions require a single aggregate SILT result.
+- one Profile Expression has universal precedence without an expressed ground;
+- membership implies Authority to bind the collective;
+- an unexpressed condition has machine-inferable content;
+- R's registry requirement constitutes C's internal governance; or
+- cross-order disagreement must collapse into a single validity result.
 
 ## Fixture verdict
 
-This fixture does not expose a missing SILT Core primitive. It confirms the need to preserve separate Profile Expression provenance, separate per-expression evaluation and the distinction between relational Standing and representational Authority.
-
-The architectural seam remains intact:
-
-> **Source → Standing → Presentation → evaluation at the encounter**
+This fixture does not expose a missing SILT Core primitive. It tests a domain-specific configuration of the existing grammar. A failure should reopen only the affected semantic seam, not the architecture wholesale.
