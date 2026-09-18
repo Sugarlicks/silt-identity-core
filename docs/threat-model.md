@@ -21,7 +21,7 @@ A technically secure implementation can still be semantically unsafe.
 This threat model covers threats to the semantic integrity of SILT Core relations and encounter evaluation, including:
 
 - Source-grounded Standing;
-- Presentation as the bounded present-tense projection brought into an encounter;
+- Presentation as the bounded encounter-specific projection brought into an encounter;
 - Profile Expression as an encounter-relevant expression rather than a representation of an entire originating order;
 - Authority and its distinction from Technical Capability;
 - Evidence and its distinction from the relation evidenced;
