@@ -1,5 +1,8 @@
 # Licensing SILT Core v0.2
 
+**Author and copyright holder of the v0.2 Semantic Architecture:** Gareth Farry.  
+**Copyright:** © 2026 Gareth Farry.
+
 SILT Core uses different licences for different kinds of release material so that the semantic specification remains openly reusable while software and machine-readable artefacts remain easy to implement.
 
 ## Licence scope
@@ -26,7 +29,7 @@ The full licence texts are in `LICENSES/CC-BY-4.0.txt` and `LICENSES/Apache-2.0.
 
 For CC BY material, a practical attribution is:
 
-> SILT Core contributors, *SILT Core v0.2: Semantic Architecture* (2026), licensed under CC BY 4.0.
+> Gareth Farry, *SILT Core v0.2: Semantic Architecture* (2026), licensed under CC BY 4.0.
 
 Where reasonable, link to https://github.com/Sugarlicks/silt-identity-core and indicate if changes were made.
 
