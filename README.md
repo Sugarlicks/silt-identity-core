@@ -1,151 +1,63 @@
-# SILT Core
+# SILT Core v0.2 - Release Candidate 2.1
 
-**Authority semantics for digital action.**
+**Status:** Release Candidate 2.1  
+**Date:** 18 September 2026  
+**Repository:** https://github.com/Sugarlicks/silt-identity-core  
+**Website:** https://siltcore.org
 
-Current digital systems are built on an epistemological assumption: 
-legitimacy flows from external validation.
+SILT Core is a semantic architecture for moments of encounter between Participants and systems grounded in different legal, customary, cultural, private, institutional or technical orders.
 
-A government issues your identity.
-A credential authority attests your attributes.
-A platform recognises your account.
-A system grants your permissions.
+Its canonical architectural seam is:
 
-You exist, digitally, to the extent that external systems confirm you.
+> **Source -> Standing -> Presentation -> evaluation at the encounter**
 
-SILT begins from the other direction.
+SILT makes relevant relational legitimacy mutually legible without requiring originating orders to collapse into a single ontology or surrender their own sources of authority. It is semantically thick and operationally thin.
 
-What a person, collective, institution, or agent carries into a moment 
-of digital action — standing, authority source, mandate, obligation, 
-consent, reliance, and revocation — does not begin with system 
-recognition. It precedes it.
+## Release-candidate result
 
-Current infrastructure has no stable grammar for this. It can model 
-who you are, what attributes you hold, and what permissions you have 
-been granted. It cannot model what you bring into an action, in what 
-capacity you are acting, by whose authority, under what mandate, and 
-whether others may safely rely on the act.
+The v0.2 architecture has passed four planned semantic pressure domains under a common conformance discipline: electronic transferable instruments, credential-carried institutional Standing, plural and collective Profile Expressions, and recursive AI-agent delegation. The unified suite contains 4 base fixtures and 30 adversarial variants.
 
-SILT builds that grammar.
+An experimental mapping to Legal Context Protocol v1.0 was then used as an external carrier pressure test. The mapping is intentionally partial where carrier convenience would otherwise erase plural Profile Expressions or deliberate non-expression. No current test requires a new universal Core object.
 
-SILT Core is a semantic layer for expressing the conditions of lawful 
-digital action across plural systems.
+This supports semantic freeze. It does not mean that SILT determines substantive legal validity, cultural legitimacy or institutional recognition.
 
-It is not a credential system.
-It is not a permission layer.
-It is not a blockchain protocol.
-It is not a legaltech-only product.
+## Core distinctions
 
-It is the missing authority layer beneath these systems: the layer 
-that asks not merely:
+SILT Core v0.2 does not contain a universal `Status` object or a universal `Capacity` object. Standing is relational and grounded in Source. Presentation is encounter-specific. Profile Expression supplies bounded encounter conditions without becoming a second architectural spine. Technical Capability remains distinct from Authority. Binding remains a downstream effect rather than a universal Core conclusion.
 
-> Has this action been permitted?
+Evaluation has exactly three outcomes:
 
-but:
+- `SATISFIED`
+- `NOT_SATISFIED`
+- `INDETERMINATE`
 
-> By what source of authority is this action being taken, in what 
-> capacity, under what mandate, within what scope, with what consent, 
-> and how can that authority be revoked?
+A condition deliberately outside evaluation is not a fourth outcome.
 
----
+## Package contents
 
-## The distinction that matters
+- `spec/` - the reader-facing v0.2 Semantic Architecture release candidate.
+- `conformance/` - the unified machine-validatable conformance suite and JSON Schema.
+- `bindings/` - the experimental, non-normative SILT <-> LCP mapping.
+- `docs/` - changelog, migration guidance and repository transition notes.
+- `GOVERNANCE.md` - interim stewardship and change-control process.
+- `CONTRIBUTING.md` - contribution boundary and semantic-change discipline.
+- `IPR_POLICY.md` - interim specification IPR position.
+- `TRADEMARK_AND_CONFORMANCE.md` - interim mark and conformance-claim policy.
+- `LICENSING.md` and `LICENSES/` - licence scope and full licence texts.
+- `ci/` and `.github/workflows/` - machine validation of the conformance suite.
 
-Most identity systems ask: *Who is this?*
+## Licensing
 
-Most permission systems ask: *What is this account allowed to do?*
+The specification and narrative public documentation are licensed under **CC BY 4.0**. Machine-readable conformance artefacts, bindings, examples and reference code in the release package are licensed under **Apache License 2.0**, unless a file states otherwise. Trademark, certification and patent rights are not granted merely by those copyright/software licences.
 
-SILT asks: *What is the authority structure behind this action?*
+See `LICENSING.md`, `IPR_POLICY.md` and `TRADEMARK_AND_CONFORMANCE.md`.
 
-An action may be technically permitted but not legitimately authorised. 
-Every time a person, collective, AI agent, institution, or automated 
-system touches a digital environment — signs, files, transfers, votes, 
-delegates, consents, or instructs — the conditions of that touch are 
-invisible to the system receiving it.
+## Governance posture
 
-SILT makes them visible.
+v0.2 uses interim maintainer stewardship with public change control. SILT does not yet claim foundation governance or institutional neutrality. Core semantic changes must be earned by a concrete conformance failure, implementation failure or external mapping that exposes an otherwise inexpressible semantic distinction.
 
----
+## Release discipline
 
-## Status
+Release Candidate 2.1 is intended to be the publication base for `v0.2.0`. Before the public tag, the remaining work is repository migration and rights-chain sign-off, reconciliation of older schemas/examples that are actually in the v0.2 release path, the ecosystem-positioning companion, and final citation/DOI metadata.
 
-**v0.1** is released. It establishes the initial semantic layer, 
-core primitives, machine-readable schemas, threat model, misuse case 
-test vectors, and a reference consent validator under 
-`/reference/validators/consent`.
-
-**v0.2** is in active development. Current work is deepening the 
-primitive set through primary research across agency law, fiduciary 
-doctrine, legal pluralism, orality and institutional recognition, and 
-the philosophical foundations of standing and obligation across legal 
-traditions. The v0.2 work expands SILT's semantic scope to support 
-plural legal and governance systems and to address non-individual and 
-non-human holders: collectives, trusts, AI agents, tribal entities, 
-and offices.
-
----
-
-## Further reading
-
-Full documentation, primitives, use cases, threat models, roadmap, 
-and interoperability notes are in [`/docs/overview.md`](./docs/overview.md).
-
-Normative specifications are in [`/spec`](./spec).
-
-## Implementation profiles
-
-This repository also includes non-normative implementation profiles showing how SILT Core v0.1 may be applied in constrained real-world workflows.
-
-Implementation profiles do not modify SILT Core v0.1. They are practical examples, pilots, and learning artefacts. Findings from implementation profiles may inform later SILT Core v0.2 consideration.
-
-### AUT CISRC research delegation profile
-
-The AUT CISRC profile uses a constrained AUT CISRC workflow to demonstrate how SILT Core v0.1 delegation and revocation concepts may be applied across university research-governance environments.
-It models a supervisor or project lead delegating limited authority to a research assistant or student for a defined research task, resource, purpose, action, and time period.
-AUT CISRC is the pilot context rather than the exclusive intended user. Institutional variations, including different committees, research offices, agencies, and authority paths, may be represented within the profile without altering SILT Core v0.1.
-
-Profile documentation:
-
-    docs/implementation-profiles/aut-cisrc/
-
-Profile schemas:
-
-    schemas/implementation-profiles/aut-cisrc/
-
-Example artefacts and test cases:
-
-    examples/aut-cisrc-research-delegation/
-
-Reference validator prototype:
-
-    reference/validators/aut-cisrc-delegation/
-
-The current AUT CISRC example set covers:
-
-- valid delegated authority;
-- expired delegation;
-- wrong delegate;
-- action outside permitted scope;
-- revoked delegation;
-- resource mismatch;
-- purpose mismatch.
-
-This profile is part of the Vietsch / AUT CISRC implementation work and should be read as an implementation example, not as a normative change to SILT Core v0.1.
-
----
-
-## Licence
-
-Apache License 2.0. See [`LICENSE`](./LICENSE).
-
----
-
-## Contact
-
-Website: [siltcore.org](https://siltcore.org)
-Repository: [github.com/Sugarlicks/silt-identity-core](https://github.com/Sugarlicks/silt-identity-core)
-
----
-
-*As digital systems become more autonomous, the future problem is 
-not only identity verification. It is authority legibility. SILT 
-Core provides a grammar for that legibility.*
+AUT CISRC remains a separate **SILT Core v0.1 implementation profile**. It is not part of the v0.2 migration or conformance claim.
