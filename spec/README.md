@@ -1,17 +1,20 @@
-# SILT Core v0.2 specification source
+# SILT Core v0.2 specification
 
-The normative SILT Core v0.2 Semantic Architecture is the reader-facing specification for the release candidate.
+The canonical SILT Core v0.2 Semantic Architecture publication candidate is:
 
-For the `release/v0.2-rc2.1` branch, the specification source is currently held in the ordered files under `spec/source-parts/`. Those files are a packaging mechanism only. They do not divide the architecture into separate specifications and MUST be read in numeric order as one document.
+`spec/SILT_Core_v0.2.0_Semantic_Architecture.md`
 
-The publication artefact is titled:
-
-`SILT Core v0.2: Semantic Architecture - Release Candidate 2`
+It is the single normative semantic specification intended for the `v0.2.0` tag.
 
 Its canonical architectural seam is:
 
 > **Source -> Standing -> Presentation -> evaluation at the encounter**
 
-The final `v0.2.0` tag MUST publish the architecture as a single canonical specification artefact, with the segmented release-candidate source either removed or clearly retained as build/source material.
+**Author:** Gareth Farry  
+**Copyright:** © 2026 Gareth Farry  
+**Project / publishing identity:** SILT Core  
+**Licence:** CC BY 4.0; see `../LICENSING.md` for package scope.
+
+The files under `spec/source-parts/` are retained only as pre-consolidation release-candidate source fragments. They are non-canonical packaging/build history and MUST NOT be cited or treated as separate specifications. If any discrepancy exists, `SILT_Core_v0.2.0_Semantic_Architecture.md` controls.
 
 Supporting conformance fixtures, examples and experimental mappings are non-normative unless expressly stated otherwise. They test and illustrate the architecture; they do not add Core semantics by implication.
