@@ -1,148 +1,66 @@
-# Contributing
+# Contributing to SILT Core
 
-We welcome contributions that improve:
+SILT Core welcomes critique, worked encounters, implementation evidence, documentation improvements and carefully scoped semantic proposals.
 
-* clarity of definitions
-* semantic consistency
-* interoperability with identity systems
-* threat modelling and misuse cases
-* schema clarity
-* reference examples
-* revocation and consent modelling
+The v0.2 architectural seam is:
 
-SILT Core is a specification-first project focused on authority semantics for digital action.
+> **Source -> Standing -> Presentation -> evaluation at the encounter**
 
-The current public release is **v0.1**.
+The current Semantic Architecture is canonical over older repository material.
 
-**v0.2 is being planned.**
+## Contribution categories
 
----
+A contribution should identify itself as one of: normative Core; conformance; explanatory documentation; experimental binding; implementation profile; reference code; research or issue evidence.
 
-## Scope of Contributions
+Small editorial corrections may be submitted directly. Major semantic changes SHOULD begin with an issue.
 
-Contributions should focus on the **public semantic layer**, including:
+## Semantic contribution discipline
 
-* capacity expression
-* authority source referencing
-* mandate scoping
-* consent conditions
-* reliance conditions
-* revocation pathways
-* misuse cases
-* interoperability notes
-* implementation-facing examples
+A proposal to change Core semantics MUST identify the concrete problem and why the current architecture cannot express it. Where possible it should include a worked encounter or negative test.
 
-Contributions should help make the distinction between identity, permission, capacity, authority, consent, reliance, and revocation clearer.
+Please do not reintroduce the following as universal Core objects or assumptions without a demonstrated architecture failure:
 
-Please preserve the core distinction:
+- `Status`;
+- `Capacity`;
+- a universal Holder role;
+- credential or verifier success as Standing;
+- Technical Capability as Authority;
+- collective belonging as authority to represent a collective;
+- a single canonical Profile Expression or meta-order;
+- Binding as an automatic Core conclusion.
 
-> A system may permit an action without proving that the action is legitimately authorised.
+Profile Expression is a bounded, selective and non-exhaustive expression of encounter-relevant conditions. Presentation is the encounter-specific act or envelope through which a Participant brings a bounded projection of Standing. They are distinct constructs and are not parallel architectural spines.
 
----
+SILT Core has exactly three evaluation outcomes: `SATISFIED`, `NOT_SATISFIED`, and `INDETERMINATE`. Conditions outside evaluation must remain separate from that vocabulary.
 
-## Contribution Boundary
+## Tests and examples
 
-SILT Core defines a public semantic layer.
+A conformance contribution should distinguish:
 
-It may be discussed in external standards bodies, working groups, research forums, and implementation contexts.
+- condition-level SILT evaluation;
+- conditions not evaluated;
+- prohibited inferences;
+- expected implementation conformance; and
+- whether the architecture successfully detects the tested behaviour.
 
-However:
+Negative tests are especially useful where a technically successful implementation could still make an invalid semantic inference.
 
-* contributions in external forums do not constitute transfer of the full SILT architecture
-* SILT may include additional models, structures, instruments, and implementation pathways not disclosed publicly
-* this repository reflects the **public specification layer only**
-* reference code is experimental unless expressly marked as normative
-* planning notes do not create release commitments
+## Adjacent standards
 
-This boundary matters.
+When proposing an external standard or protocol, state what layer it occupies and whether it complements, overlaps with, competes with or risks collapsing the SILT semantic layer. Named external standards are non-normative unless explicitly incorporated through the Core change process.
 
-SILT Core is open at the semantic layer, but the full architecture may include additional private, commercial, legal, governance, or assurance components.
+## Licensing of contributions
 
----
+Narrative specification and documentation contributions are accepted for publication under **CC BY 4.0**. Reference code and machine-readable implementation/conformance artefacts are accepted under **Apache License 2.0**, unless a file states otherwise.
 
-## Current Release Position
+By submitting a contribution, you represent that you have the right to submit it under the applicable licence. Do not submit third-party material that cannot lawfully be redistributed under that licence.
 
-**v0.1** has been released as the initial public specification and framing layer.
+## Patent/IPR boundary
 
-v0.1 establishes:
+SILT's direction is royalty-free implementability of the public specification. The current interim IPR policy does not yet create a complete standards-body patent commitment for all contributors.
 
-* the authority problem
-* the distinction between identity, permission, and authority
-* the initial semantic frame
-* the foundational primitives
-* the specification-first posture of the project
+A normative contribution that may introduce a patent claim necessarily implicated by implementation MUST disclose that issue to the maintainers. Maintainers may defer or reject such a contribution until an adequate royalty-free or non-assertion position is documented. See `IPR_POLICY.md`.
 
-**v0.2** is being planned.
+## Before a major pull request
 
-Candidate areas may include structured authority claims, validation logic, revocation semantics, expanded primitive definitions, AI-agent execution contexts, legal and governance workflow examples, digital commerce examples, DID/VC interoperability mapping, and misuse-case tests.
-
-These are planning areas, not release commitments.
-
----
-
-## Reference Code
-
-Reference code may exist in this repository.
-
-For example, the reference consent validator under `/reference/validators/consent` is experimental and non-normative.
-
-It is provided to test early implementation patterns only.
-
-It does not define the specification and does not constrain future v0.2 schema design.
-
----
-
-## Please Avoid
-
-Please avoid contributions that:
-
-* assume a specific platform, wallet, blockchain, or credential system
-* collapse capacity into identity or permissions
-* remove or weaken revocation logic
-* imply that SILT Core guarantees legal enforceability
-* treat reference code as normative specification
-* impose a single source of authority
-* narrow SILT Core into legaltech only
-* create release commitments beyond v0.2 planning
-
----
-
-## Preferred Language
-
-Where possible, use precise language such as:
-
-* participant
-* action
-* capacity
-* authority source
-* mandate scope
-* consent conditions
-* reliance conditions
-* revocation state
-
-Avoid treating “identity”, “account”, “holder”, “agent”, “actor”, and “user” as interchangeable unless the context clearly requires it.
-
----
-
-## Before Major Contributions
-
-Before major contributions, please open an issue for discussion.
-
-A useful issue should explain:
-
-* the problem or gap
-* the affected primitive, schema, document, or misuse case
-* the proposed change
-* whether the contribution is intended to be normative, explanatory, illustrative, or experimental
-
-Small documentation fixes may be submitted directly by pull request.
-
----
-
-## Licence
-
-By contributing to this repository, you agree that your contribution will be licensed under the repository licence unless otherwise stated.
-
-This repository is licensed under the Apache License 2.0.
-
-See [`LICENSE`](./LICENSE) for details.
+Please explain the problem, affected section or artefact, proposed change, normative status, conformance impact and any IPR concern. For a semantic change, include the failure case that earns reopening Core.
