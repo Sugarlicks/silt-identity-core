@@ -188,6 +188,14 @@ See [`LICENSING.md`](./LICENSING.md) for the repository licensing boundary, incl
 
 ---
 
+## Citation
+
+Citation metadata for SILT Core v0.2.0 is provided in [`CITATION.cff`](./CITATION.cff).
+
+The version DOI and publication date will be added when the `v0.2.0` release is published and archived. The archive metadata plan is recorded in [`docs/release/v0.2-zenodo-metadata.md`](./docs/release/v0.2-zenodo-metadata.md).
+
+---
+
 ## Contact
 
 Website: [siltcore.org](https://siltcore.org)  
