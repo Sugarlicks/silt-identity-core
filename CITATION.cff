@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use or refer to SILT Core v0.2, please cite this release. Licensing is split by artefact type; see LICENSING.md."
+title: "SILT Core v0.2: Semantic Architecture for Plural Encounters"
+type: software
+authors:
+  - family-names: "Fakhry"
+    given-names: "Gareth"
+version: "0.2.0"
+repository-code: "https://github.com/Sugarlicks/silt-identity-core"
+url: "https://github.com/Sugarlicks/silt-identity-core"
+abstract: >-
+  SILT Core v0.2 defines a semantic architecture for encounters between
+  participants operating under different legal, customary, cultural, private,
+  institutional or technical orders. Its canonical seam is Source → Standing →
+  Presentation → evaluation at the encounter. SILT is designed to support mutual
+  legibility without requiring originating orders to collapse into a single
+  ontology or surrender their own sources of authority.
+keywords:
+  - "semantic interoperability"
+  - "plural legal orders"
+  - "customary law"
+  - "Indigenous governance"
+  - "standing"
+  - "authority"
+  - "private ordering"
+  - "AI agents"
+  - "digital infrastructure"
