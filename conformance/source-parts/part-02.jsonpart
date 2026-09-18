@@ -1,0 +1,180 @@
+          "architecture_test_result": "PASS",
+          "architectural_finding": "Core already permits multiple relational positions and multiple semantic claims in one Presentation."
+        },
+        {
+          "id": "V3",
+          "title": "Custodial control",
+          "facts": "A custodian C has technical control of the authoritative record for H3 under a valid custodial mandate.",
+          "expected_evaluations": [
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "record_integrity",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "custodian_record_control",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "h3_standing_entitlement",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "custodian_authority",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "obligation_state",
+              "outcome": "SATISFIED"
+            }
+          ],
+          "not_evaluated_conditions": [
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "aggregate_result",
+              "reason_code": "no_composition_rule"
+            }
+          ],
+          "prohibited_inferences": [],
+          "expected_implementation_conformance": "CONFORMING",
+          "architecture_test_result": "PASS",
+          "architectural_finding": "Participant + Authority + Technical Capability + Attribution are sufficient to preserve the distinction."
+        },
+        {
+          "id": "V4",
+          "title": "Revoked agent",
+          "facts": "H3 retains the relevant instrument Standing, but Agent A's delegation was revoked before Presentation.",
+          "expected_evaluations": [
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "record_integrity",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "record_control",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "transfer_provenance",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "standing_entitlement",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "agent_authority",
+              "outcome": "NOT_SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "obligation_state",
+              "outcome": "SATISFIED"
+            }
+          ],
+          "not_evaluated_conditions": [
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "aggregate_result",
+              "reason_code": "no_composition_rule"
+            }
+          ],
+          "prohibited_inferences": [],
+          "expected_implementation_conformance": "CONFORMING",
+          "architecture_test_result": "PASS",
+          "architectural_finding": "Existing Authority/Revocation semantics are sufficient; failed agent Authority does not extinguish H3 Standing."
+        },
+        {
+          "id": "V5",
+          "title": "Incomplete transfer lineage",
+          "facts": "Record integrity and control are strong, but one transfer event is missing or disputed.",
+          "expected_evaluations": [
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "record_integrity",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "record_control",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "transfer_provenance",
+              "outcome": "INDETERMINATE"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "standing_entitlement",
+              "outcome": "INDETERMINATE"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "agent_authority",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "obligation_state",
+              "outcome": "SATISFIED"
+            }
+          ],
+          "not_evaluated_conditions": [
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "aggregate_result",
+              "reason_code": "no_composition_rule"
+            }
+          ],
+          "prohibited_inferences": [],
+          "expected_implementation_conformance": "CONFORMING",
+          "architecture_test_result": "PASS",
+          "architectural_finding": "The base fixture already exercises the intended INDETERMINATE behaviour."
+        },
+        {
+          "id": "V6",
+          "title": "Paid instrument / stale Presentation",
+          "facts": "H3 occupies the relevant holder-related position, but the payment Obligation was discharged before Presentation.",
+          "expected_evaluations": [
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "record_integrity",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "record_control",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "transfer_provenance",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "standing_entitlement",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "agent_authority",
+              "outcome": "SATISFIED"
+            },
+            {
+              "profile_expression_id": "PE-ETI-PAYMENT-01",
+              "condition_id": "obligation_state",
+              "outcome": "NOT_SATISFIED"
+            }
+          ],
+          "not_evaluated_conditions": [
+            {
