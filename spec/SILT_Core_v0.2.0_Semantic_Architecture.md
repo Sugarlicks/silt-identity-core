@@ -1,12 +1,12 @@
-SILT Core v0.2
+SILT Core v0.2.0
 
 Semantic Architecture
 
-Release Candidate 2.1 | 18 September 2026
+23 September 2026
 
-| **Status** | Release Candidate 2.1                                                      |
+| **Status** | Release                                                                     |
 |------------|----------------------------------------------------------------------------|
-| **Role**   | Canonical v0.2.0 publication candidate, pending final release tag            |
+| **Role**   | Canonical semantic reference for SILT Core v0.2.0                           |
 | **Scope**  | Semantic architecture, not implementation specification                    |
 | Repository | https://github.com/Sugarlicks/silt-identity-core                           |
 | Author     | Gareth Farry                                                               |
@@ -47,7 +47,7 @@ The key words MUST, MUST NOT, SHOULD, SHOULD NOT and MAY are to be interpreted a
 
 ## 0.2 Specification status and licence
 
-This document is the normative semantic architecture for SILT Core v0.2 Release Candidate 2.1 and is the publication candidate for the `v0.2.0` tag. Normative requirements are identified by the capitalised BCP 14 terms defined above.
+This document is the normative semantic architecture for SILT Core v0.2.0, released 23 September 2026. Normative requirements are identified by the capitalised BCP 14 terms defined above.
 
 Supporting conformance fixtures and experimental mappings are non-normative unless expressly stated otherwise. They test and illustrate the architecture; they do not add Core semantics by implication.
 
