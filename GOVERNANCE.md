@@ -83,7 +83,7 @@ A later migration analysis may compare the completed implementation against v0.2
 
 ### v0.2
 
-SILT Core v0.2 is at **Freeze Candidate 1** and is undergoing release packaging and repository reconciliation.
+SILT Core v0.2 is at **Freeze Candidate 1**. Repository reconciliation, conformance packaging and release-level licensing classification are complete; final release packaging remains underway.
 
 The pre-freeze pressure-test gate has been completed through four worked encounters, machine-readable conformance validation and an experimental adjacent-protocol mapping. No new Core primitive was required by that gate.
 
