@@ -1,0 +1,32 @@
+{
+  "title": "SILT Core v0.2: Semantic Architecture",
+  "version": "0.2.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Farry, Gareth",
+      "type": "ProjectLeader"
+    }
+  ],
+  "description": "SILT Core v0.2 is a semantic architecture for moments of encounter between participants and systems grounded in different legal, customary, cultural, private, institutional or technical orders. Its canonical seam is Source to Standing to Presentation to evaluation at the encounter. SILT enables relevant relational legitimacy to become mutually legible without requiring originating orders to collapse into a single ontology or surrender their own sources of authority. The v0.2 release includes the normative semantic architecture, a unified minimal semantic conformance suite spanning four base encounters and thirty adversarial variants, governance and licensing material, and an experimental non-normative mapping to Legal Context Protocol.",
+  "keywords": [
+    "semantic interoperability",
+    "digital identity",
+    "plural legal orders",
+    "Indigenous data governance",
+    "standing",
+    "authority",
+    "AI agents",
+    "private ordering"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Sugarlicks/silt-identity-core",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ]
+}

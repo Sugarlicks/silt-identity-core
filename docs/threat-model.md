@@ -1,121 +1,67 @@
-# Threat Model
+# SILT Core v0.2 semantic threat model
 
-This threat model identifies common failure modes in digital identity systems where consent, delegation, and disclosure are treated as interface conventions rather than enforceable constraints. SILT Core defines primitives intended to reduce these risks by making status, standing, authority, and revocation first-class and auditable.
+This note identifies semantic failure modes that an implementation can introduce even when its cryptography, identity verification or runtime authorisation succeeds. It is non-normative and should be read with the v0.2 Semantic Architecture and conformance suite.
 
-Bitcoin Wallet Context
+## 1. Credential substitution
 
-This threat model applies to wallet-layer delegated signing authority in Bitcoin environments. The specification does not modify consensus rules and operates entirely at the application layer.
+**Failure:** a valid credential or trusted issuer is treated as the Source of Standing or as proof of Authority without the relevant Source-grounded conditions.
 
-In Bitcoin today, authority is typically inferred from private key possession. This creates an all-or-nothing control model that does not natively express bounded delegation (e.g. time-limited spending rights, amount-constrained authority, or revocable organizational roles).
+**Control:** treat credentials as Evidence unless the originating order gives issuance constitutive effect.
 
-The objective here is to reduce unsafe delegation patterns (such as key sharing or ambiguous multisig arrangements) by making authority, scope, and revocation explicit and machine-verifiable within wallet logic.
+## 2. Capability substitution
 
-## Scope
+**Failure:** possession of a capability token, session or technical permission is treated as semantic Authority.
 
-In scope:
-- Status and standing as the capacity in which a principal acts
-- Delegation semantics (acting “for and on behalf of” another party) with explicit scope and duration
-- Consent as an enforceable constraint with revocation and expiry
-- Privacy-preserving disclosure patterns (data minimisation by default)
-- Misuse cases and test vectors implementers can run against their own systems
+**Control:** evaluate Authority separately from Technical Capability. Runtime success may coexist with `NOT_SATISFIED` Authority.
 
-Out of scope:
-- Bitcoin consensus rule changes or BIP modifications
-- Chain selection and custody model debates
-- KYC, identity proofing, and institutional credential issuance
+## 3. Collective capture
 
-## Assets to protect
+**Failure:** belonging, membership or relational Standing is treated as power to represent, bind, disclose for or speak for a collective.
 
-- Bitcoin UTXOs and associated signing authority controlled by a wallet
-- The principal’s capacity to act without coercion or silent substitution
-- The integrity of delegation boundaries (scope, duration, and revocability)
-- The integrity of consent boundaries (what was agreed, by whom, for how long)
-- Privacy: prevention of linkability, correlation, and over-disclosure
-- Auditability: the ability to reconstruct “who acted in what capacity” without leaking unnecessary personal data
+**Control:** require representational Authority to be separately grounded and evaluated.
 
-## Adversaries and pressures
+## 4. Profile Expression capture
 
-- Malicious counterparties seeking leverage through over-broad delegation or disclosure
-- Platforms and intermediaries optimising for capture, lock-in, and behavioural profiling
-- State or corporate actors seeking correlation and surveillance via identity exhaust
-- Opportunistic attackers exploiting replay, spoofing, or ambiguous authority semantics
-- Internal governance failure: unclear roles, informal approvals, and silent escalation of authority
+**Failure:** a bounded Profile Expression is treated as the full originating ontology, or one Profile Expression is silently made canonical over another.
 
-## Core failure modes
+**Control:** preserve plurality, provenance and boundedness. Do not infer a universal meta-expression.
 
-### 1) Silent authority escalation
-A party obtains or manufactures authority beyond what the principal intended (for example, through ambiguous role language, “helpful” defaults, or inherited permissions).
+## 5. Silence interpreted as absence
 
-Mitigations (SILT Core intent):
-- Explicit delegation objects with scope, duration, and revocation pointers
-- Capacity-first signatures: the capacity line is not decorative, it is semantic
-- Deny-by-default: actions must be attributable to an explicit authority grant
+**Failure:** a condition deliberately left unexpressed because expression would materially distort it is treated as irrelevant, absent or failed.
 
-### 2) Coercion and compelled over-disclosure
-A principal is pressured to reveal more than necessary to complete a transaction, or to bind themselves in a capacity they did not intend.
+**Control:** deliberate non-expression may be signalled without characterising the underlying condition. Absence of a signal does not prove that no unexpressed condition exists.
 
-Mitigations:
-- Minimal disclosure patterns and selective revelation by default
-- Consent objects that are time-boxed, purpose-bound, and revocable
-- Clear separation between status/standing proofs and personal attributes
+## 6. Forced determinacy
 
-### 3) Correlation and linkability
-Identity actions are linkable across contexts, enabling profiling, surveillance, and inference of sensitive facts
-even where explicit identifiers are not disclosed.
+**Failure:** the evaluator invents a legal, cultural or institutional rule to avoid uncertainty.
 
-Mitigations:
-- Ephemeral, context-bound proofs rather than global identifiers
-- Separation of long-lived status substrates from short-lived transaction attestations
-- Avoidance of static, re-used identifiers in routine transactions where possible
+**Control:** use only `SATISFIED`, `NOT_SATISFIED` and `INDETERMINATE` for conditions that enter evaluation.
 
-### 4) Replay and duplication of authority
-An approval or proof is re-used outside its intended context (for example, a consent artefact is replayed for a new transaction).
+## 7. Cryptographic-semantic conflation
 
-Mitigations:
-- Nonces and context binding (transaction identifiers, terms hashes, or event IDs)
-- Expiry, revocation, and “spent” semantics where appropriate
-- Verifier checks against revocation state
+**Failure:** key rotation or credential replacement is treated as loss of Standing or Authority, or technical continuity is treated as proof that those relations persist.
 
-### 5) Substitution of the principal
-A system conflates key possession or account control with bounded authority, enabling overreach or substitution.
+**Control:** maintain semantic provenance independently of operational artefact lifecycle.
 
-Mitigations:
-- The principal is defined independently of any platform account
-- Capacity semantics make “who is acting” explicit and testable
-- Delegation is explicit, not implied by login state
+## 8. Revocation overreach
 
-### 6) Irreversible identity binding
-A principal cannot exit a relationship, withdraw consent, or revoke an authority grant without catastrophic loss of access.
+**Failure:** revocation is presumed to cascade through all related Standing, Authority, obligations or delegated paths.
 
-Mitigations:
-- Revocation is first-class, not an administrative afterthought
-- Clear lifecycle semantics for delegation and consent
-- Migration and portability assumptions: reliance is voluntary, not enforced by architecture
+**Control:** model the scope and effect of Revocation according to the relevant Source and expressed conditions. No universal cascade is presumed.
 
-### 7) Ambiguous semantics and informal approvals
-Systems treat authority as an informal social layer (“the admin said OK”), making disputes unresolvable and enabling abuse.
+## 9. Agent laundering
 
-Mitigations:
-- Machine-readable authority and consent artefacts
-- Audit trails that record capacity, scope, and expiry without unnecessary personal data
-- Test vectors for common ambiguity patterns
+**Failure:** downstream AI agents or tools gain apparent legitimacy merely because an upstream system can authenticate them or because a capability chain executes successfully.
 
-## Misuse-case driven testing
+**Control:** preserve reconstructable semantic lineage. Derived Authority must remain within the delegable envelope or arise from a separate Source.
 
-SILT Core treats misuse cases as first-class design inputs. The `tests/misuse-cases/` directory will maintain scenarios that implementers can run to validate:
+## 10. External classification capture
 
-- delegation scope enforcement
-- consent expiry and revocation handling
-- replay resistance
-- correlation minimisation defaults
-- capacity attribution and audit reconstruction
+**Failure:** an external registry, identifier, trust list or legal-context pointer is treated as universally constitutive of Source or Standing.
 
-## Design principle summary
+**Control:** external artefacts may provide Evidence or have constitutive effect where the relevant order says so. Their technical existence alone does not create legitimacy.
 
-- Capacity before claim
-- Authority before action
-- Consent as constraint, not courtesy
-- Revocation as a right, not a ticket
-- Minimal disclosure by default
-- Auditability without surveillance
+## Security boundary
 
+SILT does not replace cryptographic security, authentication, access control, key management or runtime policy. Those systems must be secured independently. The threat addressed here is loss or corruption of semantic meaning at the interoperability boundary.
