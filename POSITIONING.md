@@ -102,4 +102,4 @@ SILT Core v0.2 is at **Freeze Candidate 1**. The controlling semantic reference 
 
 [`spec/v0.2/semantic-architecture.md`](./spec/v0.2/semantic-architecture.md)
 
-Repository reconciliation, conformance packaging, licensing and release documentation are being completed against that architecture. These release tasks should not be used to reopen Core silently.
+Repository reconciliation, conformance packaging and release-level licensing classification are complete. Final release packaging, release notes and archive metadata remain. These release tasks should not be used to reopen Core silently.
