@@ -1,8 +1,14 @@
 # Citation
 
+## Author and rights holder
+
+**Author:** Gareth Farry  
+**Copyright:** © 2026 Gareth Farry  
+**Project / publishing identity:** SILT Core
+
 ## Preferred citation for Release Candidate 2.1
 
-SILT Core contributors. 2026. *SILT Core v0.2: Semantic Architecture*. Release Candidate 2.1, 18 September 2026. https://github.com/Sugarlicks/silt-identity-core
+Farry, Gareth. 2026. *SILT Core v0.2: Semantic Architecture*. Release Candidate 2.1, 18 September 2026. SILT Core. https://github.com/Sugarlicks/silt-identity-core
 
 ## Repository
 
