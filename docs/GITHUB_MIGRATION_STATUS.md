@@ -11,4 +11,8 @@ AUT CISRC remains a SILT Core v0.1 implementation profile. Its earlier `candidat
 
 The branch also introduces the v0.2 governance, contribution, licensing, IPR, citation, trademark/conformance and ecosystem-positioning documents. v0.2 narrative material is separated from historical v0.1 licensing so that the new CC BY 4.0 documentation licence does not silently relicense the preserved Apache 2.0 v0.1 material.
 
-The pull request remains deliberately **draft**. It MUST NOT be merged or tagged as `v0.2.0` until the complete normative specification and conformance suite are present in the repository, repository CI passes, and final release authority / citation metadata are confirmed.
+The rights chain for v0.2 is now explicit: **Gareth Farry is the author and copyright holder; SILT Core is the project/publishing identity.**
+
+The canonical specification is now published as a single repository artefact at `spec/SILT_Core_v0.2.0_Semantic_Architecture.md`. The complete conformance suite is present and repository CI has passed against 4 base fixtures and 30 adversarial variants.
+
+The pull request remains deliberately **draft** pending final project sign-off. After sign-off, the remaining steps are merge, `v0.2.0` tag, archival deposit, DOI minting and insertion of the DOI into final citation metadata.
