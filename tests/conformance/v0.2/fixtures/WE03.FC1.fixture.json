@@ -159,8 +159,7 @@
         },
         {
           "condition_id": "WE03-R02",
-          "description": "A digitally signed resolution in R's approved governance registry is present.",
-          "semantic_target_ref": "EVID-R-REGISTRY-RESOLUTION"
+          "description": "A digitally signed resolution in R's approved governance registry is present."
         },
         {
           "condition_id": "WE03-R03",
@@ -211,7 +210,6 @@
       "evaluation_id": "WE03-E05",
       "profile_expression_ref": "PE-R",
       "condition_ref": "WE03-R02",
-      "semantic_target_ref": "EVID-R-REGISTRY-RESOLUTION",
       "result": "NOT_SATISFIED",
       "reason": "The required registry-backed resolution is absent."
     },
