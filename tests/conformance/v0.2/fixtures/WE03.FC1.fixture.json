@@ -393,5 +393,5 @@
       }
     ]
   },
-  "fixture_verdict": "No missing Core primitive exposed. Plural evaluation, provenance, representational Authority and deliberate non-expression remain expressible without a universal meta-order."
+  "fixture_verdict": "No missing Core primitive exposed. Plural evaluation, provenance, representational Authority and deliberate non-expression remain expressible without a universal meta-order. A failure should reopen only the affected semantic seam, not the architecture wholesale."
 }
