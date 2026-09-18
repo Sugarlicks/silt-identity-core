@@ -1,0 +1,202 @@
+name: SILT Core v0.2 conformance
+
+on:
+  push:
+    branches:
+      - release/v0.2-fc1
+    paths:
+      - 'tests/conformance/v0.2/**'
+      - '.github/workflows/v0.2-conformance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release candidate
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install JSON Schema validator
+        run: python -m pip install --disable-pip-version-check 'jsonschema>=4.22,<5'
+
+      - name: Validate FC1 fixtures and references
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+
+          base = Path('tests/conformance/v0.2')
+          manifest_path = base / 'manifest.json'
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+
+          schema_path = base / manifest['schema']
+          schema = json.loads(schema_path.read_text(encoding='utf-8'))
+          Draft202012Validator.check_schema(schema)
+          validator = Draft202012Validator(schema)
+
+          allowed_results = {'SATISFIED', 'NOT_SATISFIED', 'INDETERMINATE'}
+          fixture_ids = set()
+
+          def values(items, key):
+              return {item[key] for item in items if key in item}
+
+          def require_subset(actual, allowed, label):
+              missing = set(actual) - set(allowed)
+              if missing:
+                  raise AssertionError(f'{label}: unresolved refs {sorted(missing)}')
+
+          for fixture_rel in manifest['fixtures']:
+              fixture_path = base / fixture_rel
+              fixture = json.loads(fixture_path.read_text(encoding='utf-8'))
+
+              errors = sorted(validator.iter_errors(fixture), key=lambda e: list(e.absolute_path))
+              if errors:
+                  formatted = []
+                  for error in errors:
+                      loc = '/'.join(str(x) for x in error.absolute_path) or '<root>'
+                      formatted.append(f'{fixture_rel}:{loc}: {error.message}')
+                  raise AssertionError('\n'.join(formatted))
+
+              fixture_id = fixture['fixture_id']
+              if fixture_id in fixture_ids:
+                  raise AssertionError(f'duplicate fixture_id: {fixture_id}')
+              fixture_ids.add(fixture_id)
+
+              if 'Freeze Candidate 1' not in fixture.get('architecture_reference', ''):
+                  raise AssertionError(f'{fixture_id}: architecture_reference is not FC1')
+
+              participants = values(fixture.get('participants', []), 'participant_ref')
+              semantic = fixture.get('semantic_objects', {})
+              sources = values(semantic.get('sources', []), 'source_ref')
+              standings = values(semantic.get('standings', []), 'standing_ref')
+              evidence = values(semantic.get('evidence', []), 'evidence_ref')
+              presentations = values(semantic.get('presentations', []), 'presentation_ref')
+              authorities = values(semantic.get('authorities', []), 'authority_ref')
+              actions = values(semantic.get('actions', []), 'action_ref')
+              attributions = values(semantic.get('attributions', []), 'attribution_ref')
+              obligations = values(semantic.get('obligations', []), 'obligation_ref')
+              revocations = values(semantic.get('revocations', []), 'revocation_ref')
+              consents = values(semantic.get('consents', []), 'consent_ref')
+              reliance = values(semantic.get('reliance_conditions', []), 'reliance_ref')
+              semantic_targets = (
+                  sources | standings | evidence | presentations | authorities | actions |
+                  attributions | obligations | revocations | consents | reliance
+              )
+
+              pes = fixture.get('profile_expressions', [])
+              pe_refs = values(pes, 'profile_expression_ref')
+              pe_conditions = {
+                  pe['profile_expression_ref']: values(pe.get('conditions', []), 'condition_id')
+                  for pe in pes
+              }
+
+              encounter_action = fixture.get('encounter', {}).get('proposed_action_ref')
+              if encounter_action:
+                  require_subset([encounter_action], actions, f'{fixture_id} encounter proposed_action_ref')
+
+              for standing in semantic.get('standings', []):
+                  require_subset([standing['participant_ref']], participants, f'{fixture_id} standing participant_ref')
+                  require_subset(standing.get('source_refs', []), sources, f'{fixture_id} standing source_refs')
+
+              for ev in semantic.get('evidence', []):
+                  require_subset(ev.get('supports_refs', []), semantic_targets, f'{fixture_id} evidence supports_refs')
+
+              for pres in semantic.get('presentations', []):
+                  require_subset([pres['participant_ref']], participants, f'{fixture_id} presentation participant_ref')
+                  require_subset(pres.get('standing_refs', []), standings, f'{fixture_id} presentation standing_refs')
+                  require_subset(pres.get('authority_refs', []), authorities, f'{fixture_id} presentation authority_refs')
+                  require_subset(pres.get('evidence_refs', []), evidence, f'{fixture_id} presentation evidence_refs')
+                  if pres.get('proposed_action_ref'):
+                      require_subset([pres['proposed_action_ref']], actions, f'{fixture_id} presentation proposed_action_ref')
+
+              for auth in semantic.get('authorities', []):
+                  require_subset([auth['actor_ref']], participants, f'{fixture_id} authority actor_ref')
+                  require_subset(auth.get('source_refs', []), sources, f'{fixture_id} authority source_refs')
+                  require_subset(auth.get('standing_refs', []), standings, f'{fixture_id} authority standing_refs')
+                  if auth.get('parent_authority_ref'):
+                      require_subset([auth['parent_authority_ref']], authorities, f'{fixture_id} parent_authority_ref')
+
+              for action in semantic.get('actions', []):
+                  require_subset([action['actor_ref']], participants, f'{fixture_id} action actor_ref')
+
+              for attr in semantic.get('attributions', []):
+                  require_subset([attr['action_ref']], actions, f'{fixture_id} attribution action_ref')
+                  require_subset([attr['actor_ref']], participants, f'{fixture_id} attribution actor_ref')
+                  if attr.get('authority_ref'):
+                      require_subset([attr['authority_ref']], authorities, f'{fixture_id} attribution authority_ref')
+
+              for obl in semantic.get('obligations', []):
+                  if obl.get('obligor_ref'):
+                      require_subset([obl['obligor_ref']], participants, f'{fixture_id} obligation obligor_ref')
+
+              for pe in pes:
+                  provenance = pe.get('provenance', {})
+                  if provenance.get('authored_by_ref'):
+                      require_subset([provenance['authored_by_ref']], participants, f'{fixture_id} PE authored_by_ref')
+                  if provenance.get('authority_ref'):
+                      require_subset([provenance['authority_ref']], authorities, f'{fixture_id} PE authority_ref')
+                  for condition in pe.get('conditions', []):
+                      if condition.get('semantic_target_ref'):
+                          require_subset([condition['semantic_target_ref']], semantic_targets, f'{fixture_id} condition semantic_target_ref')
+
+              def check_evaluation(ev, context):
+                  pe_ref = ev['profile_expression_ref']
+                  require_subset([pe_ref], pe_refs, f'{fixture_id} {context} profile_expression_ref')
+                  require_subset([ev['condition_ref']], pe_conditions[pe_ref], f'{fixture_id} {context} condition_ref')
+                  if ev.get('semantic_target_ref'):
+                      require_subset([ev['semantic_target_ref']], semantic_targets, f'{fixture_id} {context} semantic_target_ref')
+                  if ev['result'] not in allowed_results:
+                      raise AssertionError(f'{fixture_id} {context}: invalid result {ev["result"]}')
+
+              for ev in fixture.get('expected_evaluations', []):
+                  check_evaluation(ev, 'expected_evaluations')
+
+              for non_expr in fixture.get('non_expressions', []):
+                  require_subset([non_expr['profile_expression_ref']], pe_refs, f'{fixture_id} non_expression profile_expression_ref')
+                  if 'result' in non_expr:
+                      raise AssertionError(f'{fixture_id}: non-expression must not carry an evaluation result')
+
+              for aggregate in fixture.get('aggregate_results', []):
+                  require_subset([aggregate['profile_expression_ref']], pe_refs, f'{fixture_id} aggregate_result profile_expression_ref')
+
+              for effect in fixture.get('expected_downstream_effects', []):
+                  if effect.get('profile_expression_ref'):
+                      require_subset([effect['profile_expression_ref']], pe_refs, f'{fixture_id} downstream_effect profile_expression_ref')
+
+              for variant in fixture.get('variants', []):
+                  for ev in variant.get('expected_evaluations', []):
+                      check_evaluation(ev, f'variant {variant["variant_id"]}')
+                  for effect in variant.get('expected_downstream_effects', []):
+                      if effect.get('profile_expression_ref'):
+                          require_subset([effect['profile_expression_ref']], pe_refs, f'{fixture_id} variant downstream_effect profile_expression_ref')
+
+              print(f'PASS {fixture_id}: schema + reference consistency')
+
+          expected_ids = set(manifest.get('validation', {}))
+          if fixture_ids != expected_ids:
+              raise AssertionError(f'manifest validation IDs {sorted(expected_ids)} do not match fixtures {sorted(fixture_ids)}')
+
+          for fixture_id, status in manifest['validation'].items():
+              if status.get('json_schema') != 'PASS' or status.get('reference_consistency') != 'PASS':
+                  raise AssertionError(f'{fixture_id}: manifest does not record PASS/PASS')
+
+          # Experimental mapping is a separate artefact class: confirm valid JSON and FC1 basis only.
+          mapping_path = base / 'mappings/lcp/mapping.json'
+          mapping = json.loads(mapping_path.read_text(encoding='utf-8'))
+          mapping_text = mapping_path.read_text(encoding='utf-8')
+          if 'FC1' not in mapping_text and 'Freeze Candidate 1' not in mapping_text:
+              raise AssertionError('LCP mapping JSON does not identify FC1 basis')
+
+          print('PASS manifest: fixture inventory and recorded validation status')
+          print('PASS LCP mapping: valid JSON and FC1 basis identified')
+          print('SILT Core v0.2 conformance validation: PASS')
+          PY
