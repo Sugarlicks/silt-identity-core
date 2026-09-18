@@ -192,7 +192,6 @@ Depending on the encounter, a Participant may include, but is not limited to:
 - an office;
 - an institution;
 - a trust;
-- a DAO;
 - a technical or machine agent;
 - another recognised participant form.
 
@@ -685,6 +684,8 @@ Standing is central to SILT's account of relational legitimacy.
 A cryptographic capability, credential or technical authority artefact may provide Evidence concerning Authority, carry, constrain or enforce Authority, or form part of Source where the relevant conditions give it constitutive effect. It does not universally constitute the Source or ground of Authority.
 
 Where such an artefact has constitutive effect, that effect arises under the relevant Source and encounter conditions, not from technical verifiability alone.
+
+Consistent with §10, possession or technical validity of such an artefact does not by itself establish SILT Authority.
 
 SILT does not require every Authority formation path to pass mechanically through a Standing object.
 
