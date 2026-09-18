@@ -22,16 +22,20 @@
 - [x] Public repository URL confirmed.
 - [x] v0.1 -> v0.2 migration guidance drafted for repository materials that are actually being migrated.
 - [x] AUT CISRC explicitly retained as a SILT Core v0.1 implementation profile and removed from the v0.2 migration scope.
+- [x] Draft GitHub migration PR prepared on `release/v0.2-rc2.1` (PR #4); no merge or final tag performed.
+- [x] v0.1-era generic schemas, consent validator and misuse-case material classified as historical for repository migration; AUT implementation artefacts remain v0.1.
+- [x] Ecosystem-positioning companion produced and kept non-normative.
+- [x] v0.2 README, governance, contribution, licensing/IPR, security, positioning and conformance-claim material applied on the release branch.
+- [x] Complete machine-readable conformance suite installed on the release branch.
+- [x] Repository conformance CI passed on the complete suite: 4 base fixtures, 30 adversarial variants, outcome vocabulary locked.
 
 ## Required before public v0.2.0 tag
 
 - [ ] Project sign-off on Release Candidate 2.1 wording and release authority.
 - [ ] Confirm rights chain / named author or publishing entity for final citation and copyright notices.
-- [ ] Apply the v0.2 README, GOVERNANCE, CONTRIBUTING, licensing/IPR and mark-policy replacements to the public repository; remove or mark conflicting v0.1 top-level material historical.
-- [ ] Reconcile v0.1-era schemas, examples and reference validators against the v0.2 migration classification.
-- [ ] Produce the companion ecosystem-positioning document; named adjacent standards remain non-normative.
-- [ ] Run the release CI from the repository after files are applied.
+- [ ] Consolidate the segmented release-candidate specification source into one canonical `v0.2.0` specification artefact in the repository. The current ordered source under `spec/source-parts/` is packaging-only and does not alter the architecture.
 - [ ] Confirm final citation metadata and add DOI only after the final tag is archived.
+- [ ] Merge PR #4 after publication checks pass.
 - [ ] Create release tag `v0.2.0` only after the publication checks above pass.
 - [ ] Archive the tagged release and mint the Zenodo DOI.
 
