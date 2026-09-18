@@ -64,7 +64,7 @@ SILT Core v0.2 does **not** contain a `Status` object.
 
 ### Presentation
 
-A **Presentation** is the present-tense, purpose-relevant act or envelope through which a Participant brings the minimum relevant projection of Standing, Authority or another semantic claim into a particular encounter.
+A **Presentation** is the encounter-specific, purpose-relevant act or envelope through which a Participant brings the minimum relevant projection of Standing, Authority or another semantic claim into a particular encounter.
 
 Presentation does not create Standing.
 
@@ -534,7 +534,7 @@ Some v0.1 concepts and artefacts remain useful historically and operationally, b
 
 ### v0.2
 
-SILT Core v0.2 is at **Freeze Candidate 1** and is undergoing release packaging and repository reconciliation.
+SILT Core v0.2 is at **Freeze Candidate 1** and is undergoing final release packaging.
 
 The canonical semantic reference is:
 
@@ -542,13 +542,15 @@ The canonical semantic reference is:
 
 FC1 is based on the RC4.1 close-out following the worked-encounter gate, machine-readable conformance validation and an experimental LCP mapping.
 
-The current release work is editorial, structural and publication-facing. It should not become a back door for semantic redesign.
+The v0.1 → v0.2 repository reconciliation is recorded in [`docs/migration/v0.1-to-v0.2-repository-audit.md`](./migration/v0.1-to-v0.2-repository-audit.md).
+
+The current remaining release work is editorial, structural and publication-facing. It should not become a back door for semantic redesign.
 
 ---
 
 ## 16. Repository orientation
 
-During the v0.2 release pass the repository contains material from more than one architectural generation.
+The v0.2 FC1 repository now contains more than one architectural generation, with explicit boundaries between them.
 
 The intended hierarchy is:
 
@@ -557,20 +559,25 @@ spec/v0.2/semantic-architecture.md
     canonical v0.2 semantic reference
 
 docs/
-    explanatory, positioning, threat-model and companion material
+    explanatory, positioning, migration, threat-model and companion material
 
-conformance/ or equivalent release path
-    worked encounters, fixture schema and machine-readable test material
+tests/conformance/v0.2/
+    worked encounters, fixture schema, machine-readable test material and experimental mappings
 
-schemas/ and spec/ legacy files
-    v0.1-era material pending explicit archive/reconciliation treatment
+spec/ legacy topic files
+    historical v0.1 material retained with explicit archival notices
+
+schemas/implementation-profiles/
+    protected implementation-profile schemas rather than generic v0.2 Core schemas
 
 reference/
-    non-normative reference code and validators
+    non-normative implementation reference material, currently including the AUT/Vietsch v0.1 validator
 
 examples/ and implementation profiles/
     non-normative implementation material
 ```
+
+The generic v0.1 root schemas and obsolete empty placeholders have already been removed from the active FC1 surface. AUT/Vietsch remains intentionally on its v0.1 basis.
 
 The distinction between normative semantic architecture, companion documentation, conformance notation, implementation profiles and reference code is load-bearing.
 
