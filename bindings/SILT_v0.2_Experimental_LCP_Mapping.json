@@ -1,0 +1,100 @@
+{
+  "mapping_id": "SILT-v0.2-LCP-v1-experimental-01",
+  "status": "experimental_non_normative_adapter",
+  "silt_version": "0.2-freeze-candidate-1",
+  "lcp_target": {
+    "name": "Legal Context Protocol",
+    "version": "1.0",
+    "status": "Draft - released for community review",
+    "date": "2026-06-24",
+    "normative_core": "Section 2"
+  },
+  "purpose": "Pressure-test SILT against a real agentic-commerce legal-context payload without making LCP a canonical SILT carrier or legal ontology.",
+  "classification": "complementary_partial_mapping",
+  "field_mappings": [
+    {
+      "lcp_element": "terms / terms document",
+      "silt_treatment": "May provide Evidence and may form part of Source where the relevant order gives the instrument or terms constitutive effect. It is not universally Source."
+    },
+    {
+      "lcp_element": "atrHash",
+      "silt_treatment": "Proof/Evidence of document integrity and identity. It does not establish Standing, Authority, Consent, Binding or legal validity."
+    },
+    {
+      "lcp_element": "acceptanceRequired",
+      "silt_treatment": "May express an encounter condition requiring explicit acceptance. It is not itself Consent."
+    },
+    {
+      "lcp_element": "signed acceptance record (LCP Level 3 advisory guidance)",
+      "silt_treatment": "Evidence of assent/acceptance. Consent is evaluated under the relevant Source and Profile Expression; assent and Consent are not universally equivalent."
+    },
+    {
+      "lcp_element": "disputeResolution / jurisdiction index",
+      "silt_treatment": "May inform a Profile Expression and downstream Binding analysis. The index does not itself establish applicability, jurisdiction or Binding."
+    },
+    {
+      "lcp_element": "buyer policy (advisory)",
+      "silt_treatment": "May partially express encounter conditions comparable to a Profile Expression, or may remain operational policy below the Presentation line. Classification depends on whether it expresses semantic conditions or merely enforces them."
+    },
+    {
+      "lcp_element": "authorization protocols referenced by LCP",
+      "silt_treatment": "Complementary. SILT Authority is a semantic relation; credentials, mandates, signatures and capability artefacts may evidence/carry/enforce it but do not universally constitute it."
+    },
+    {
+      "lcp_element": "Level 3+ mutual agreement / binding language",
+      "silt_treatment": "Treated as a downstream effect under applicable substantive conditions. SILT does not infer universal Binding from a signature or LCP level alone."
+    }
+  ],
+  "non_lossless_cases": [
+    {
+      "silt_semantic": "plural or conflicting Profile Expressions",
+      "lcp_gap": "No native LCP concept for multiple coexisting normative expressions with no precedence rule. Adapter must preserve them outside the LCP terms index rather than collapse them."
+    },
+    {
+      "silt_semantic": "deliberate non-expression",
+      "lcp_gap": "No native LCP representation. It must remain outside evaluation or be signalled only through a SILT-specific extension without characterising the hidden condition."
+    },
+    {
+      "silt_semantic": "Source-grounded relational Standing",
+      "lcp_gap": "LCP discovers terms and legal context but does not model Source -> Standing. A legal-context pointer must not be promoted into Standing."
+    },
+    {
+      "silt_semantic": "collective provenance / authority to express",
+      "lcp_gap": "LCP does not natively model contested collective authority to author encounter conditions. SILT provenance semantics remain separate."
+    }
+  ],
+  "adapter_rules": [
+    "The adapter MUST NOT map LCP document integrity to Source sufficiency or Standing.",
+    "The adapter MUST NOT map signed acceptance directly to SILT Consent without an applicable semantic condition.",
+    "The adapter MUST NOT collapse multiple Profile Expressions into one LCP terms document merely for carrier convenience.",
+    "The adapter MUST preserve not-evaluated deliberate non-expression outside the three-valued outcome set.",
+    "Unknown-extension tolerance in the current LCP schema permits an experimental pointer field, but that does not make the SILT extension normative LCP."
+  ],
+  "example_lcp_document": {
+    "terms": "https://merchant.example/terms/txn-4821.md",
+    "termsFormat": "markdown",
+    "atrHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "acceptanceRequired": true,
+    "disputeResolution": {
+      "method": "Institutional arbitration",
+      "jurisdiction": "New Zealand"
+    },
+    "x-silt": {
+      "version": "0.2",
+      "mappingStatus": "experimental-non-normative",
+      "encounterRef": "urn:silt:encounter:we04-lcp-01",
+      "profileExpressionRefs": [
+        "urn:silt:pe:buyer-policy-01",
+        "urn:silt:pe:merchant-terms-01"
+      ],
+      "presentationRef": "urn:silt:presentation:agent-b-01",
+      "semanticRecordHash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  },
+  "pressure_test_result": {
+    "result": "PASS_WITH_BOUNDED_LOSS",
+    "new_core_object_required": false,
+    "core_change_required": false,
+    "publication_note": "The mapping validates SILT's layer boundary but is intentionally partial. LCP is a legal-context discovery and agreement-record layer for agentic commerce; SILT remains the semantic layer for Source-grounded Standing, Presentation and encounter evaluation."
+  }
+}
