@@ -30,7 +30,7 @@ SILT Core v0.2 therefore does **not** contain a universal `Status` object.
 
 ## 2. Presentation at the encounter
 
-Presentation is the present-tense act or envelope through which a Participant brings the minimum relevant projection of Standing, Authority or another semantic claim into a particular encounter.
+Presentation is the encounter-specific act or envelope through which a Participant brings the minimum relevant projection of Standing, Authority or another semantic claim into a particular encounter.
 
 Presentation does not create the relation being Presented.
 
