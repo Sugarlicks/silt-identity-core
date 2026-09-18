@@ -1,0 +1,41 @@
+{
+  "suite": "SILT Core v0.2 Minimal Conformance Suite",
+  "status": "companion-non-normative",
+  "artifact_role": "conformance_suite_manifest",
+  "architecture_reference": "SILT Core v0.2 Semantic Architecture - Freeze Candidate 1 (derived from RC4.1 pre-freeze stress-test revision)",
+  "schema": "schema/conformance-fixture.schema.json",
+  "fixtures": [
+    "fixtures/WE01.FC1.fixture.json",
+    "fixtures/WE02.FC1.fixture.json",
+    "fixtures/WE03.FC1.fixture.json",
+    "fixtures/WE04.FC1.fixture.json"
+  ],
+  "validation": {
+    "WE01": {
+      "json_schema": "PASS",
+      "reference_consistency": "PASS"
+    },
+    "WE02": {
+      "json_schema": "PASS",
+      "reference_consistency": "PASS"
+    },
+    "WE03": {
+      "json_schema": "PASS",
+      "reference_consistency": "PASS"
+    },
+    "WE04": {
+      "json_schema": "PASS",
+      "reference_consistency": "PASS"
+    }
+  },
+  "notes": [
+    "This manifest indexes companion conformance material. It does not confer normative force on the schema or fixtures.",
+    "The JSON Schema is a conformance test-harness format, not a mandatory SILT Core object model, serialisation or wire format.",
+    "The canonical semantic reference remains spec/v0.2/semantic-architecture.md.",
+    "Only SATISFIED, NOT_SATISFIED and INDETERMINATE are SILT Core semantic evaluation outcomes.",
+    "Deliberate non-expression is represented outside expected_evaluations and is not a fourth outcome.",
+    "Aggregate SILT results are absent unless an applicable Profile Expression expressly supplies a composition or aggregation rule.",
+    "Fixture facts and technical observations remain distinct from SILT semantic evaluation outcomes.",
+    "WE01-WE04 reflect the FC1 human-readable worked encounters after the conformance consistency corrections completed on the release/v0.2-fc1 branch."
+  ]
+}
