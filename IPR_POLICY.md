@@ -10,6 +10,8 @@ This interim policy makes the present boundary explicit rather than implying a p
 
 ## 2. Copyright and software licences
 
+The SILT Core v0.2 Semantic Architecture is authored by **Gareth Farry** and copyright **© 2026 Gareth Farry**. SILT Core is the project and publishing identity for the release.
+
 The normative specification and narrative public documentation are licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
 Reference code and machine-readable implementation, conformance and binding artefacts are licensed under **Apache License 2.0**, unless a file states otherwise.
