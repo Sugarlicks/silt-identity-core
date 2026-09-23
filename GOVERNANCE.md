@@ -1,131 +1,78 @@
-# Governance
+# SILT Core - Interim Governance and Change Control
 
-SILT Core is a specification-first project focused on authority semantics for digital action.
+**Applies to:** SILT Core v0.2 and its maintenance cycle  
+**Status:** Interim maintainer stewardship pending any future multi-stakeholder governance vehicle
 
-It defines a public semantic layer for modelling capacity, authority source, mandate scope, consent, reliance, delegation, and revocation across digital systems.
+## 1. Purpose
 
-SILT Core is independently stewarded, versioned, and maintained.
+SILT Core is public semantic infrastructure. Governance therefore has to protect two things at once: openness of the semantic grammar and discipline at the point where changes could alter its meaning.
 
----
+The current architectural centre is:
 
-## Principles
+> **Source -> Standing -> Presentation -> evaluation at the encounter**
 
-Governance of SILT Core is guided by the following principles:
+Governance MUST NOT silently reintroduce discarded universal objects, collapse plural orders into a single ontology, or move authentication, dynamic authorisation or runtime capability machinery into Core merely because an implementation finds that convenient.
 
-* **Status before attributes**
-* **Authority before permission**
-* **Capacity before credential**
-* **Consent as constraint**
-* **Revocation before irreversibility**
-* **Plural authority sources**
-* **Specification before implementation**
+## 2. Current stewardship
 
-The project prioritises semantic clarity, long-term resilience, and careful versioning over speed.
+Until a formal multi-stakeholder or neutral stewardship body is constituted, SILT Core is maintained under transparent maintainer stewardship through the public repository.
 
----
+This is an interim governance arrangement. SILT MUST NOT describe itself as foundation-governed, institutionally neutral or controlled by a standards body unless and until that becomes true in practice.
 
-## Stewardship
+Maintainers are responsible for release decisions, issue triage, pull-request review, conformance-suite integrity and publication of reserved-matter decisions. External adoption or participation does not transfer control of the specification by implication.
 
-SILT Core is independently developed and versioned.
+## 3. Decision classes
 
-External collaboration is encouraged, including participation in standards bodies, working groups, research forums, and implementation discussions.
+### Editorial and non-semantic changes
 
-However, SILT Core maintains its own:
+Typographical corrections, citation fixes, formatting changes and clarifications that do not alter normative meaning may be accepted through ordinary review. They may be released as v0.2.x errata.
 
-* specification direction
-* versioning
-* terminology
-* architectural evolution
-* public release boundaries
+### Conformance, examples and implementation changes
 
-External discussion, adoption, or contribution does not transfer control over the SILT architecture.
+Changes to fixtures, reference code, mappings or examples may be accepted where they preserve Core semantics. If such work reveals an architecture gap, the gap is escalated rather than silently patched in an implementation-specific layer.
 
-This repository reflects the public specification layer only. SILT may include additional models, structures, instruments, or implementation pathways not disclosed publicly.
+### Core semantic changes
 
----
+A Core semantic change is a reserved matter. A proposal MUST identify:
 
-## Decision Making
+- the concrete failure or ambiguity;
+- the affected Core term, invariant or boundary;
+- why the distinction cannot already be expressed by the current architecture;
+- at least one worked encounter or negative test demonstrating the failure;
+- foreseeable effects on plural/collective authority, private ordering, AI-agent delegation and institutional use where relevant.
 
-Changes are assessed according to whether they improve:
+Preference, elegance, terminology fashion or alignment pressure from an adjacent standard is not sufficient reason to reopen Core.
 
-* semantic clarity
-* primitive consistency
-* revocation logic
-* misuse-case resilience
-* interoperability with existing identity and trust systems
-* technology-agnostic implementation potential
-* long-term coherence of the specification
+### Governance, licensing, IPR and marks
 
-Speed is secondary to correctness.
+Changes to licence scope, patent/IPR commitments, trademark or certification policy, contribution rights, the canonical architecture seam, the three-valued evaluation vocabulary, or the authority to issue a release are reserved matters and require an explicit published decision.
 
-A change should not be adopted merely because it is convenient for a specific platform, wallet, blockchain, credential system, or implementation environment.
+## 4. Change process
 
----
+Major changes SHOULD begin with a public issue before a pull request. The issue should state whether the proposal is normative, explanatory, illustrative, experimental or implementation-specific.
 
-## Versioning
+Where a proposal affects Core semantics, the associated conformance case should be added or updated before the normative change is merged. A semantic change that cannot be expressed as a testable difference requires exceptional justification.
 
-The current public release is **v0.1**.
+Maintainers SHOULD record the rationale for accepted or rejected reserved-matter changes in the issue or pull-request history.
 
-**v0.2 is being planned.**
+## 5. Versioning
 
-Planning areas may include structured authority claims, validation logic, revocation semantics, expanded primitive definitions, AI-agent execution contexts, legal and governance workflow examples, digital commerce examples, DID/VC interoperability mapping, and misuse-case tests.
+- `v0.2.x` is reserved for editorial corrections, clarified wording and compatible conformance or implementation maintenance that does not change Core semantic meaning.
+- A change that alters a primitive, invariant, required semantic distinction or evaluation rule requires a new minor architecture version, normally `v0.3` while SILT remains pre-1.0.
+- Experimental bindings and implementation profiles are versioned independently and remain non-normative unless explicitly promoted through the Core change process.
 
-These are planning areas, not release commitments.
+## 6. Normative and non-normative material
 
-The final v0.2 scope will be determined separately.
+The Semantic Architecture is the canonical normative reference for Core v0.2. Conformance fixtures test the architecture but do not create new semantics by accidental vocabulary. Experimental mappings, implementation profiles, commercial tools and advisory material are non-normative unless expressly stated otherwise.
 
-No future release scope beyond v0.2 is asserted by this governance document.
+Where older material conflicts with the current Semantic Architecture, the current Semantic Architecture governs and the older material must be migrated or marked historical.
 
----
+## 7. Commercial and institutional boundary
 
-## Normative and Non-Normative Material
+The open Core may support commercial reference implementations, assurance, integration, training, specialist mappings and advisory work. Commercial participation does not purchase control of the public semantic language.
 
-SILT Core distinguishes between:
+Certification, when introduced, may assess conformance to the published grammar. It MUST NOT claim to manufacture the legal, cultural, customary or institutional legitimacy of an underlying Source, Standing or Profile Expression.
 
-* normative specification material
-* explanatory documentation
-* illustrative examples
-* experimental reference code
-* misuse-case and threat-model material
+## 8. Future stewardship
 
-Reference code is non-normative unless expressly stated otherwise in a specification document.
-
-The reference consent validator under `/reference/validators/consent` is experimental and non-normative. It is provided to test early implementation patterns only. It does not define the specification and does not constrain future v0.2 schema design.
-
----
-
-## Contribution Boundary
-
-Contributions are welcome where they improve the public semantic layer.
-
-Contributions should not:
-
-* collapse capacity into identity or permission
-* remove or weaken revocation logic
-* impose a single source of authority
-* assume one implementation substrate
-* narrow SILT Core into legaltech only
-* imply legal enforceability beyond the scope of the specification
-* create release commitments beyond v0.2 planning
-
-Major contributions should begin with an issue before a pull request.
-
----
-
-## Governance Posture
-
-SILT Core is open to critique, adoption, and extension.
-
-It is not governed by external standards bodies, platforms, or implementation vendors.
-
-The project may interoperate with many systems, but it does not subordinate its semantic direction to any one of them.
-
-SILT Core should remain:
-
-* technology-agnostic
-* plural-source
-* revocation-aware
-* specification-first
-* implementation-neutral
-
-The purpose of governance is to protect the integrity of the authority layer.
+A later multi-stakeholder or neutral stewardship vehicle may be desirable as adoption broadens. Any transition SHOULD preserve public access, transparent change control, an implementable IPR position and representation of communities whose normative orders are likely to be affected by the standardisation process.

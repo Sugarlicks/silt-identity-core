@@ -1,26 +1,37 @@
-# Design principles
+# SILT Core v0.2 design principles
 
-## Spec-first, implementation-later
+## Encounter before system recognition
 
-SILT Core is intentionally **spec-first**. This repository exists to define semantics, constraints, and failure modes before committing to any particular implementation architecture.
+SILT begins at the moment where different orders meet. A receiving system may evaluate a Presentation, but it does not thereby become the source of the Standing being presented.
 
-The project will prioritise:
-- clear normative specifications (`spec/`)
-- threat modelling and misuse-case testing (`docs/` and `tests/`)
-- minimal, flexible schemas for interoperability (`schemas/`)
+## Source before Standing
 
-Reference implementations, adapters, and integration code are downstream concerns and will be approached only when the semantics are sufficiently stable and the real-world requirements are clearer.
+Standing is relational and grounded in Source. It is not a universal status, credential or self-certified attribute.
 
-This posture is deliberate. It reduces lock-in, avoids premature optimisation, and allows the underlying model of status, standing, authority, consent, and revocation to mature through research, writing, and plural-context evaluation.
+## Bounded presentation
 
-## Capacity before claim
-Acts must be attributable to a principal in a stated capacity. If capacity is unclear, the default posture is non-reliance.
+A Participant should be able to present the minimum encounter-relevant projection of Standing. The originating order exceeds what is disclosed.
 
-## Authority before action
-Authority must be explicit and referenceable. Delegation is never inferred from role titles, login state, or platform defaults.
+## Profile Expression without capture
 
-## Consent as constraint
-Consent is purpose-bound, minimal by default, time-boxed where feasible, and revocable.
+A Profile Expression is bounded, selective and non-exhaustive. It must not be treated as a complete model of the legal, customary, cultural, relational, contractual or institutional substrate from which it arises. Multiple Profile Expressions may coexist or conflict.
 
-## Revocation as a right
-Revocation is first-class. Systems must make withdrawal of authority and consent checkable and practical.
+## Evaluation without invented law
+
+SILT evaluates expressed conditions. It does not infer unstated normative rules to force agreement. Where a condition has entered evaluation but the available semantics are insufficient, the result is `INDETERMINATE`.
+
+## Legibility is not recognition
+
+Making Standing or Authority legible does not compel another order to accept it. SILT can expose difference without resolving it.
+
+## Semantic continuity is not cryptographic continuity
+
+Keys, sessions, credentials and capabilities may rotate without changing an underlying semantic relation. Technical persistence or successful execution likewise does not prove semantic legitimacy.
+
+## Semantic hand-off, not semantic surrender
+
+Downstream authentication, authorisation and execution systems may carry or enforce results, but they should not erase the Source-grounded meaning that made those results possible.
+
+## Semantically thick, operationally thin
+
+Core should contain the semantic distinctions needed for interoperability and no more. Operational machinery stays outside Core unless a real conformance or implementation failure proves that the boundary is insufficient.

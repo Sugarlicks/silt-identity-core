@@ -1,0 +1,21 @@
+{
+  "terms": "https://merchant.example/terms/txn-4821.md",
+  "termsFormat": "markdown",
+  "atrHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "acceptanceRequired": true,
+  "disputeResolution": {
+    "method": "Institutional arbitration",
+    "jurisdiction": "New Zealand"
+  },
+  "x-silt": {
+    "version": "0.2",
+    "mappingStatus": "experimental-non-normative",
+    "encounterRef": "urn:silt:encounter:we04-lcp-01",
+    "profileExpressionRefs": [
+      "urn:silt:pe:buyer-policy-01",
+      "urn:silt:pe:merchant-terms-01"
+    ],
+    "presentationRef": "urn:silt:presentation:agent-b-01",
+    "semanticRecordHash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  }
+}

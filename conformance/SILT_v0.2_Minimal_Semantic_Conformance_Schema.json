@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:silt:schema:v0.2:minimal-semantic-conformance",
+  "title": "SILT Core v0.2 Minimal Semantic Conformance Suite",
+  "type": "object",
+  "required": [
+    "suite_id",
+    "version",
+    "status",
+    "architecture_seam",
+    "allowed_evaluation_outcomes",
+    "worked_encounters",
+    "suite_result"
+  ],
+  "properties": {
+    "suite_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "architecture_seam": {
+      "type": "array",
+      "const": [
+        "Source",
+        "Standing",
+        "Presentation",
+        "evaluation_at_the_encounter"
+      ]
+    },
+    "allowed_evaluation_outcomes": {
+      "type": "array",
+      "const": [
+        "SATISFIED",
+        "NOT_SATISFIED",
+        "INDETERMINATE"
+      ]
+    },
+    "suite_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "worked_encounters": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "$ref": "#/$defs/workedEncounter"
+      }
+    },
+    "suite_result": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "evaluation": {
+      "type": "object",
+      "required": [
+        "profile_expression_id",
+        "condition_id"
+      ],
+      "properties": {
+        "profile_expression_id": {
+          "type": "string"
+        },
+        "condition_id": {
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "SATISFIED",
+            "NOT_SATISFIED",
+            "INDETERMINATE"
+          ]
+        },
+        "permitted_outcomes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "SATISFIED",
+              "NOT_SATISFIED",
+              "INDETERMINATE"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "outcome"
+          ],
+          "not": {
+            "required": [
+              "permitted_outcomes"
+            ]
+          }
+        },
+        {
+          "required": [
+            "permitted_outcomes"
+          ],
+          "not": {
+            "required": [
+              "outcome"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "notEvaluated": {
+      "type": "object",
+      "required": [
+        "profile_expression_id",
+        "condition_id",
+        "reason_code"
+      ],
+      "properties": {
+        "profile_expression_id": {
+          "type": "string"
+        },
+        "condition_id": {
+          "type": "string"
+        },
+        "reason_code": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "variant": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "facts",
+        "expected_evaluations",
+        "not_evaluated_conditions",
+        "prohibited_inferences",
+        "expected_implementation_conformance",
+        "architecture_test_result",
+        "architectural_finding"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "facts": {
+          "type": "string"
+        },
+        "expected_evaluations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evaluation"
+          }
+        },
+        "not_evaluated_conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/notEvaluated"
+          }
+        },
+        "prohibited_inferences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expected_implementation_conformance": {
+          "enum": [
+            "CONFORMING",
+            "NON_CONFORMING"
+          ]
+        },
+        "architecture_test_result": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "architectural_finding": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "baseFixture": {
+      "type": "object",
+      "required": [
+        "case_id",
+        "title",
+        "domain",
+        "profile_expressions",
+        "expected_evaluations",
+        "not_evaluated_conditions",
+        "prohibited_inferences",
+        "architecture_test_result"
+      ],
+      "properties": {
+        "case_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "profile_expressions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object"
+          }
+        },
+        "expected_evaluations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evaluation"
+          }
+        },
+        "not_evaluated_conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/notEvaluated"
+          }
+        },
+        "prohibited_inferences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "architecture_test_result": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "workedEncounter": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "base_fixture",
+        "variants"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "base_fixture": {
+          "$ref": "#/$defs/baseFixture"
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/variant"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
