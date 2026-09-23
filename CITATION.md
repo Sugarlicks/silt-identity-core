@@ -6,13 +6,17 @@
 **Copyright:** © 2026 Gareth Farry  
 **Project / publishing identity:** SILT Core
 
-## Preferred citation for Release Candidate 2.1
+## Preferred citation for v0.2.0
 
-Farry, Gareth. 2026. *SILT Core v0.2: Semantic Architecture*. Release Candidate 2.1, 18 September 2026. SILT Core. https://github.com/Sugarlicks/silt-identity-core
+Farry, Gareth. 2026. *SILT Core v0.2: Semantic Architecture*. Version 0.2.0. SILT Core. Zenodo. https://doi.org/10.5281/zenodo.22908026
 
 ## Repository
 
 https://github.com/Sugarlicks/silt-identity-core
+
+## Release
+
+https://github.com/Sugarlicks/silt-identity-core/releases/tag/v0.2.0
 
 ## Website
 
@@ -20,7 +24,10 @@ https://siltcore.org
 
 ## DOI
 
-A DOI should be added only after the final `v0.2.0` tag has been archived. Release Candidate 2.1 does not assert a DOI.
+**Version-specific DOI for v0.2.0:** https://doi.org/10.5281/zenodo.22908026  
+**Concept DOI for all SILT Core versions:** https://doi.org/10.5281/zenodo.22908025
+
+Use the version-specific DOI when citing SILT Core v0.2.0. The concept DOI may be used when referring to the evolving SILT Core record across versions.
 
 ## Versioning note
 
