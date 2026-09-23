@@ -1,8 +1,10 @@
-# SILT Core v0.2 - Release Candidate 2.1
+# SILT Core v0.2.0
 
-**Status:** Release Candidate 2.1  
-**Date:** 18 September 2026  
+**Status:** Public release  
+**Release date:** 23 September 2026  
 **Repository:** https://github.com/Sugarlicks/silt-identity-core  
+**Release:** https://github.com/Sugarlicks/silt-identity-core/releases/tag/v0.2.0  
+**DOI:** https://doi.org/10.5281/zenodo.22908026  
 **Website:** https://siltcore.org  
 **Author:** Gareth Farry  
 **Copyright:** © 2026 Gareth Farry
@@ -15,7 +17,7 @@ Its canonical architectural seam is:
 
 SILT makes relevant relational legitimacy mutually legible without requiring originating orders to collapse into a single ontology or surrender their own sources of authority. It is semantically thick and operationally thin.
 
-## Release-candidate result
+## v0.2.0 result
 
 The v0.2 architecture has passed four planned semantic pressure domains under a common conformance discipline: electronic transferable instruments, credential-carried institutional Standing, plural and collective Profile Expressions, and recursive AI-agent delegation. The unified suite contains 4 base fixtures and 30 adversarial variants.
 
@@ -37,7 +39,7 @@ A condition deliberately outside evaluation is not a fourth outcome.
 
 ## Package contents
 
-- `spec/SILT_Core_v0.2.0_Semantic_Architecture.md` - the single canonical v0.2.0 Semantic Architecture publication candidate.
+- `spec/SILT_Core_v0.2.0_Semantic_Architecture.md` - the canonical v0.2.0 Semantic Architecture.
 - `conformance/` - the unified machine-validatable conformance suite and JSON Schema.
 - `bindings/` - the experimental, non-normative SILT <-> LCP mapping.
 - `docs/` - changelog, migration guidance and repository transition notes.
@@ -58,8 +60,12 @@ See `LICENSING.md`, `IPR_POLICY.md` and `TRADEMARK_AND_CONFORMANCE.md`.
 
 v0.2 uses interim maintainer stewardship with public change control. SILT does not yet claim foundation governance or institutional neutrality. Core semantic changes must be earned by a concrete conformance failure, implementation failure or external mapping that exposes an otherwise inexpressible semantic distinction.
 
-## Release discipline
+## Citation
 
-Release Candidate 2.1 is intended to be the publication base for `v0.2.0`. The rights chain is now fixed for this release: Gareth Farry is author and copyright holder, and SILT Core is the project/publishing identity. The single canonical specification artefact is present in `spec/`. Remaining work before the public tag is final project sign-off, merge of PR #4, tagging, archival deposit and DOI metadata.
+Farry, Gareth. 2026. *SILT Core v0.2: Semantic Architecture*. Version 0.2.0. SILT Core. Zenodo. https://doi.org/10.5281/zenodo.22908026
+
+For citation metadata and the concept DOI covering future SILT Core versions, see `CITATION.md`.
+
+## Historical implementation material
 
 AUT CISRC remains a separate **SILT Core v0.1 implementation profile**. It is not part of the v0.2 migration or conformance claim.
