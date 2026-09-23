@@ -8,6 +8,7 @@ authors:
     given-names: "Gareth"
 repository-code: "https://github.com/Sugarlicks/silt-identity-core"
 url: "https://siltcore.org"
+doi: "10.5281/zenodo.22908026"
 license: "CC-BY-4.0"
 type: software
 abstract: >-
