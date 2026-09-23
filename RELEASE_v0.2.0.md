@@ -1,6 +1,6 @@
 # SILT Core v0.2.0 — Semantic Architecture
 
-**Planned public release:** 23 September 2026  
+**Public release:** 23 September 2026  
 **Author:** Gareth Farry  
 **Copyright:** © 2026 Gareth Farry  
 **Project / publishing identity:** SILT Core
@@ -64,6 +64,7 @@ The release includes interim governance, contribution, IPR, trademark and confor
 
 ## Citation
 
-Farry, Gareth. 2026. *SILT Core v0.2: Semantic Architecture*. v0.2.0, 23 September 2026. SILT Core.
+Farry, Gareth. 2026. *SILT Core v0.2: Semantic Architecture*. Version 0.2.0. SILT Core. Zenodo. https://doi.org/10.5281/zenodo.22908026
 
-A DOI will be added to the living repository metadata after the tagged release is archived.
+**Version DOI:** https://doi.org/10.5281/zenodo.22908026  
+**Concept DOI:** https://doi.org/10.5281/zenodo.22908025
