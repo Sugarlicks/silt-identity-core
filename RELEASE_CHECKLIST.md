@@ -40,8 +40,11 @@
 
 ## Release-day actions
 
-- [ ] Merge PR #4 to `main`, create tag `v0.2.0`, and publish the GitHub release from the reviewed commit.
-- [ ] Archive the immutable `v0.2.0` release in Zenodo, mint the DOI, then insert the DOI into the living repository citation metadata.
+- [x] Merge PR #4 to `main`, create tag `v0.2.0`, and publish the GitHub release from the reviewed commit.
+- [x] Archive the immutable `v0.2.0` release in Zenodo, mint the DOI, then insert the DOI into the living repository citation metadata.
+
+**Version DOI:** https://doi.org/10.5281/zenodo.22908026  
+**Concept DOI:** https://doi.org/10.5281/zenodo.22908025
 
 ## Post-v0.2 governance work
 
