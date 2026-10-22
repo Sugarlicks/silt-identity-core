@@ -173,9 +173,7 @@ Phase 3 provides adequate **prototype-level validation evidence** for the delibe
 
 ## 9. Remaining release and closure tasks
 
-Before claiming final public release of the *funded v0.1 project package*, complete the release checklist: verify repository paths and licence notices, identify the immutable release commit/tag, prepare archival metadata, publish the agreed Zenodo record, provide a concise dissemination notice and assemble final Vietsch progress/cost reporting as applicable.
-
-The test evidence already published in GitHub can be cited directly. A Zenodo DOI or final publication status **must not be claimed until the deposit exists**. The report's existence within the broader SILT repository does not mean this specific v0.1 implementation has been separately archived.
+The funded v0.1 project has a separate [GitHub pilot release](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026) with the curated archive and checksum. On 23 October 2026 the depositor supplied [Zenodo record 23579725](https://zenodo.org/records/23579725) and DOI [10.5281/zenodo.23579725](https://doi.org/10.5281/zenodo.23579725). Verify the record's actual file inventory, checksums, publication date and mixed licence display against the GitHub archive before treating independent archival reconciliation as complete. Final public dissemination and Vietsch financial close-out remain outstanding.
 
 ## 10. Conclusion
 
@@ -183,7 +181,7 @@ The SILT Core v0.1 AUT CISRC implementation has demonstrated a bounded technical
 
 The most important qualification is equally clear. **Structural legibility is not institutional legitimacy.** The artefacts make an asserted authority relationship inspectable; they do not themselves establish that its origin is authentic or that a university must recognise it. That distinction gives the research a defensible boundary and points to the evidence and adoption work that any downstream implementation would require.
 
-Within the funded v0.1 scope, Phase 3 is sufficiently evidenced for research reporting. Final release, archival publication and project close-out remain the next steps.
+Within the funded v0.1 scope, Phase 3 is sufficiently evidenced for research reporting. A separate GitHub pilot release and depositor-supplied Zenodo DOI now exist; archival verification, dissemination and project financial close-out remain.
 
 ---
 
@@ -194,5 +192,7 @@ Within the funded v0.1 scope, Phase 3 is sufficiently evidenced for research rep
 - [Example artefacts and test record](https://github.com/Sugarlicks/silt-identity-core/tree/main/examples/aut-cisrc-research-delegation)
 - [Reference validator](https://github.com/Sugarlicks/silt-identity-core/tree/main/reference/validators/aut-cisrc-delegation)
 - [Final 21-test CI evidence](https://github.com/Sugarlicks/silt-identity-core/actions/runs/39848903516)
+- [Funded pilot GitHub release](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026)
+- [Depositor-supplied Zenodo archive DOI](https://doi.org/10.5281/zenodo.23579725)
 
 **Acknowledgement:** This project has received financial support from Stichting Vietsch (Vietsch Foundation) for open research and development benefiting research and education infrastructure.
