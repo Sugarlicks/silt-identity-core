@@ -58,8 +58,7 @@ jobs:
             dist/silt-vietsch-aut-cisrc-v01-pilot.zip.sha256 \
             --target "$GITHUB_SHA" \
             --title "SILT Core v0.1 — Vietsch AUT CISRC Delegation and Revocation Pilot" \
-            --notes-file release/vietsch-v01/RELEASE_NOTES.md \
-            --verify-tag=false
+            --notes-file release/vietsch-v01/RELEASE_NOTES.md
       - name: Publication receipt
         env:
           GH_TOKEN: ${{ github.token }}
