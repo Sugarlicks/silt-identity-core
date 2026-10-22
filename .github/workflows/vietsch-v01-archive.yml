@@ -1,0 +1,31 @@
+name: Vietsch v0.1 pilot archive preflight
+on:
+  pull_request:
+    paths:
+      - 'release/vietsch-v01/**'
+      - '.github/workflows/vietsch-v01-archive.yml'
+      - 'docs/implementation-profiles/aut-cisrc/**'
+      - 'schemas/implementation-profiles/aut-cisrc/**'
+      - 'examples/aut-cisrc-research-delegation/**'
+      - 'reference/validators/aut-cisrc-delegation/**'
+      - 'tests/aut-cisrc/**'
+  workflow_dispatch:
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test v0.1 pilot
+        run: |
+          python -m pip install 'jsonschema>=4.20,<5'
+          python -m unittest discover -s tests/aut-cisrc -p 'test_*.py' -v
+      - name: Assemble archive and check file hashes
+        run: python release/vietsch-v01/build_archive.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vietsch-v01-pilot-release-candidate
+          path: dist/silt-vietsch-aut-cisrc-v01-pilot.zip
+          if-no-files-found: error
