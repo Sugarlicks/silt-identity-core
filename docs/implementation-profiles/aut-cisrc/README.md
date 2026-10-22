@@ -21,6 +21,11 @@ Earlier notes titled as candidate v0.2 findings are preserved as historical rese
 See also `docs/AUT_CISRC_v0.1_STATUS.md`.
 
 
+## Publication provenance and licensing
+
+- [Original v0.1 specification provenance and AUT schema boundary](VIETSCH_V01_SPECIFICATION_PROVENANCE.md)
+- [Vietsch licensing reconciliation — rights-holder decision required](VIETSCH_V01_LICENSING_DECISION.md)
+
 ## Vietsch Phase 3 evaluation and publication preparation
 
 - [Completed Phase 3 pilot evaluation](phase-3-pilot-evaluation.md)

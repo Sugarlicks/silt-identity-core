@@ -17,9 +17,9 @@
 
 | Item | Required before final release | Current position |
 | --- | --- | --- |
-| Canonical v0.1 formal specification | Identify immutable, complete v0.1 specification in the repo, or prepare one from the agreed v0.1 source documents | **Unverified**. The present `spec/` README identifies v0.2, and `archive/v0.1/README.md` is historical overview rather than clearly labelled formal delegation specification |
-| Licence compliance | Check signed MoU's **Apache 2.0 for source code** and **Creative Commons for other information** against the existing repository's statement that historical v0.1 materials retain Apache 2.0 | **Needs express resolution** without assuming old licences can be withdrawn; do not relabel rights silently |
-| Version identity | Select an unambiguous project-specific archival tag or immutable commit for the funded v0.1 pilot; avoid overwriting the existing v0.2 release | **To decide**; candidate `aut-cisrc-v0.1-pilot-2026`, subject to checking tag availability |
+| Original v0.1 specification provenance | Identify original delegation and revocation texts and schemas; do not substitute AUT profile schemas for them | **Located**: `archive/v0.1/spec/delegation.md`, `archive/v0.1/spec/revocation.md`, `archive/v0.1/schemas/delegation.schema.json`, `archive/v0.1/schemas/revocation.schema.json`. Original GitHub release `v0.1` published 14 April 2026. Confirm publication snapshot/tag alignment before depositing |
+| Licence compliance | Reconcile the signed MoU's Apache 2.0 code / Creative Commons non-code division with the historical v0.1 Apache 2.0 rights notice | **Approval needed**: preserve historic Apache grants; if rights holder agrees, add separate CC BY 4.0 permission for eligible documentation prospectively or through express dual licensing. See `VIETSCH_V01_LICENSING_DECISION.md` |
+| Version identity | Select a **new**, unambiguous pilot archival tag or immutable commit; do not overwrite the historic `v0.1` (14 April 2026) or the independent `v0.2.0` release | **To create**; proposed `aut-cisrc-v0.1-pilot-2026`. Tag availability and final release commit must be verified |
 | Provenance | Pin final commit SHA, note merged PRs and 21-test CI result; include accurate synthetic-fixture disclosure | **Partly ready** |
 | AUT attribution | Keep initial directional review distinct from institutional authorisation; confirm any external acknowledgements | **No formal endorsement evidenced** |
 | Zenodo archive | Deposit an actual versioned package and confirm the assigned DOI | **Not done**; do not reuse the v0.2 DOI |
@@ -28,7 +28,7 @@
 
 ## Minimum proposed archival package
 
-1. A version-fixed, clearly identified **v0.1 delegation and revocation specification** (if actually available and vetted).
+1. The original archived **v0.1 delegation and revocation specifications and schemas** linked above, pinned to their original version identity (do not conflate them with the non-normative AUT profile schemas).
 2. The non-normative [AUT implementation profile](AUT-CISRC-Implementation-Profile.md), [authority-chain model](authority-chain.md), [pilot workflow](pilot-workflow.md), and [validation logic](validation-logic.md).
 3. Five profile-specific JSON Schemas under `schemas/implementation-profiles/aut-cisrc/`.
 4. The Python reference validator under `reference/validators/aut-cisrc-delegation/`.
@@ -41,6 +41,10 @@ Archive the *specific historical v0.1 implementation*, not the evolving reposito
 ## Agreed MoU reporting context
 
 Annex I requires refinement and publication via GitHub and Zenodo, and dissemination to the research and education community. The signed MoU additionally calls for public progress reporting on a **bimonthly** basis and a public status page. A GitHub commit alone does not demonstrate that status-page and dissemination obligations were discharged.
+
+## Material technical distinction
+
+The original v0.1 schema uses `delegation_id`, `principal`, `agent`, `capacity`, `scope` and `revocation` references. The AUT pilot defines profile-specific `delegationId`, `issuer`, `delegate`, `authorityChain`, `permittedActions` and `revokedBy` structures. Its 21 passing tests validate **the AUT profile schemas**, not direct conformance of the AUT artefacts to the original archived v0.1 JSON Schemas. The pilot is an implementation application with its own declared extension/translation boundary, not a normative v0.1 schema update. See [provenance note](VIETSCH_V01_SPECIFICATION_PROVENANCE.md).
 
 ## Release gate
 
