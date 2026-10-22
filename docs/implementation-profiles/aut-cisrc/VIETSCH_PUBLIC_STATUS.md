@@ -4,7 +4,7 @@
 **Project:** Delegation and Revocation Semantics for Federated Research Infrastructure  
 **Funded by:** Stichting Vietsch (Vietsch Foundation)  
 **Project lead:** Gareth Farry  
-**Delivery status:** GitHub pilot released; Zenodo record and DOI supplied by depositor; final dissemination and project financial close-out pending.
+**Delivery status:** GitHub pilot and Zenodo DOI recorded; public research dissemination note published in repository; website dissemination and financial close-out still to confirm.
 
 ## Purpose and agreed scope
 
@@ -22,7 +22,8 @@ The project applies **SILT Core v0.1**. The later v0.2 Semantic Architecture is 
 | Release package and licensing | [PR #10](https://github.com/Sugarlicks/silt-identity-core/pull/10), CC BY 4.0 additional licence for specified author-owned prose while preserving Apache 2.0; 48 curated files | Complete |
 | Public GitHub release | [Vietsch v0.1 AUT pilot release](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026) with ZIP and SHA-256 checksum | **Published 23 October 2026 NZ** |
 | Long-term Zenodo archive | [Zenodo record 23579725](https://zenodo.org/records/23579725); DOI [10.5281/zenodo.23579725](https://doi.org/10.5281/zenodo.23579725), supplied by depositor 23 October 2026 | **DOI received**; independent record-file and licence checks outstanding |
-| Final public dissemination and financial close-out | Project summary and expenditure record / final donation claim if substantiated | Outstanding |
+| Public dissemination | [Completion announcement](VIETSCH_COMPLETION_ANNOUNCEMENT.md) published in the public repository | Public research write-up available; posting to siltcore.org not yet verified |
+| Financial close-out | Itemised cost record / final donation claim if substantiated | Outstanding |
 
 ## Current research result
 
@@ -35,6 +36,7 @@ The reference validator demonstrates that one deliberately limited delegated res
 - **Checksum:** https://github.com/Sugarlicks/silt-identity-core/releases/download/aut-cisrc-v0.1-pilot-2026/silt-vietsch-aut-cisrc-v01-pilot.zip.sha256
 - **Test evidence:** https://github.com/Sugarlicks/silt-identity-core/actions/runs/39859824052
 - **Evaluation:** [Phase 3 pilot evaluation](phase-3-pilot-evaluation.md)
+- **Completion and dissemination write-up:** [Vietsch research outcome](VIETSCH_COMPLETION_ANNOUNCEMENT.md)
 - **Zenodo record:** https://zenodo.org/records/23579725
 - **DOI:** https://doi.org/10.5281/zenodo.23579725
 
@@ -44,6 +46,6 @@ The five illustrative PNG diagrams are excluded from the curated release pending
 
 The signed MoU calls for **bimonthly public project reporting and a public status page**. This page serves as the dated public status record, without representing unverified historical reporting as completed.
 
-The depositor supplied the newly published Zenodo record and DOI on 23 October 2026. The record's file list, SHA-256 match and displayed mixed licences have not been independently inspected through this workspace; verify these against the [curated pilot release](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026). The remaining dissemination and financial reporting must be based on verified publication records, substantiated research costs and payment records. The previously requested donation amounts are **not confirmation of funds received**.
+The depositor supplied the newly published Zenodo record and DOI on 23 October 2026. The record's file list, SHA-256 match and displayed mixed licences have not been independently inspected through this workspace; verify these against the [curated pilot release](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026). The public research completion announcement is available in this repository; the separately intended posting at siltcore.org and any targeted distribution have not been verified. Financial reporting must be based on substantiated research costs and payment records. The previously requested donation amounts are **not confirmation of funds received**.
 
 **Acknowledgement:** This open research is supported by Stichting Vietsch (Vietsch Foundation).
