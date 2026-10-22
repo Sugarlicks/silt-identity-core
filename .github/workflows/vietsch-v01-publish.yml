@@ -1,0 +1,67 @@
+name: Publish Vietsch v0.1 pilot release
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/vietsch-v01-publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vietsch-v01-pilot-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact publishing commit
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Ensure target tag and release are unused
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: aut-cisrc-v0.1-pilot-2026
+        run: |
+          git fetch --tags --force
+          if git rev-parse --verify --quiet "refs/tags/$TAG" >/dev/null; then
+            echo "Tag $TAG already exists; refusing to overwrite historical publication."
+            exit 1
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; refusing overwrite."
+            exit 1
+          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install validator dependency
+        run: python -m pip install 'jsonschema>=4.20,<5'
+      - name: Run all 21 pilot regression tests
+        run: python -m unittest discover -s tests/aut-cisrc -p 'test_*.py' -v
+      - name: Build SHA-256-manifested v0.1-only release archive
+        run: |
+          python release/vietsch-v01/build_archive.py
+          cd dist
+          sha256sum silt-vietsch-aut-cisrc-v01-pilot.zip > silt-vietsch-aut-cisrc-v01-pilot.zip.sha256
+      - name: Publish separate release and attach validated files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: aut-cisrc-v0.1-pilot-2026
+        run: |
+          gh release create "$TAG" \
+            dist/silt-vietsch-aut-cisrc-v01-pilot.zip \
+            dist/silt-vietsch-aut-cisrc-v01-pilot.zip.sha256 \
+            --target "$GITHUB_SHA" \
+            --title "SILT Core v0.1 — Vietsch AUT CISRC Delegation and Revocation Pilot" \
+            --notes-file release/vietsch-v01/RELEASE_NOTES.md
+      - name: Publication receipt
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release view aut-cisrc-v0.1-pilot-2026 --json url,tagName,assets,publishedAt
