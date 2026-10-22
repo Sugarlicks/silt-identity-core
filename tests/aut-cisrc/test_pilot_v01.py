@@ -73,9 +73,9 @@ class AUTPilotV01Tests(unittest.TestCase):
 
     def test_10_invalid_revoker(self):
         event = fixture("revocations/revoked-delegation.json")["revocations"][0]
-        event["revokedBy"] = {"actorId": "unrecognised", "authorityNodeId": "not-a-node"}
+        event["revokedBy"] = {"actorId": "unrecognised", "authorityNodeId": "not-a-node", "role": "ExternalActor"}
         event["revocationAuthorityBasis"] = {
-            "basisType": "committee_or_subunit", "authorityNodeId": "not-a-node"}
+            "basisType": "committee_or_subunit", "authorityNodeId": "not-a-node", "description": "Synthetic invalid revoker"}
         result = validator.validate(fixture("delegations/valid-delegation.json"),
                                     fixture("requests/valid-request.json"),
                                     {"revocations": [event]}, fixture("authority-chain.json"))
@@ -84,9 +84,9 @@ class AUTPilotV01Tests(unittest.TestCase):
 
     def test_11_higher_order_revocation(self):
         event = fixture("revocations/revoked-delegation.json")["revocations"][0]
-        event["revokedBy"] = {"actorId": "actor-university-001", "authorityNodeId": "node-005"}
+        event["revokedBy"] = {"actorId": "actor-university-001", "authorityNodeId": "node-005", "role": "School"}
         event["revocationAuthorityBasis"] = {
-            "basisType": "higher_order_authority", "authorityNodeId": "node-005"}
+            "basisType": "higher_order_authority", "authorityNodeId": "node-005", "description": "Synthetic higher-order revocation"}
         result = validator.validate(fixture("delegations/valid-delegation.json"),
                                     fixture("requests/valid-request.json"),
                                     {"revocations": [event]}, fixture("authority-chain.json"))
