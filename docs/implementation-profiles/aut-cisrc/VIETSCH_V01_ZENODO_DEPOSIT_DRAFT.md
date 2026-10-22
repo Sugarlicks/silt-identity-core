@@ -1,3 +1,9 @@
+**ARCHIVED PRE-PUBLICATION WORKING DRAFT — SUPERSEDED BY DEPOSITOR-SUPPLIED RECORD**
+
+The depositor supplied https://zenodo.org/records/23579725 and https://doi.org/10.5281/zenodo.23579725 on 23 October 2026. This document is preserved as planning history; its pending-deposit instructions and metadata fields are no longer current. Independently check the published Zenodo file inventory, checksum, licences, and publication date against the GitHub pilot release.
+
+---
+
 # Zenodo deposit metadata — draft only
 
 **Do not publish this metadata as a DOI claim until deposit completion.**  
