@@ -35,3 +35,9 @@ See also `docs/AUT_CISRC_v0.1_STATUS.md`.
 - [Draft public progress update](VIETSCH_PUBLIC_UPDATE_DRAFT.md)
 
 These drafts are for closing the **funded v0.1 pilot**. They do not establish a separate Zenodo DOI, final release tag, or payment entitlement, and do not change SILT Core v0.2.
+
+## Public Vietsch project status and close-out
+
+- [Dated public progress and release status](VIETSCH_PUBLIC_STATUS.md)
+- [Zenodo curated-archive manual deposit instructions](VIETSCH_ZENODO_MANUAL_DEPOSIT.md)
+- [Final technical and publication report — pending DOI and financial verification](VIETSCH_FINAL_REPORT_DRAFT.md)
