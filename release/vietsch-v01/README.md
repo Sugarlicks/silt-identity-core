@@ -19,7 +19,7 @@ python -m pip install 'jsonschema>=4.20,<5'
 python -m unittest discover -s tests/aut-cisrc -p 'test_*.py' -v
 ```
 
-The reference validator, five AUT implementation-profile schemas, original v0.1 delegation/revocation specifications, examples, evaluation report and diagrams are within the package. See `RELEASE_MANIFEST.json` for every archived path and SHA-256.
+The reference validator, five AUT implementation-profile schemas, original v0.1 delegation/revocation specifications, examples and evaluation report are within the package. Diagrams are excluded pending separate provenance and reuse-rights verification. See `RELEASE_MANIFEST.json` for every archived path and SHA-256.
 
 ## Source and acknowledgement
 
@@ -30,6 +30,6 @@ Report: `docs/implementation-profiles/aut-cisrc/phase-3-pilot-evaluation.md`.
 
 ## Rights and versioning
 
-See `release/vietsch-v01/LICENCE_STATUS.md` and per-file notices. **A universal single licence is not declared for this mixed research archive.** No Creative Commons relicensing of historical files is performed by this packaging step.
+See `release/vietsch-v01/LICENCE_STATUS.md` and per-file notices. **A universal single licence is not declared for this mixed research archive.** The authorised CC BY 4.0 additional licence applies to the specifically listed project-authored narrative files; historical Apache 2.0 permissions remain in force.
 
 No DOI is assigned by this README. Cite the final archive DOI only once Zenodo has accepted a corresponding deposit.
