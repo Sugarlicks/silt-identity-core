@@ -201,52 +201,73 @@ def revocation_applies(
     return None
 
 
+def chain_nodes(authority_chain: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    """Index the supplied synthetic authority chain by node identifier."""
+    return {node.get("authorityNodeId"): node for node in authority_chain.get("authorityNodes", [])}
+
+
+def is_ancestor(ancestor_id: str, child_id: str, nodes: Dict[str, Dict[str, Any]]) -> bool:
+    """Follow explicit parent links; a numeric seniority level alone is insufficient."""
+    seen = set()
+    current = child_id
+    while current and current not in seen:
+        if current == ancestor_id:
+            return True
+        seen.add(current)
+        current = nodes.get(current, {}).get("parentNodeId")
+    return False
+
+
+def issuer_has_profile_authority(delegation: Dict[str, Any], authority_chain: Dict[str, Any]) -> bool:
+    """Check pilot chain membership, declared domain and issuer-to-delegate path.
+
+    This is structural verification of a synthetic asserted chain, not proof
+    of any real institutional appointment, statutory power or legal validity.
+    """
+    if delegation.get("authorityChain", {}).get("authorityChainId") != authority_chain.get("authorityChainId"):
+        return False
+    nodes = chain_nodes(authority_chain)
+    issuer_id = delegation.get("issuer", {}).get("authorityNodeId")
+    delegate_id = delegation.get("delegate", {}).get("authorityNodeId")
+    issuer = nodes.get(issuer_id)
+    if not issuer or delegate_id not in nodes:
+        return False
+    domain = authority_chain.get("governanceDomain")
+    if domain not in issuer.get("authorityDomain", []):
+        return False
+    return is_ancestor(issuer_id, delegate_id, nodes)
+
+
 def revocation_authority_is_valid(
     delegation: Dict[str, Any],
     revocation: Dict[str, Any],
     authority_chain: Dict[str, Any]
 ) -> bool:
-    """
-    Check revocation authority.
+    """Verify revoker's pilot authority node and explicit parent path.
 
-    Phase 2 prototype logic:
-    - original delegator may revoke;
-    - higher-order authority may revoke where its level number is lower than the issuer level;
-    - committee_or_subunit basis is accepted where an authorityNodeId is supplied.
+    Committee/subunit authority cannot be inferred from a supplied node ID.
+    Such a body must be present in the chain and ancestral to the issuer in
+    this narrowly scoped prototype; other mandates need a later explicit
+    evidence model and are not accepted by default.
     """
     revoked_by = revocation.get("revokedBy", {})
     issuer = delegation.get("issuer", {})
-
     if revoked_by.get("actorId") == issuer.get("actorId"):
         return True
-
     basis = revocation.get("revocationAuthorityBasis", {})
-    basis_type = basis.get("basisType")
-
-    if basis_type == "committee_or_subunit" and basis.get("authorityNodeId"):
-        return True
-
-    if basis_type != "higher_order_authority":
+    if basis.get("basisType") not in ("higher_order_authority", "committee_or_subunit"):
         return False
-
-    revoker_node_id = revoked_by.get("authorityNodeId")
-    issuer_node_id = issuer.get("authorityNodeId")
-
-    if not revoker_node_id or not issuer_node_id:
+    revoker_id = revoked_by.get("authorityNodeId")
+    issuer_id = issuer.get("authorityNodeId")
+    nodes = chain_nodes(authority_chain)
+    revoker = nodes.get(revoker_id)
+    if not revoker or issuer_id not in nodes:
         return False
-
-    nodes = {
-        node.get("authorityNodeId"): node
-        for node in authority_chain.get("authorityNodes", [])
-    }
-
-    revoker_node = nodes.get(revoker_node_id)
-    issuer_node = nodes.get(issuer_node_id)
-
-    if not revoker_node or not issuer_node:
+    if basis.get("authorityNodeId") != revoker_id:
         return False
-
-    return revoker_node.get("level", 9999) < issuer_node.get("level", 9999)
+    if authority_chain.get("governanceDomain") not in revoker.get("authorityDomain", []):
+        return False
+    return revoker_id != issuer_id and is_ancestor(revoker_id, issuer_id, nodes)
 
 
 def validate(
@@ -323,6 +344,14 @@ def validate(
         "ALLOW",
         "Authority chain is present."
     )
+
+    if not issuer_has_profile_authority(delegation, authority_chain):
+        add_check(checked_at, "issuer_authorised", False, "ISSUER_NOT_AUTHORISED",
+                  "Issuer does not have the required asserted chain path and domain.")
+        return deny(request_id, delegation_id, "ISSUER_NOT_AUTHORISED",
+                    "Issuer authority is not established by this pilot chain.", checked_at, warnings)
+    add_check(checked_at, "issuer_authorised", True, "ALLOW",
+              "Issuer chain membership, domain and ancestry match the pilot assertion.")
 
     if strict and not delegation.get("evidenceDocuments"):
         warnings.append({
