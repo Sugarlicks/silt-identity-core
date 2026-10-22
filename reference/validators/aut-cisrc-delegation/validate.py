@@ -21,10 +21,36 @@ import argparse
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from jsonschema import Draft202012Validator, FormatChecker
 from typing import Any, Dict, List, Optional
 
 
 VALIDATOR_VERSION = "aut-cisrc-profile-v0.1"
+
+SCHEMA_ROOT = Path(__file__).resolve().parents[3] / "schemas/implementation-profiles/aut-cisrc"
+
+def schema_errors(data, filename):
+    schema = json.loads((SCHEMA_ROOT / filename).read_text(encoding="utf-8"))
+    return [e.message for e in Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(data)]
+
+def input_errors(delegation, request, revocation_data, authority_chain):
+    issues = []
+    for data, filename in [(delegation, "delegation.schema.json"), (request, "access-request.schema.json"), (authority_chain, "authority-chain.schema.json")]:
+        issues.extend(filename + ": " + e for e in schema_errors(data, filename))
+    if not isinstance(revocation_data, dict):
+        return issues + ["Revocations must be an object"]
+    if "revocations" in revocation_data:
+        if not isinstance(revocation_data["revocations"], list):
+            return issues + ["Revocations must be an array"]
+        events = revocation_data["revocations"]
+    elif "revocationId" in revocation_data:
+        events = [revocation_data]
+    else:
+        return issues + ["Revocation input requires an event or revocations array"]
+    for event in events:
+        issues.extend("revocation: " + e for e in schema_errors(event, "revocation.schema.json"))
+    return issues
+
 
 
 def load_json(path: str) -> Dict[str, Any]:
@@ -344,6 +370,12 @@ def validate(
         "ALLOW",
         "Authority chain is present."
     )
+
+    errors = input_errors(delegation, request, revocation_data, authority_chain)
+    if errors:
+        return deny(request_id, delegation_id, "SCHEMA_INVALID", "; ".join(errors[:3]), checked_at, warnings)
+    if request.get("delegationId") != delegation_id:
+        return deny(request_id, delegation_id, "SCHEMA_INVALID", "Request delegation identifier mismatch.", checked_at, warnings)
 
     if not issuer_has_profile_authority(delegation, authority_chain):
         add_check(checked_at, "issuer_authorised", False, "ISSUER_NOT_AUTHORISED",
