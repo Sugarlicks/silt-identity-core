@@ -19,6 +19,10 @@
 
 This research release documents a constrained SILT Core v0.1 proof of concept addressing portable, inspectable delegation and revocation records for federated research infrastructure. Using a synthetic university research-governance workflow associated with the AUT CISRC implementation context, it represents an asserted institutional authority chain, limited delegation, access request, temporal conditions and revocation events as machine-readable artefacts. A lightweight Python reference validator checks the selected actor, action, resource, purpose, authority-chain, temporal and revocation conditions. The Phase 3 regression suite passed 21 selected automated tests, including representative schema-conformance and negative cases. The implementation profile is non-normative and does not establish formal AUT approval, verify the truth or legal validity of authority claims, authenticate signatures, integrate with live systems or demonstrate multi-institution deployment. The publication offers reproducible research artefacts for independent inspection and further evaluation.
 
+## Historical version identity and mapping
+
+The original SILT Core v0.1 release was published on **14 April 2026** and its original delegation/revocation texts and schemas remain under `archive/v0.1/spec/` and `archive/v0.1/schemas/`. This proposed deposit would be a **new, subsequent Vietsch AUT pilot research output**, not a replacement or backdated publication of that release. The AUT profile schemas differ from the original v0.1 schemas. See [specification provenance](VIETSCH_V01_SPECIFICATION_PROVENANCE.md).
+
 ## Rights preflight
 
 The signed MoU calls for **Apache 2.0 source code and Creative Commons non-code materials**. The repository's current licensing file describes preserved v0.1 historical materials as Apache 2.0 unless otherwise specified. **Resolve this conflict explicitly with the rights holder and version-specific licence notices before applying deposit licences.** Do not claim that the present metadata automatically grants a new licence or revokes earlier Apache 2.0 terms.
