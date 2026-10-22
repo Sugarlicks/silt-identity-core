@@ -1,6 +1,6 @@
 # AUT CISRC Research Delegation Test Results
 
-**Status:** Initial manual/prototype test record  
+**Status:** Phase 3 executed regression record  
 **Profile:** AUT CISRC Implementation Profile  
 **Validator:** `reference/validators/aut-cisrc-delegation/validate.py`  
 **Relationship to SILT Core:** Non-normative implementation example
@@ -13,7 +13,7 @@ The purpose is to show that the AUT CISRC implementation profile can express a d
 
 ## Phase 3 execution record (23 October 2026, NZ)
 
-**Status:** Automated regression baseline executed on the Phase 3 review branch; not yet merged or an AUT institutional validation.
+**Status:** Automated regression baseline executed and merged through PR #6; this is not AUT institutional validation.
 
 - GitHub Actions run: https://github.com/Sugarlicks/silt-identity-core/actions/runs/39847362209
 - Branch: `phase3-v01-test-baseline-20261023`
@@ -25,7 +25,7 @@ The purpose is to show that the AUT CISRC implementation profile can express a d
 
 The chain and delegation fixtures are **synthetic examples**. The validator checks only the asserted structural relationship between nodes and the conditions of this constrained pilot; it does not authenticate real institutional authority, verify signatures, connect to AUT IAM, or establish legal enforceability. This record is implementation evidence for **SILT Core v0.1** only.
 
-**Remaining release checks:** Independent JSON Schema validation for the fixtures, additional malformed-input and edge-case coverage, explanatory documentation, and publication/release review. Formal AUT approval has not been requested or obtained.
+**Subsequent work:** JSON Schema validation, selected malformed-input checks and boundary tests were added and passed in the expanded Phase 3 run below. Final archival publication and project close-out remain outstanding. Formal AUT approval has not been requested or obtained.
 
 ---
 
@@ -41,17 +41,17 @@ The updated Phase 3 test harness combines seven original examples, additional au
 
 ---
 
-## Current Test Coverage
+## Original seven scenario cases (executed in Phase 3)
 
 | Test | Delegation | Request | Revocation Log | Expected Result | Reason Code | Status |
 |---|---|---|---|---|---|---|
-| 01 | `delegations/valid-delegation.json` | `requests/valid-request.json` | `revocations/no-revocations.json` | `ALLOW` | `ALLOW` | Ready for prototype validation |
-| 02 | `delegations/expired-delegation.json` | `requests/valid-request.json` | `revocations/no-revocations.json` | `DENY` | `DELEGATION_EXPIRED` | Ready for prototype validation |
-| 03 | `delegations/valid-delegation.json` | `requests/wrong-delegate-request.json` | `revocations/no-revocations.json` | `DENY` | `ACTOR_NOT_DELEGATE` | Ready for prototype validation |
-| 04 | `delegations/valid-delegation.json` | `requests/action-not-permitted-request.json` | `revocations/no-revocations.json` | `DENY` | `ACTION_NOT_PERMITTED` | Ready for prototype validation |
-| 05 | `delegations/valid-delegation.json` | `requests/valid-request.json` | `revocations/revoked-delegation.json` | `DENY` | `DELEGATION_REVOKED` | Ready for prototype validation |
-| 06 | `delegations/valid-delegation.json` | `requests/resource-mismatch-request.json` | `revocations/no-revocations.json` | `DENY` | `RESOURCE_OUT_OF_SCOPE` | Ready for prototype validation |
-| 07 | `delegations/valid-delegation.json` | `requests/purpose-mismatch-request.json` | `revocations/no-revocations.json` | `DENY` | `PURPOSE_OUT_OF_SCOPE` | Ready for prototype validation |
+| 01 | `delegations/valid-delegation.json` | `requests/valid-request.json` | `revocations/no-revocations.json` | `ALLOW` | `ALLOW` | Passed in Phase 3 regression |
+| 02 | `delegations/expired-delegation.json` | `requests/valid-request.json` | `revocations/no-revocations.json` | `DENY` | `DELEGATION_EXPIRED` | Passed in Phase 3 regression |
+| 03 | `delegations/valid-delegation.json` | `requests/wrong-delegate-request.json` | `revocations/no-revocations.json` | `DENY` | `ACTOR_NOT_DELEGATE` | Passed in Phase 3 regression |
+| 04 | `delegations/valid-delegation.json` | `requests/action-not-permitted-request.json` | `revocations/no-revocations.json` | `DENY` | `ACTION_NOT_PERMITTED` | Passed in Phase 3 regression |
+| 05 | `delegations/valid-delegation.json` | `requests/valid-request.json` | `revocations/revoked-delegation.json` | `DENY` | `DELEGATION_REVOKED` | Passed in Phase 3 regression |
+| 06 | `delegations/valid-delegation.json` | `requests/resource-mismatch-request.json` | `revocations/no-revocations.json` | `DENY` | `RESOURCE_OUT_OF_SCOPE` | Passed in Phase 3 regression |
+| 07 | `delegations/valid-delegation.json` | `requests/purpose-mismatch-request.json` | `revocations/no-revocations.json` | `DENY` | `PURPOSE_OUT_OF_SCOPE` | Passed in Phase 3 regression |
 
 ## Test 01: Valid Delegation
 
@@ -255,11 +255,6 @@ The current test set covers:
 - resource mismatch;
 - purpose mismatch.
 
-Additional future tests may cover:
-
-- missing authority chain;
-- invalid revoker;
-- not-yet-active delegation;
-- strict evidence-chain mode.
+The expanded Phase 3 suite additionally covers missing authority chain, invalid revoker, higher-order revocation, strict evidence-chain mode, malformed input, expiry boundaries and schema validation. The test suite does not establish exhaustive coverage of all possible temporal or revocation behaviours.
 
 This document does not modify SILT Core v0.1.
