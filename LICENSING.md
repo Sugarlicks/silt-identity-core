@@ -21,7 +21,7 @@ SILT Core uses different licences for different kinds of release material so tha
 - workflow/configuration code included with the release;
 - reference implementation code, unless a file states otherwise.
 
-Historical v0.1 material retains the licence under which it was published. In particular, `archive/v0.1/` and the preserved AUT CISRC v0.1 implementation-profile material under `docs/implementation-profiles/aut-cisrc/`, `schemas/implementation-profiles/`, `examples/aut-cisrc-research-delegation/` and `reference/validators/aut-cisrc-delegation/` remain under **Apache License 2.0** unless a file states otherwise. The v0.2 licensing split does not withdraw permissions already granted for v0.1 material.
+Historical v0.1 material retains the licence under which it was published. In particular, `archive/v0.1/` and the preserved AUT CISRC v0.1 implementation-profile material under `docs/implementation-profiles/aut-cisrc/`, `schemas/implementation-profiles/`, `examples/aut-cisrc-research-delegation/` and `reference/validators/aut-cisrc-delegation/` retain their historical **Apache License 2.0** permissions unless a file states otherwise. For the **Vietsch v0.1 pilot archival package only**, the copyright holder has additionally authorised **CC BY 4.0** for specific author-owned narrative files enumerated in `release/vietsch-v01/LICENCE_STATUS.md`; this does not withdraw pre-existing Apache grants, cover third-party content, or alter the v0.2 licence policy. The v0.2 licensing split does not withdraw permissions already granted for v0.1 material.
 
 The full licence texts are in `LICENSES/CC-BY-4.0.txt` and `LICENSES/Apache-2.0.txt`.
 
