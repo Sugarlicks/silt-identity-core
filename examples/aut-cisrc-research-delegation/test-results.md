@@ -29,6 +29,18 @@ The chain and delegation fixtures are **synthetic examples**. The validator chec
 
 ---
 
+## Phase 3 expanded conformance and robustness result (23 October 2026 NZ)
+
+The updated Phase 3 test harness combines seven original examples, additional authority and revocation tests, malformed data, temporal boundaries, and explicit JSON Schema validation of all five example artefact types.
+
+- **Observed:** 21 tests executed; 21 passed.
+- **Evidence:** [GitHub Actions run 39848903516](https://github.com/Sugarlicks/silt-identity-core/actions/runs/39848903516).
+- **Test commit:** `35972ce574a49532c28349e6dd53a6d2cea59f71`.
+- **Environment:** Python 3.11 on GitHub-hosted Ubuntu, jsonschema 4.x.
+- **Boundaries:** Synthetic AUT-style scenario only; no live AUT integration, signature verification, or legal validity determination.
+
+---
+
 ## Current Test Coverage
 
 | Test | Delegation | Request | Revocation Log | Expected Result | Reason Code | Status |
