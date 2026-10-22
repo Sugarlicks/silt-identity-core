@@ -1,6 +1,6 @@
 # Vietsch Foundation — SILT Core v0.1 final technical and publication report
 
-**Status:** Final technical and publication report (research deliverables complete); expenditure reconciliation and final donation claim remain separate, unsubmitted financial work.  
+**Status:** Final technical and publication report (research deliverables complete); expenditure reconciliation and any final donation claim are separate, unsubmitted financial work.  
 **Report date:** 23 October 2026 (NZ)  
 **Agreement:** Signed MoU dated 28 April 2026 (Gareth Farry signature), Annex I  
 **Project:** Delegation and Revocation Semantics for Federated Research Infrastructure  
