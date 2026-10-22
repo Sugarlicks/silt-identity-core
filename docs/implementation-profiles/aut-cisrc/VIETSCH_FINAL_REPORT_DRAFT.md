@@ -1,6 +1,6 @@
 # Vietsch Foundation — SILT Core v0.1 final technical and publication report
 
-**Draft for final close-out — DOI supplied by depositor; verify Zenodo files/licences and financial costs before submission**  
+**Substantive report draft for completion communication — financial section and independently checked archive metadata still pending**  
 **Report date:** 23 October 2026 (NZ)  
 **Agreement:** Signed MoU dated 28 April 2026 (Gareth Farry signature), Annex I  
 **Project:** Delegation and Revocation Semantics for Federated Research Infrastructure  
@@ -29,7 +29,8 @@ Phase 3 restored missing synthetic fixtures, strengthened structural issuer/revo
 - **Zenodo record supplied by depositor 23 October 2026:** https://zenodo.org/records/23579725
 - **Zenodo DOI supplied by depositor:** https://doi.org/10.5281/zenodo.23579725
 - **Independent verification outstanding:** deposited filenames, checksum, displayed licence metadata and Zenodo publication date
-- **Dissemination announcement: TO VERIFY URL AND DATE**
+- Public research completion announcement (repository publication, 23 October 2026 NZ): https://github.com/Sugarlicks/silt-identity-core/blob/main/docs/implementation-profiles/aut-cisrc/VIETSCH_COMPLETION_ANNOUNCEMENT.md
+- siltcore.org website announcement and external distribution: not yet verified
 
 ## Licensing and responsible attribution
 
@@ -37,7 +38,7 @@ The project lead approved additional CC BY 4.0 licensing for specific author-own
 
 ## Delivery assessment
 
-The four technical goals are evidenced at the scope of a constrained synthetic proof-of-concept. The funded work should **not** be described as deployment in a production research infrastructure or live federated cross-university pilot. A Zenodo record URL and DOI have been supplied by the depositor. Final publication reconciliation requires independent inspection of deposited filenames, checksum and displayed licences, plus a dissemination notice.
+The four technical goals are evidenced at the scope of a constrained synthetic proof-of-concept. The funded work should **not** be described as deployment in a production research infrastructure or live federated cross-university pilot. A Zenodo record URL and DOI have been supplied by the depositor. Final publication reconciliation requires independent inspection of deposited filenames, checksum and displayed licences, plus verification of website/public outreach in accordance with the original proposal. The public repository contains a completed dissemination write-up.
 
 ## Expenditure and donation reporting
 
@@ -48,8 +49,12 @@ Previous donation requests: **€4,500 on 23 June 2026** and **€5,500 on 4 Aug
 ## Open close-out conditions
 
 1. Check the supplied Zenodo record against the curated ZIP, SHA-256, publication date and mixed-licence notes; DOI: https://doi.org/10.5281/zenodo.23579725.
-2. Confirm dissemination write-up and public project status URL.
+2. The public repository contains a completion write-up and status page. Confirm separate siltcore.org posting and any circulation to research/education contacts as intended by the proposal.
 3. Reconcile actual eligible R&D costs, prior amounts *received* versus merely requested, and any remaining claim.
-4. Complete the public final status update and any courtesy notice to Vietsch.
+4. Send the final courtesy/completion communication to Vietsch after review; the MoU does not require private updates but does require public reporting.
 
 **Project acknowledgement:** The open research and publication were supported by Stichting Vietsch (Vietsch Foundation).
+
+## Scope and schedule qualification
+
+Annex I describes a Month 5–6 refinement/publication pathway and a final v0.9 maturity target. The archived output is the historical **v0.1** delegation/revocation model plus the non-normative AUT CISRC pilot. A separately designated **v0.9 normative Core specification** has not been established by the evidenced artefacts and should not be asserted as completed. The final report should transparently distinguish this technical deliverable from any differently versioned specification objective in the proposal. The grant's final review should assess the delivered package and any variance accordingly.
