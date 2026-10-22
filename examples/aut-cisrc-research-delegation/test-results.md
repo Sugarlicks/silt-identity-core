@@ -11,6 +11,24 @@ This document records initial validation results for the AUT CISRC research dele
 
 The purpose is to show that the AUT CISRC implementation profile can express a delegated authority claim, evaluate access requests, and return deterministic validation results.
 
+## Phase 3 execution record (23 October 2026, NZ)
+
+**Status:** Automated regression baseline executed on the Phase 3 review branch; not yet merged or an AUT institutional validation.
+
+- GitHub Actions run: https://github.com/Sugarlicks/silt-identity-core/actions/runs/39847362209
+- Branch: `phase3-v01-test-baseline-20261023`
+- Test command: `python -m unittest discover -s tests/aut-cisrc -p 'test_*.py' -v`
+- Environment: GitHub-hosted Ubuntu runner, CPython 3.11.17
+- Observed outcome: **12 tests run; 12 passed; no failures**
+- Existing seven documented example scenarios: passed in the automated harness.
+- Additional scenarios: missing chain, absent issuer node, invalid revoker, higher-order revocation, and strict-mode missing evidence all passed.
+
+The chain and delegation fixtures are **synthetic examples**. The validator checks only the asserted structural relationship between nodes and the conditions of this constrained pilot; it does not authenticate real institutional authority, verify signatures, connect to AUT IAM, or establish legal enforceability. This record is implementation evidence for **SILT Core v0.1** only.
+
+**Remaining release checks:** Independent JSON Schema validation for the fixtures, additional malformed-input and edge-case coverage, explanatory documentation, and publication/release review. Formal AUT approval has not been requested or obtained.
+
+---
+
 ## Current Test Coverage
 
 | Test | Delegation | Request | Revocation Log | Expected Result | Reason Code | Status |
