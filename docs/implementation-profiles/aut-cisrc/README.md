@@ -26,19 +26,18 @@ See also `docs/AUT_CISRC_v0.1_STATUS.md`.
 - [Original v0.1 specification provenance and AUT schema boundary](VIETSCH_V01_SPECIFICATION_PROVENANCE.md)
 - [Vietsch licensing decision — CC BY 4.0 for enumerated authored prose approved](VIETSCH_V01_LICENSING_DECISION.md)
 
-## Vietsch Phase 3 evaluation and publication preparation
+## Published Vietsch SILT Core v0.1 research outputs
 
+The Vietsch-funded v0.1 AUT CISRC pilot is published separately from SILT Core v0.2. The original historical v0.1 specification remains preserved; the AUT profile is non-normative.
+
+- [Final technical and publication report](VIETSCH_FINAL_TECHNICAL_REPORT.md)
 - [Completed Phase 3 pilot evaluation](phase-3-pilot-evaluation.md)
-- [Publication readiness and release gates](VIETSCH_V01_PUBLICATION_READINESS.md)
-- [Draft Zenodo deposit description](VIETSCH_V01_ZENODO_DEPOSIT_DRAFT.md)
-- [Phase 3 donation claim work record — unsubmitted draft](VIETSCH_PHASE3_CLAIM_WORKING_DRAFT.md)
-- [Draft public progress update](VIETSCH_PUBLIC_UPDATE_DRAFT.md)
-
-The historical release-preparation drafts are retained as work records. The dedicated v0.1 GitHub pilot release and Zenodo DOI now exist. No draft implies donation eligibility or alters SILT Core v0.2.
-
-## Public Vietsch project status and close-out
-
-- [Dated public progress and release status](VIETSCH_PUBLIC_STATUS.md)
-- [Zenodo curated-archive manual deposit instructions](VIETSCH_ZENODO_MANUAL_DEPOSIT.md)
 - [Public research completion and dissemination announcement](VIETSCH_COMPLETION_ANNOUNCEMENT.md)
-- [Final technical and publication report — pending financial and deposit-file verification](VIETSCH_FINAL_REPORT_DRAFT.md)
+- [Public progress and project status](VIETSCH_PUBLIC_STATUS.md)
+- [Publication and administrative close-out record](VIETSCH_V01_PUBLICATION_READINESS.md)
+- [Original v0.1 specification provenance](VIETSCH_V01_SPECIFICATION_PROVENANCE.md)
+- [Approved licensing decision](VIETSCH_V01_LICENSING_DECISION.md)
+- [Curated GitHub pilot release](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026)
+- [Zenodo archival DOI](https://doi.org/10.5281/zenodo.23579725)
+
+**Financial administration only:** [Donation Claim #3 — unsubmitted expenditure worksheet](VIETSCH_PHASE3_CLAIM_WORKING_DRAFT.md). This is not a published research deliverable, does not establish an amount payable and is separate from the final technical report. The source repository history preserves superseded preparation notes.

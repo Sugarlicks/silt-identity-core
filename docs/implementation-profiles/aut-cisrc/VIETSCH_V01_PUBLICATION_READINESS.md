@@ -13,20 +13,20 @@
 - Recorded GitHub Actions evidence: [21/21 passing tests](https://github.com/Sugarlicks/silt-identity-core/actions/runs/39848903516).
 - Technical baseline [PR #6](https://github.com/Sugarlicks/silt-identity-core/pull/6) and evaluation report [PR #7](https://github.com/Sugarlicks/silt-identity-core/pull/7) were merged.
 
-## Release blockers / decisions (do not present as completed)
+## Publication and administrative close-out status
 
 | Item | Required before final release | Current position |
 | --- | --- | --- |
-| Original v0.1 specification provenance | Identify original delegation and revocation texts and schemas; do not substitute AUT profile schemas for them | **Located**: `archive/v0.1/spec/delegation.md`, `archive/v0.1/spec/revocation.md`, `archive/v0.1/schemas/delegation.schema.json`, `archive/v0.1/schemas/revocation.schema.json`. Original GitHub release `v0.1` published 14 April 2026. Confirm publication snapshot/tag alignment before depositing |
+| Original v0.1 specification provenance | Identify original delegation and revocation texts and schemas; do not substitute AUT profile schemas for them | **Completed:** `archive/v0.1/spec/delegation.md`, `archive/v0.1/spec/revocation.md`, `archive/v0.1/schemas/delegation.schema.json`, `archive/v0.1/schemas/revocation.schema.json`. Original GitHub release `v0.1` published 14 April 2026. The AUT profile release remains separate from the historical tag |
 | Licence compliance | Preserve historic Apache 2.0 grants and identify the additional Creative Commons permission for author-owned prose | **Approved 23 October 2026:** CC BY 4.0 additional permission for expressly listed project-authored narrative material; Apache 2.0 code/machine-readable artefacts. See `release/vietsch-v01/LICENCE_STATUS.md` and `VIETSCH_V01_LICENSING_DECISION.md`; diagrams excluded pending provenance |
 | Version identity | Publish a **new** pilot archival tag without modifying historical `v0.1` or `v0.2.0` | **Complete:** [aut-cisrc-v0.1-pilot-2026](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026) |
 | Provenance | Pin final commit SHA, note merged PRs and 21-test CI result; include accurate synthetic-fixture disclosure | **Complete for GitHub release:** dedicated tag, 48-file curated ZIP, checksum asset and 21/21 preflight tests; refer to [pilot release](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026) |
 | AUT attribution | Keep initial directional review distinct from institutional authorisation; confirm any external acknowledgements | **No formal endorsement evidenced.** Five PNG diagrams excluded from pilot ZIP pending rights check |
 | Zenodo archive | Cross-check published record with the intended curated GitHub ZIP and mixed licensing | **DOI supplied by depositor:** [10.5281/zenodo.23579725](https://doi.org/10.5281/zenodo.23579725); record inventory and licence display not independently verified |
-| Public update | Publish public project status and dissemination note | [Public status](VIETSCH_PUBLIC_STATUS.md) published; separate dissemination announcement outstanding |
+| Public update | Publish public project status and dissemination note | **Completed in GitHub:** [public status](VIETSCH_PUBLIC_STATUS.md) and [completion announcement](VIETSCH_COMPLETION_ANNOUNCEMENT.md); separate siltcore.org posting and distribution not verified |
 | Financial claim | Reconcile genuine costs and invoices against MoU's donation-claim requirements and prior amounts requested | **Do not invent cost amounts or assert payment** |
 
-## Minimum proposed archival package
+## Curated pilot archive composition
 
 1. The original archived **v0.1 delegation and revocation specifications and schemas** linked above, pinned to their original version identity (do not conflate them with the non-normative AUT profile schemas).
 2. The non-normative [AUT implementation profile](AUT-CISRC-Implementation-Profile.md), [authority-chain model](authority-chain.md), [pilot workflow](pilot-workflow.md), and [validation logic](validation-logic.md).
@@ -46,6 +46,6 @@ Annex I requires refinement and publication via GitHub and Zenodo, and dissemina
 
 The original v0.1 schema uses `delegation_id`, `principal`, `agent`, `capacity`, `scope` and `revocation` references. The AUT pilot defines profile-specific `delegationId`, `issuer`, `delegate`, `authorityChain`, `permittedActions` and `revokedBy` structures. Its 21 passing tests validate **the AUT profile schemas**, not direct conformance of the AUT artefacts to the original archived v0.1 JSON Schemas. The pilot is an implementation application with its own declared extension/translation boundary, not a normative v0.1 schema update. See [provenance note](VIETSCH_V01_SPECIFICATION_PROVENANCE.md).
 
-## Release gate
+## Remaining administrative verification
 
-The technical pilot and versioned GitHub release are complete; the depositor has provided the Zenodo record URL and DOI. Close-out still requires checking the Zenodo file inventory/checksum and licence display, public dissemination and end-of-project financial/reporting verification.
+The technical pilot and versioned GitHub release are complete; the depositor has provided the Zenodo record URL and DOI. Remaining checks concern independent Zenodo file/checksum and licence display verification, whether dissemination has been posted beyond the public repository, and final expenditure / payment reconciliation. These are administrative verification items rather than unpublished technical research deliverables.

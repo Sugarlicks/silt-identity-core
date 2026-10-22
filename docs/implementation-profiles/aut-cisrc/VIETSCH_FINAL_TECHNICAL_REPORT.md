@@ -1,6 +1,6 @@
 # Vietsch Foundation — SILT Core v0.1 final technical and publication report
 
-**Substantive report draft for completion communication — financial section and independently checked archive metadata still pending**  
+**Status:** Final technical and publication report (research deliverables complete); expenditure reconciliation and any final donation claim are separate, unsubmitted financial work.  
 **Report date:** 23 October 2026 (NZ)  
 **Agreement:** Signed MoU dated 28 April 2026 (Gareth Farry signature), Annex I  
 **Project:** Delegation and Revocation Semantics for Federated Research Infrastructure  
@@ -28,9 +28,10 @@ Phase 3 restored missing synthetic fixtures, strengthened structural issuer/revo
 - Public progress/status: https://github.com/Sugarlicks/silt-identity-core/blob/main/docs/implementation-profiles/aut-cisrc/VIETSCH_PUBLIC_STATUS.md
 - **Zenodo record supplied by depositor 23 October 2026:** https://zenodo.org/records/23579725
 - **Zenodo DOI supplied by depositor:** https://doi.org/10.5281/zenodo.23579725
-- **Independent verification outstanding:** deposited filenames, checksum, displayed licence metadata and Zenodo publication date
+- **Record-verification limitation:** depositor supplied DOI; independent inspection of Zenodo file inventory, checksum and licence display was not available in this workspace.
 - Public research completion announcement (repository publication, 23 October 2026 NZ): https://github.com/Sugarlicks/silt-identity-core/blob/main/docs/implementation-profiles/aut-cisrc/VIETSCH_COMPLETION_ANNOUNCEMENT.md
-- siltcore.org website announcement and external distribution: not yet verified
+- Public dissemination announcement: https://github.com/Sugarlicks/silt-identity-core/blob/main/docs/implementation-profiles/aut-cisrc/VIETSCH_COMPLETION_ANNOUNCEMENT.md
+- Additional siltcore.org website posting and external distribution: not yet verified
 
 ## Licensing and responsible attribution
 
@@ -38,20 +39,20 @@ The project lead approved additional CC BY 4.0 licensing for specific author-own
 
 ## Delivery assessment
 
-The four technical goals are evidenced at the scope of a constrained synthetic proof-of-concept. The funded work should **not** be described as deployment in a production research infrastructure or live federated cross-university pilot. A Zenodo record URL and DOI have been supplied by the depositor. Final publication reconciliation requires independent inspection of deposited filenames, checksum and displayed licences, plus verification of website/public outreach in accordance with the original proposal. The public repository contains a completed dissemination write-up.
+The four technical goals are evidenced at the scope of a constrained synthetic proof-of-concept. The funded work should **not** be described as deployment in a production research infrastructure or live federated cross-university pilot. A Zenodo record URL and DOI have been supplied by the depositor, and the project completion and dissemination report is public in GitHub. Independent inspection of deposited filenames, checksum and displayed licences, and any separate siltcore.org posting, remain verification items. These do not change the evidenced 21-test technical evaluation or the published project release.
 
-## Expenditure and donation reporting
+## Financial reconciliation (separate from this final technical report)
 
 The MoU provides for a reservation up to **€20,000** to support *research and development costs invested in the Project*. It permits donation claims for up to six months after the **proposed project end**; actual claims should list research costs invested. This is a charitable donation arrangement, **not an employment or procurement contract**.
 
-Previous donation requests: **€4,500 on 23 June 2026** and **€5,500 on 4 August 2026**. Together they total €10,000 **requested**, not necessarily paid. **No Claim #3 amount is determined** without actual cost ledger and receipt/payment reconciliation. Do not include private bank account data in public reporting.
+Previous donation requests: **€4,500 on 23 June 2026** and **€5,500 on 4 August 2026**. Together they total €10,000 **requested**, not necessarily paid. **This technical report does not submit a financial claim.** No Claim #3 amount is determined without an actual cost ledger and receipt/payment reconciliation. Do not include private bank account data in public reporting.
 
-## Open close-out conditions
+## Administrative close-out conditions
 
 1. Check the supplied Zenodo record against the curated ZIP, SHA-256, publication date and mixed-licence notes; DOI: https://doi.org/10.5281/zenodo.23579725.
 2. The public repository contains a completion write-up and status page. Confirm separate siltcore.org posting and any circulation to research/education contacts as intended by the proposal.
 3. Reconcile actual eligible R&D costs, prior amounts *received* versus merely requested, and any remaining claim.
-4. Send the final courtesy/completion communication to Vietsch after review; the MoU does not require private updates but does require public reporting.
+4. Send the completion communication and separate, verified financial documents to Vietsch after review; the public research release is not evidence of payment.
 
 **Project acknowledgement:** The open research and publication were supported by Stichting Vietsch (Vietsch Foundation).
 
