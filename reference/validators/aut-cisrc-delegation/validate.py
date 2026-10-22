@@ -505,7 +505,12 @@ def validate(
         "Requested purpose matches delegated purpose."
     )
 
-    time_error = request_within_time_bounds(delegation, request)
+    try:
+        time_error = request_within_time_bounds(delegation, request)
+    except (ValueError, TypeError, KeyError) as exc:
+        return deny(request_id, delegation_id, "SCHEMA_INVALID",
+                    "Invalid request or delegation timestamp: " + str(exc),
+                    checked_at, warnings)
 
     if time_error == "DELEGATION_NOT_YET_ACTIVE":
         add_check(
@@ -550,7 +555,12 @@ def validate(
     )
 
     revocations = get_revocations(revocation_data)
-    applicable_revocation = revocation_applies(delegation, request, revocations)
+    try:
+        applicable_revocation = revocation_applies(delegation, request, revocations)
+    except (ValueError, TypeError, KeyError) as exc:
+        return deny(request_id, delegation_id, "SCHEMA_INVALID",
+                    "Invalid revocation timestamp: " + str(exc),
+                    checked_at, warnings)
 
     if applicable_revocation:
         if not revocation_authority_is_valid(delegation, applicable_revocation, authority_chain):
