@@ -93,6 +93,64 @@ class AUTPilotV01Tests(unittest.TestCase):
         self.assertEqual((result["result"], result["reasonCode"]),
                          ("DENY", "DELEGATION_REVOKED"), result)
 
+    def test_13_request_delegation_mismatch(self):
+        delegation = fixture("delegations/valid-delegation.json")
+        request = fixture("requests/valid-request.json")
+        request["delegationId"] = "other-delegation"
+        result = validator.validate(delegation, request,
+                                    fixture("revocations/no-revocations.json"),
+                                    fixture("authority-chain.json"))
+        self.assertEqual(result["reasonCode"], "SCHEMA_INVALID")
+
+    def test_14_invalid_request_timestamp(self):
+        request = fixture("requests/valid-request.json")
+        request["timestamp"] = "not-a-date"
+        result = validator.validate(fixture("delegations/valid-delegation.json"), request,
+                                    fixture("revocations/no-revocations.json"),
+                                    fixture("authority-chain.json"))
+        self.assertEqual(result["reasonCode"], "SCHEMA_INVALID")
+
+    def test_15_missing_required_request_action(self):
+        request = fixture("requests/valid-request.json")
+        del request["action"]
+        result = validator.validate(fixture("delegations/valid-delegation.json"), request,
+                                    fixture("revocations/no-revocations.json"),
+                                    fixture("authority-chain.json"))
+        self.assertEqual(result["reasonCode"], "SCHEMA_INVALID")
+
+    def test_16_invalid_revocation_log_shape(self):
+        result = validator.validate(fixture("delegations/valid-delegation.json"),
+                                    fixture("requests/valid-request.json"),
+                                    {"revocations": "not an array"}, fixture("authority-chain.json"))
+        self.assertEqual(result["reasonCode"], "SCHEMA_INVALID")
+
+    def test_17_exact_expiry_boundary(self):
+        delegation = fixture("delegations/valid-delegation.json")
+        request = fixture("requests/valid-request.json")
+        request["timestamp"] = delegation["expiresAt"]
+        result = validator.validate(delegation, request,
+                                    fixture("revocations/no-revocations.json"),
+                                    fixture("authority-chain.json"))
+        self.assertEqual(result["reasonCode"], "ALLOW")
+
+    def test_18_one_second_after_expiry(self):
+        delegation = fixture("delegations/valid-delegation.json")
+        request = fixture("requests/valid-request.json")
+        request["timestamp"] = "2026-09-01T00:00:00Z"
+        result = validator.validate(delegation, request,
+                                    fixture("revocations/no-revocations.json"),
+                                    fixture("authority-chain.json"))
+        self.assertEqual(result["reasonCode"], "DELEGATION_EXPIRED")
+
+    def test_19_invalid_fixture_schema(self):
+        delegation = fixture("delegations/valid-delegation.json")
+        delegation["permittedActions"] = "dataset.submit"
+        self.assertTrue(validator.schema_errors(delegation, "delegation.schema.json"))
+
+    def test_20_result_matches_profile_schema(self):
+        result = self.evaluate()
+        self.assertEqual(validator.schema_errors(result, "validation-result.schema.json"), [])
+
     def test_12_strict_missing_evidence(self):
         delegation = fixture("delegations/valid-delegation.json")
         delegation.pop("evidenceDocuments", None)
