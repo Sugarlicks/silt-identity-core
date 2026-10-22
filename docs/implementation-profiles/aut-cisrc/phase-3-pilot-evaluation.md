@@ -31,10 +31,10 @@ The assertions compare observed `ALLOW` or `DENY` outcomes and reason codes with
 ## 4. Results and evidence
 
 - Initial executable baseline, before schema conformance was integrated: **12/12 tests passed** on GitHub Actions run [39847362209](https://github.com/Sugarlicks/silt-identity-core/actions/runs/39847362209).
-- Expanded schema-based regression: **pending final successful run and log review**.
+- Expanded schema-based regression: **20/20 tests passed** on GitHub Actions run [39848706991](https://github.com/Sugarlicks/silt-identity-core/actions/runs/39848706991), using Python 3.11; execution logs reviewed. Further fixture conformance test added afterwards, with its new CI result to be confirmed.
 - Implementation and evaluation changes are isolated in [draft pull request #6](https://github.com/Sugarlicks/silt-identity-core/pull/6), not merged into `main`.
 
-Populate the final test count, commit SHA, workflow run link, and pass/fail record **only after the final successful CI execution**.
+The expanded 20-test run corresponds to commit `52a77c0f60589616287cca54c8d4c1ee235eb1c9`. Final release evidence should reference the later commit and its successful run after all additional tests are complete.
 
 ## 5. Preliminary findings
 
