@@ -1,0 +1,33 @@
+name: Correct published Vietsch v0.1 release notes
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/vietsch-v01-release-notes.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  correct:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact dedicated pilot release exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release view aut-cisrc-v0.1-pilot-2026 --json url,tagName,isDraft
+      - name: Update public release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release edit aut-cisrc-v0.1-pilot-2026 \
+            --notes-file release/vietsch-v01/RELEASE_NOTES.md
+      - name: Verify final public release text
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release view aut-cisrc-v0.1-pilot-2026 --json url,body
