@@ -1,6 +1,6 @@
 # Vietsch Foundation — Donation Claim #3 / Phase 3 work record (working draft)
 
-**NOT SUBMITTED — research-cost details require verification**
+**NOT SUBMITTED — amount, eligible cost evidence and payment status remain to be verified.**
 
 Project: SILT Core — Delegation and Revocation Semantics for Federated Research Infrastructure  
 Recipient: Stichting Vietsch  
@@ -44,9 +44,17 @@ The final recorded extended suite produced **21 passing test methods out of 21**
 | Project coordination and public documentation | Dated work/cost record | **To verify** |
 | **Total Claim #3** | Reconciled costs only | **TBD** |
 
-## 5. Remaining funded obligations
+## 5. Publication and additional eligible work categories
 
-The Annex I plan requires publication via GitHub and Zenodo plus dissemination, followed by public release. The signed MoU also calls for bimonthly public reporting and a public project status page. Those outputs must not be claimed as completed before their actual publication is verified.
+Public versioned GitHub release: https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026
+
+Zenodo DOI supplied by depositor: https://doi.org/10.5281/zenodo.23579725
+
+Public completion announcement: https://github.com/Sugarlicks/silt-identity-core/blob/main/docs/implementation-profiles/aut-cisrc/VIETSCH_COMPLETION_ANNOUNCEMENT.md
+
+Phase 4 publication, license review, packaging, archival submission and final reporting may support a **separate closing claim or combined Claim #3**, but only to the extent incurred, eligible, evidenced and not already covered by Claims #1 and #2. A public repository document must not include private bank or payee details. Payment status and any support withdrawal notice remain unverified.
+
+Before submission: (a) confirm eligible actual costs; (b) check whether Claims #1–2 were paid and whether they exhausted relevant categories; (c) decide whether Claim #3 covers Phase 3 only or all final unpublished costs; (d) reconcile to the €20,000 reservation; (e) verify publication screenshots/receipts.
 
 ## 6. Statement for finalisation
 
