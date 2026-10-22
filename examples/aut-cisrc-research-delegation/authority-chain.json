@@ -1,0 +1,83 @@
+{
+  "authorityChainId": "aut-cisrc-authority-chain-001",
+  "rootAuthority": "Illustrative university enabling authority (synthetic, not verified AUT policy)",
+  "governanceDomain": "research.data",
+  "authorityNodes": [
+    {
+      "authorityNodeId": "node-001",
+      "class": "EnablingAuthority",
+      "object": "Illustrative enabling instrument",
+      "level": 0,
+      "authorityDomain": [
+        "research.data"
+      ]
+    },
+    {
+      "authorityNodeId": "node-002",
+      "class": "UniversityCouncil",
+      "object": "Illustrative university council",
+      "level": 1,
+      "parentNodeId": "node-001",
+      "authorityDomain": [
+        "research.data"
+      ]
+    },
+    {
+      "authorityNodeId": "node-003",
+      "class": "ViceChancellor",
+      "object": "Illustrative university vice-chancellor",
+      "level": 2,
+      "parentNodeId": "node-002",
+      "authorityDomain": [
+        "research.data"
+      ]
+    },
+    {
+      "authorityNodeId": "node-004",
+      "class": "Faculty",
+      "object": "Illustrative faculty leadership",
+      "level": 3,
+      "parentNodeId": "node-003",
+      "authorityDomain": [
+        "research.data"
+      ]
+    },
+    {
+      "authorityNodeId": "node-005",
+      "class": "School",
+      "object": "Illustrative school or research centre",
+      "level": 4,
+      "parentNodeId": "node-004",
+      "authorityDomain": [
+        "research.data"
+      ]
+    },
+    {
+      "authorityNodeId": "node-006",
+      "class": "Supervisor",
+      "object": "Illustrative project supervisor",
+      "level": 5,
+      "parentNodeId": "node-005",
+      "authorityDomain": [
+        "research.data"
+      ]
+    },
+    {
+      "authorityNodeId": "node-007",
+      "class": "ResearchAssistant",
+      "object": "Illustrative research assistant",
+      "level": 6,
+      "parentNodeId": "node-006",
+      "authorityDomain": [
+        "research.data"
+      ]
+    }
+  ],
+  "evidenceDocuments": [
+    {
+      "documentRef": "SYNTHETIC-PILOT-CHAIN-001",
+      "documentType": "pilot_example",
+      "documentTitle": "Synthetic test chain; no AUT institutional endorsement or verified delegation asserted"
+    }
+  ]
+}
