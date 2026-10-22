@@ -31,10 +31,10 @@ The assertions compare observed `ALLOW` or `DENY` outcomes and reason codes with
 ## 4. Results and evidence
 
 - Initial executable baseline, before schema conformance was integrated: **12/12 tests passed** on GitHub Actions run [39847362209](https://github.com/Sugarlicks/silt-identity-core/actions/runs/39847362209).
-- Expanded schema-based regression: **20/20 tests passed** on GitHub Actions run [39848706991](https://github.com/Sugarlicks/silt-identity-core/actions/runs/39848706991), using Python 3.11; execution logs reviewed. Further fixture conformance test added afterwards, with its new CI result to be confirmed.
+- Expanded schema-based regression: **21/21 tests passed** on GitHub Actions run [39848903516](https://github.com/Sugarlicks/silt-identity-core/actions/runs/39848903516), including explicit validation of all five profile-specific artefact types. GitHub Actions execution logs reviewed.
 - Implementation and evaluation changes are isolated in [draft pull request #6](https://github.com/Sugarlicks/silt-identity-core/pull/6), not merged into `main`.
 
-The expanded 20-test run corresponds to commit `52a77c0f60589616287cca54c8d4c1ee235eb1c9`. Final release evidence should reference the later commit and its successful run after all additional tests are complete.
+The successful 21-test run includes test commit `35972ce574a49532c28349e6dd53a6d2cea59f71`; later documentation-only changes should not be represented as separately tested until their checks complete.
 
 ## 5. Preliminary findings
 
@@ -52,9 +52,9 @@ An earlier AUT directional review reported no major concerns about the pilot's s
 
 ## 7. Finalisation requirements
 
-- [ ] Observe a successful expanded CI run and reference its commit SHA, date, and test output.
+- [x] Observe a successful expanded CI run and reference its commit SHA, date, and test output.
 - [ ] Review negative and boundary test coverage.
-- [ ] Confirm all five profile-specific schema types can validate their example artefacts.
+- [x] Confirm all five profile-specific schema types can validate the representative example artefacts in the dedicated regression test.
 - [ ] Document remaining known limitations and avoid overclaiming real institutional authority.
 - [ ] Decide whether the review branch is ready for merge.
 - [ ] Prepare the final v0.1 release archive, DOI, dissemination summary, and Vietsch report.
