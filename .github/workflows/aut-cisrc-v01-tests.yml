@@ -1,0 +1,26 @@
+name: AUT CISRC v0.1 pilot regression
+on:
+  pull_request:
+    paths:
+      - 'reference/validators/aut-cisrc-delegation/**'
+      - 'examples/aut-cisrc-research-delegation/**'
+      - 'tests/aut-cisrc/**'
+      - '.github/workflows/aut-cisrc-v01-tests.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'reference/validators/aut-cisrc-delegation/**'
+      - 'examples/aut-cisrc-research-delegation/**'
+      - 'tests/aut-cisrc/**'
+      - '.github/workflows/aut-cisrc-v01-tests.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run synthetic AUT pilot regression tests
+        run: python -m unittest discover -s tests/aut-cisrc -p 'test_*.py' -v
