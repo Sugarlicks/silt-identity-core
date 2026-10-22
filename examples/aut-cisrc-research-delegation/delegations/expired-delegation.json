@@ -1,5 +1,5 @@
 {
-  "delegationId": "delegation-expired-001",
+  "delegationId": "delegation-valid-001",
   "issuer": {
     "actorId": "actor-supervisor-001",
     "name": "Project Supervisor",
