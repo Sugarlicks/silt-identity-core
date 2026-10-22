@@ -23,6 +23,7 @@ SOURCES = [
     "archive/v0.1/schemas/revocation.schema.json",
     "archive/v0.1/LICENSE",
     "LICENSES/Apache-2.0.txt",
+    "LICENSES/CC-BY-4.0.txt",
     "release/vietsch-v01/README.md",
     "release/vietsch-v01/RELEASE_NOTES.md",
     "release/vietsch-v01/LICENCE_STATUS.md",
@@ -35,12 +36,6 @@ SOURCES = [
     "docs/implementation-profiles/aut-cisrc/initial-review.md",
     "docs/implementation-profiles/aut-cisrc/phase-3-pilot-evaluation.md",
     "docs/implementation-profiles/aut-cisrc/VIETSCH_V01_SPECIFICATION_PROVENANCE.md",
-    "docs/implementation-profiles/aut-cisrc/diagrams/README.md",
-    "docs/implementation-profiles/aut-cisrc/diagrams/01_semantic_architecture.png",
-    "docs/implementation-profiles/aut-cisrc/diagrams/02_uml_use_case.png",
-    "docs/implementation-profiles/aut-cisrc/diagrams/03_uml_class.png",
-    "docs/implementation-profiles/aut-cisrc/diagrams/04_uml_activity.png",
-    "docs/implementation-profiles/aut-cisrc/diagrams/05_uml_sequence.png",
     "schemas/implementation-profiles/aut-cisrc/README.md",
     "schemas/implementation-profiles/aut-cisrc/authority-chain.schema.json",
     "schemas/implementation-profiles/aut-cisrc/delegation.schema.json",
@@ -66,7 +61,7 @@ if not all(p.startswith(("archive/v0.1/", "release/vietsch-v01/",
                          "schemas/implementation-profiles/aut-cisrc/",
                          "reference/validators/aut-cisrc-delegation/",
                          "tests/aut-cisrc/", "examples/aut-cisrc-research-delegation/",
-                         "LICENSES/Apache-2.0.txt")) for p in SOURCES):
+                         "LICENSES/Apache-2.0.txt", "LICENSES/CC-BY-4.0.txt")) for p in SOURCES):
     raise SystemExit("Archive contains path outside v0.1 package allowlist.")
 try:
     commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -83,7 +78,7 @@ manifest = {
     "source_commit": commit,
     "file_count": len(files),
     "files": files,
-    "license_note": "See release/vietsch-v01/LICENCE_STATUS.md. A single archive-wide licence is not asserted.",
+    "license_note": "Project-authored narrative files specifically enumerated in release/vietsch-v01/LICENCE_STATUS.md are additionally CC BY 4.0; implementation code and machine-readable artefacts are Apache 2.0. Existing historical Apache grants are preserved.",
     "tested_evidence": "https://github.com/Sugarlicks/silt-identity-core/actions/runs/39848903516"
 }
 OUT.mkdir(exist_ok=True)
