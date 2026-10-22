@@ -1,6 +1,6 @@
 # Vietsch SILT Core v0.1 — publication and close-out readiness
 
-**Status:** Release-preparation checklist; no separate v0.1 deposit or DOI asserted  
+**Status:** Publication and grant-close-out tracker; depositor-supplied Zenodo DOI recorded  
 **Date:** 23 October 2026 (New Zealand)  
 **Project:** Delegation and Revocation Semantics for Federated Research Infrastructure  
 **Version boundary:** The funded AUT CISRC implementation is **v0.1**, non-normative. It is not a SILT Core v0.2 conformance exercise.
@@ -19,11 +19,11 @@
 | --- | --- | --- |
 | Original v0.1 specification provenance | Identify original delegation and revocation texts and schemas; do not substitute AUT profile schemas for them | **Located**: `archive/v0.1/spec/delegation.md`, `archive/v0.1/spec/revocation.md`, `archive/v0.1/schemas/delegation.schema.json`, `archive/v0.1/schemas/revocation.schema.json`. Original GitHub release `v0.1` published 14 April 2026. Confirm publication snapshot/tag alignment before depositing |
 | Licence compliance | Preserve historic Apache 2.0 grants and identify the additional Creative Commons permission for author-owned prose | **Approved 23 October 2026:** CC BY 4.0 additional permission for expressly listed project-authored narrative material; Apache 2.0 code/machine-readable artefacts. See `release/vietsch-v01/LICENCE_STATUS.md` and `VIETSCH_V01_LICENSING_DECISION.md`; diagrams excluded pending provenance |
-| Version identity | Select a **new**, unambiguous pilot archival tag or immutable commit; do not overwrite the historic `v0.1` (14 April 2026) or the independent `v0.2.0` release | **To create**; proposed `aut-cisrc-v0.1-pilot-2026`. Tag availability and final release commit must be verified |
-| Provenance | Pin final commit SHA, note merged PRs and 21-test CI result; include accurate synthetic-fixture disclosure | **Pilot release candidate tested:** 48 files packaged with SHA-256 manifest and 21/21 passing tests on [archive preflight run 39859689207](https://github.com/Sugarlicks/silt-identity-core/actions/runs/39859689207). Final release commit/tag pending |
+| Version identity | Publish a **new** pilot archival tag without modifying historical `v0.1` or `v0.2.0` | **Complete:** [aut-cisrc-v0.1-pilot-2026](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026) |
+| Provenance | Pin final commit SHA, note merged PRs and 21-test CI result; include accurate synthetic-fixture disclosure | **Complete for GitHub release:** dedicated tag, 48-file curated ZIP, checksum asset and 21/21 preflight tests; refer to [pilot release](https://github.com/Sugarlicks/silt-identity-core/releases/tag/aut-cisrc-v0.1-pilot-2026) |
 | AUT attribution | Keep initial directional review distinct from institutional authorisation; confirm any external acknowledgements | **No formal endorsement evidenced.** Five PNG diagrams excluded from pilot ZIP pending rights check |
-| Zenodo archive | Deposit an actual versioned package and confirm the assigned DOI | **Not done**; do not reuse the v0.2 DOI |
-| Public update | Publish bimonthly status / final dissemination note and record its URL | **Draft prepared**, publication not verified |
+| Zenodo archive | Cross-check published record with the intended curated GitHub ZIP and mixed licensing | **DOI supplied by depositor:** [10.5281/zenodo.23579725](https://doi.org/10.5281/zenodo.23579725); record inventory and licence display not independently verified |
+| Public update | Publish public project status and dissemination note | [Public status](VIETSCH_PUBLIC_STATUS.md) published; separate dissemination announcement outstanding |
 | Financial claim | Reconcile genuine costs and invoices against MoU's donation-claim requirements and prior amounts requested | **Do not invent cost amounts or assert payment** |
 
 ## Minimum proposed archival package
@@ -48,4 +48,4 @@ The original v0.1 schema uses `delegation_id`, `principal`, `agent`, `capacity`,
 
 ## Release gate
 
-Only declare the funded v0.1 project **published and complete** when specification provenance, licences, versioned archive, Zenodo DOI, public dissemination URL and end-of-project reporting are verified. The *pilot technical testing* is substantially complete; the *grant publication and reporting obligations* remain open.
+The technical pilot and versioned GitHub release are complete; the depositor has provided the Zenodo record URL and DOI. Close-out still requires checking the Zenodo file inventory/checksum and licence display, public dissemination and end-of-project financial/reporting verification.
