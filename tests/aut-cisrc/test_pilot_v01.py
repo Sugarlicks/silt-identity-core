@@ -147,6 +147,20 @@ class AUTPilotV01Tests(unittest.TestCase):
         delegation["permittedActions"] = "dataset.submit"
         self.assertTrue(validator.schema_errors(delegation, "delegation.schema.json"))
 
+    def test_21_all_five_example_artefact_types_conform(self):
+        pairs = [
+            ("authority-chain.json", "authority-chain.schema.json"),
+            ("delegations/valid-delegation.json", "delegation.schema.json"),
+            ("requests/valid-request.json", "access-request.schema.json"),
+        ]
+        for path, schema in pairs:
+            with self.subTest(path=path):
+                self.assertEqual(validator.schema_errors(fixture(path), schema), [])
+        for event in fixture("revocations/revoked-delegation.json")["revocations"]:
+            self.assertEqual(validator.schema_errors(event, "revocation.schema.json"), [])
+        output = self.evaluate()
+        self.assertEqual(validator.schema_errors(output, "validation-result.schema.json"), [])
+
     def test_20_result_matches_profile_schema(self):
         result = self.evaluate()
         self.assertEqual(validator.schema_errors(result, "validation-result.schema.json"), [])
